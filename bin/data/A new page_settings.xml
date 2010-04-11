@@ -1,0 +1,14 @@
+<controls>
+    <SliderFloat_X>
+        <name>X</name>
+        <value>0.000000</value>
+    </SliderFloat_X>
+    <SliderFloat_Y>
+        <name>Y</name>
+        <value>0.000000</value>
+    </SliderFloat_Y>
+    <SliderFloat_Scale>
+        <name>Scale</name>
+        <value>1.000000</value>
+    </SliderFloat_Scale>
+</controls>

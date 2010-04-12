@@ -4,6 +4,7 @@
 
 #include "ofMain.h"
 #include "Sensing.h"
+#include "AnimationHeads.h"
 
 class testApp : public ofSimpleApp
 {
@@ -26,6 +27,8 @@ public:
 	Sensing * sensing;
 	
 	int displayMethod;
+	
+	AnimationHeads * heads;
 };
 
 

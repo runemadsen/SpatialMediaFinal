@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A55400FA1173AA5400665657 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55400F91173AA5400665657 /* Animation.cpp */; };
+		A554011A1173AAB600665657 /* AnimationHeads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55401191173AAB600665657 /* AnimationHeads.cpp */; };
 		A5BB5F6911722FAB00CF7D9D /* Sensing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5BB5F6711722FAB00CF7D9D /* Sensing.cpp */; };
 		A5BB5F911172317400CF7D9D /* ofxSimpleGuiButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5BB5F6F1172317400CF7D9D /* ofxSimpleGuiButton.cpp */; };
 		A5BB5F921172317400CF7D9D /* ofxSimpleGuiColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5BB5F711172317400CF7D9D /* ofxSimpleGuiColorPicker.cpp */; };
@@ -100,6 +102,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A55400F81173AA5400665657 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
+		A55400F91173AA5400665657 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
+		A55401181173AAB600665657 /* AnimationHeads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHeads.h; sourceTree = "<group>"; };
+		A55401191173AAB600665657 /* AnimationHeads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationHeads.cpp; sourceTree = "<group>"; };
 		A5BB5F6711722FAB00CF7D9D /* Sensing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sensing.cpp; sourceTree = "<group>"; };
 		A5BB5F6811722FAB00CF7D9D /* Sensing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sensing.h; sourceTree = "<group>"; };
 		A5BB5F6A1172312400CF7D9D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -225,6 +231,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A554011C1173AABA00665657 /* animations */ = {
+			isa = PBXGroup;
+			children = (
+				A55400F81173AA5400665657 /* Animation.h */,
+				A55400F91173AA5400665657 /* Animation.cpp */,
+				A55401181173AAB600665657 /* AnimationHeads.h */,
+				A55401191173AAB600665657 /* AnimationHeads.cpp */,
+			);
+			name = animations;
+			sourceTree = "<group>";
+		};
 		A5BB5F6B1172317400CF7D9D /* addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +560,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A554011C1173AABA00665657 /* animations */,
 				A5BB5F6A1172312400CF7D9D /* Constants.h */,
 				A5BB5F6711722FAB00CF7D9D /* Sensing.cpp */,
 				A5BB5F6811722FAB00CF7D9D /* Sensing.h */,
@@ -738,6 +756,8 @@
 				A5BB5FCC117235B800CF7D9D /* tinyxmlparser.cpp in Sources */,
 				A5BB5FCD117235B800CF7D9D /* ofxXmlSettings.cpp in Sources */,
 				A5BB5FDC117235D400CF7D9D /* ofxMSAInteractiveObject.cpp in Sources */,
+				A55400FA1173AA5400665657 /* Animation.cpp in Sources */,
+				A554011A1173AAB600665657 /* AnimationHeads.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,8 +11,8 @@
         <name>Scale</name>
         <value>1.000000</value>
     </SliderFloat_Scale>
-    <SliderInt_Radius>
-        <name>Radius</name>
-        <value>40</value>
-    </SliderInt_Radius>
+    <SliderFloat_Point_Scale>
+        <name>Point Scale</name>
+        <value>0.549414</value>
+    </SliderFloat_Point_Scale>
 </controls>

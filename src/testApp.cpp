@@ -8,32 +8,30 @@ void testApp::setup()
 	sensing = new Sensing();
 	
 	displayMethod = 1;
+	
+	heads = new AnimationHeads();
 }
 
 void testApp::update() 
 {	
 	sensing->update();
+	
+	if(!sensing->disableAnimation())
+	{
+		heads->setPoints(sensing->getPointsSorted());
+		heads->setPointScale(sensing->getPointScale());
+		heads->update();
+	}
 }
 
 void testApp::draw() 
 {	
-	sensing->draw();
-	
 	if(!sensing->disableAnimation())
 	{
-		vector <ofPoint *> points = sensing->getPointsSorted();
-		
-		ofEnableAlphaBlending();
-		
-		ofSetColor(255, 255, 255, 100);
-		
-		for(int i = 0; i < points.size(); i++)
-		{
-			ofCircle(points[i]->x, points[i]->y, sensing->getRadius());
-		}	
-	
-		ofDisableAlphaBlending();
+		heads->draw();
 	}
+	
+	sensing->draw();
 }
 
 void testApp::keyPressed( int key ) 
@@ -78,11 +76,11 @@ void testApp::keyPressed( int key )
 	{
 		sensing->displace(SUB, DISPLACE_Y);
 	}
-	else if (key == 'R') 
+	else if (key == 'P') 
 	{
 		sensing->displace(ADD, DISPLACE_RADIUS);
 	}
-	else if (key == 'r') 
+	else if (key == 'p') 
 	{
 		sensing->displace(SUB, DISPLACE_RADIUS);
 	}

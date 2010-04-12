@@ -10,7 +10,7 @@ Sensing::Sensing()
 	_scale = 1;
 	_xDisplace = 0;
 	_yDisplace = 0;
-	_radius = 40;
+	_pointScale = 1;
 	
 	_camera.initGrabber(VIDEO_WIDTH, VIDEO_HEIGHT);
 	
@@ -22,7 +22,7 @@ Sensing::Sensing()
 	gui.addSlider("X", _xDisplace, -2000.0, 2000.0);
 	gui.addSlider("Y", _yDisplace, -2000.0, 2000.0);
 	gui.addSlider("Scale", _scale, 0.8, 4.0);
-	gui.addSlider("Radius", _radius, 10, 300);
+	gui.addSlider("Point Scale", _pointScale, 0.1, 4);
 	
 	//gui.loadFromXML();
 	
@@ -216,8 +216,8 @@ void Sensing::displace(string method, string value)
 	}
 	else if(value == DISPLACE_RADIUS)
 	{
-		if(method == ADD)		_radius++;
-		else if(method == SUB)	_radius--;
+		if(method == ADD)		_pointScale += 0.005;
+		else if(method == SUB)	_pointScale += 0.005;
 	}
 	else 
 	{
@@ -282,9 +282,9 @@ int Sensing::getPage()
 	return gui.currentPage;
 }
 
-int Sensing::getRadius()
+float Sensing::getPointScale()
 {
-	return _radius;
+	return _pointScale;
 }
 
 void Sensing::toggleMapFromScreen()

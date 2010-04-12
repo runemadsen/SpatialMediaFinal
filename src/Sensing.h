@@ -62,7 +62,7 @@ public:
 	vector <ofPoint *> getPoints();
 	vector <ofPoint *> getPointsSorted();
 	bool getEnabled();
-	int getRadius();
+	float getPointScale();
 	int getPage();
 	bool disableAnimation();
 	
@@ -88,7 +88,7 @@ private:
 	float _xDisplace;
 	float _yDisplace;
 	float _scale;
-	int _radius;
+	float _pointScale;
 	bool _mapFromScreen;
 
 	int _enabled;

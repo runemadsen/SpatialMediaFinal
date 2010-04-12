@@ -1,13 +1,13 @@
 #include "testApp.h"
 
 void testApp::setup() 
-{
-	name = "OHLAND";
-	
+{	
 	ofSetFrameRate(60);
 	ofBackground( 0, 0, 0 );
 	
 	sensing = new Sensing();
+	
+	displayMethod = 1;
 }
 
 void testApp::update() 
@@ -19,7 +19,7 @@ void testApp::draw()
 {	
 	sensing->draw();
 	
-	if(sensing->getPage() != 1 || !sensing->getEnabled())
+	if(!sensing->disableAnimation())
 	{
 		vector <ofPoint *> points = sensing->getPointsSorted();
 		
@@ -29,11 +29,7 @@ void testApp::draw()
 		
 		for(int i = 0; i < points.size(); i++)
 		{
-			if(i < name.length())
-			{
-				ofDrawBitmapString(name.substr(i, 1), points[i]->x, points[i]->y);
-				ofCircle(points[i]->x, points[i]->y, sensing->getRadius());
-			}
+			ofCircle(points[i]->x, points[i]->y, sensing->getRadius());
 		}	
 	
 		ofDisableAlphaBlending();
@@ -42,7 +38,11 @@ void testApp::draw()
 
 void testApp::keyPressed( int key ) 
 {
-	if (key =='f' || key=='F') 
+	if(key>='0' && key<='9') 
+	{
+		// change display method
+	}
+	else if (key =='f' || key=='F') 
 	{
 		ofToggleFullscreen();
 	} 
@@ -86,9 +86,21 @@ void testApp::keyPressed( int key )
 	{
 		sensing->displace(SUB, DISPLACE_RADIUS);
 	}
+	else if (key == 'l') 
+	{
+		sensing->loadPoints();
+	}
+	else if (key == 'L') 
+	{
+		sensing->savePoints();
+	}
 	else if (key ==' ') 
 	{
 		sensing->toggleEnabled();
+	}
+	else if (key == 'm') 
+	{
+		sensing->toggleMapFromScreen();
 	}
 }
 

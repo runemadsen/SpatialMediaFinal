@@ -24,7 +24,8 @@ public:
     void blobOff( int x, int y, int id, int order );
 	
 	Sensing * sensing;
-	string name;
+	
+	int displayMethod;
 };
 
 

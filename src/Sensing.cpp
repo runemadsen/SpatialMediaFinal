@@ -6,6 +6,7 @@
 Sensing::Sensing()
 {
 	_enabled = true;
+	_mapFromScreen = false;
 	_scale = 1;
 	_xDisplace = 0;
 	_yDisplace = 0;
@@ -49,12 +50,21 @@ void Sensing::draw()
 		
 		_camera.draw(VIDEO_X, VIDEO_Y, _camera.getWidth() * VIDEO_SCALE, _camera.getHeight() * VIDEO_SCALE);
 		
-		ofSetColor(255, 0, 0);
-		
 		for (int i = 0; i < _points.size(); i++) 
 		{
-			ofCircle(_points[i]->x, _points[i]->y, POINT_MARGIN);
+			drawPoint(_points[i]->x, _points[i]->y, 0x00FF00);
 		}
+	}
+	else if(!disableAnimation() && _mapFromScreen)
+	{
+		vector <ofPoint *> points = getPointsSorted();
+		
+		ofSetColor(0, 255, 0);
+		
+		for(int i = 0; i < points.size(); i++)
+		{
+			drawPoint(points[i]->x, points[i]->y, 0xFF0000);
+		}	
 	}
 }
 
@@ -67,20 +77,36 @@ void Sensing::mousePressed(int xPos, int yPos, int button)
 	{
 		if(isClickWithinVideo(xPos, yPos))
 	    {
-			int index = isClickWithinPoint(xPos, yPos);
-			
-			if(index == DISABLED)
-			{
-				ofPoint * newPoint = new ofPoint();
-				newPoint->set(xPos, yPos);
-				
-				_points.push_back(newPoint);
-			}
-			else 
-			{
-				_points.erase(_points.begin() + index);
-			}
+			checkClick(xPos, yPos);
 	    }
+	}
+	else if(!disableAnimation() && _mapFromScreen)
+	{
+		// map points from screen coordinates to video coordinates
+		float scaleToVideoX = (VIDEO_WIDTH * VIDEO_SCALE) / ofGetWidth();
+		float scaleToVideoY = (VIDEO_HEIGHT * VIDEO_SCALE) / ofGetHeight();
+		
+		float xMapped = (xPos * scaleToVideoX) + VIDEO_X;
+		float yMapped = (yPos * scaleToVideoY) + VIDEO_Y;
+		
+		checkClick(xMapped, yMapped);
+	}
+}
+
+void Sensing::checkClick(int xPos, int yPos)
+{
+	int index = isClickWithinPoint(xPos, yPos);
+	
+	if(index == DISABLED)
+	{
+		ofPoint * newPoint = new ofPoint();
+		newPoint->set(xPos, yPos);
+		
+		_points.push_back(newPoint);
+	}
+	else 
+	{
+		_points.erase(_points.begin() + index);
 	}
 }
 
@@ -108,6 +134,62 @@ int Sensing::isClickWithinPoint(int xPos, int yPos)
 	}
 	
 	return DISABLED;
+}
+
+void Sensing::drawPoint(int xPos, int yPos, int color)
+{
+	ofSetColor(color);
+	
+	ofFill();
+	ofCircle(xPos, yPos, 3);
+	
+	ofNoFill();
+	ofCircle(xPos, yPos, 3);
+	ofCircle(xPos, yPos, 8);
+}
+
+/* Loading
+ ___________________________________________________________ */
+
+void Sensing::loadPoints()
+{
+	if(_xml.loadFile(XML_FILE))
+	{
+		if(_xml.pushTag("points", 0))
+		{
+			for(int i = 0; i < _xml.getNumTags("point"); i++) 
+			{
+				ofPoint * point = new ofPoint();
+				point->x = (float) _xml.getAttribute("point", "x", 0, i);
+				point->y = (float) _xml.getAttribute("point", "y", 0, i);
+				_points.push_back(point);
+			}
+			
+			_xml.popTag();
+		}
+	}
+}
+
+void Sensing::savePoints()
+{	
+	//_xml.loadFromBuffer("<root></root>");
+	
+	_xml.clear();
+	
+	_xml.addTag("points");
+	_xml.pushTag("points", 0);
+	
+	for(int i = 0; i < _points.size(); i++)
+	{
+		_xml.addTag("point");
+		_xml.addAttribute("point", "x", ofToString(_points[i]->x, 1), i);
+		_xml.addAttribute("point", "y", ofToString(_points[i]->y, 1), i);
+	}
+	
+	_xml.popTag();
+	
+	_xml.saveFile(XML_FILE);
+
 }
 
 /* Getters / Setters
@@ -203,4 +285,19 @@ int Sensing::getPage()
 int Sensing::getRadius()
 {
 	return _radius;
+}
+
+void Sensing::toggleMapFromScreen()
+{
+	_mapFromScreen = !_mapFromScreen;
+}
+
+bool Sensing::disableAnimation()
+{
+	if(getPage() == 1 && getEnabled())
+	{
+		return true;
+	}
+	
+	return false;
 }

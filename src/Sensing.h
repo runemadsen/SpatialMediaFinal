@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxSimpleGuiToo.h"
 #include "ofxFBOTexture.h"
+#include "ofxXmlSettings.h"
 #include "Constants.h"
 
 #define VIDEO_WIDTH 320.0
@@ -11,6 +12,7 @@
 #define VIDEO_Y 133.0
 #define VIDEO_SCALE 2.0
 #define POINT_MARGIN 5
+#define XML_FILE "points.xml"
 
 class Sensing  
 {
@@ -51,6 +53,7 @@ public:
 	void mousePressed(int x, int y, int button);
 	
 	void toggleEnabled();
+	void toggleMapFromScreen();
 	void nextPage();
 	void prevPage();
 	
@@ -61,9 +64,16 @@ public:
 	bool getEnabled();
 	int getRadius();
 	int getPage();
+	bool disableAnimation();
+	
+	void drawPoint(int xPos, int yPos, int color);
+	
+	void loadPoints();
+	void savePoints();
 	
 private:
 	
+	void checkClick(int xPos, int yPos);
 	int isClickWithinPoint(int xPos, int yPos);
 	bool isClickWithinVideo(int xPos, int yPos);
 
@@ -78,7 +88,10 @@ private:
 	float _xDisplace;
 	float _yDisplace;
 	float _scale;
-	int _radius;	
+	int _radius;
+	bool _mapFromScreen;
 
 	int _enabled;
+	
+	ofxXmlSettings _xml;
 };

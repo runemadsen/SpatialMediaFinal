@@ -214,76 +214,6 @@ float Sensing::mapVideoYToScreenY(float yPos)
 	return (yPos - VIDEO_Y) * (ofGetHeight() / (VIDEO_HEIGHT * VIDEO_SCALE));
 }
 
-/* Key press
- ___________________________________________________________ */
-
-void Sensing::keyPressed(int key)
-{	
-	// delete
-	if(key == 127)
-	{
-		deleteSelectedBalloon();
-	}
-	// right arrow
-	else if (key == 358) 
-	{
-		nextPage();
-	}
-	// left arrow
-	else if (key == 356) 
-	{
-		prevPage();
-	}
-	else if (key == 'S') 
-	{
-		_scalePosAll += 0.005;
-	}
-	else if (key == 's') 
-	{
-		_scalePosAll -= 0.005;
-	}
-	else if (key == 'X') 
-	{
-		_xDisplaceAll++;
-	}
-	else if (key == 'x') 
-	{
-		_xDisplaceAll--;
-	}
-	else if (key == 'Y') 
-	{
-		_yDisplaceAll++;
-	}
-	else if (key == 'y') 
-	{
-		_yDisplaceAll--;
-	}
-	else if (key == 'P') 
-	{
-		_scaleSizeAll += 0.005;
-	}
-	else if (key == 'p') 
-	{
-		_scaleSizeAll -= 0.005;
-	}
-	else if (key == 'l') 
-	{
-		loadBalloons();
-	}
-	else if (key == 'L') 
-	{
-		saveBalloons();
-	}
-	else if (key ==' ') 
-	{
-		toggleEnabled();
-	}
-	else if (key == 'm') 
-	{
-		toggleMapFromScreen();
-	}
-}
-
 /* Loading / Saving
  ___________________________________________________________ */
 
@@ -298,7 +228,8 @@ void Sensing::loadBalloons()
 				Balloon * point = new Balloon();
 				point->setX( (float) _xml.getAttribute("point", "x", 0, i) );
 				point->setY( (float) _xml.getAttribute("point", "y", 0, i) );
-				point->setScale( (float) _xml.getAttribute("point", "scale", 0, i) );
+				point->setScale( (float) _xml.getAttribute("point", "scale", 1.00, i) );
+
 				_balloons.push_back(point);
 			}
 			
@@ -400,4 +331,74 @@ bool Sensing::disableAnimation()
 	}
 	
 	return false;
+}
+
+/* Key press
+ ___________________________________________________________ */
+
+void Sensing::keyPressed(int key)
+{	
+	// delete
+	if(key == 127)
+	{
+		deleteSelectedBalloon();
+	}
+	// right arrow
+	else if (key == 358) 
+	{
+		nextPage();
+	}
+	// left arrow
+	else if (key == 356) 
+	{
+		prevPage();
+	}
+	else if (key == 'S') 
+	{
+		_scalePosAll += 0.005;
+	}
+	else if (key == 's') 
+	{
+		_scalePosAll -= 0.005;
+	}
+	else if (key == 'X') 
+	{
+		_xDisplaceAll++;
+	}
+	else if (key == 'x') 
+	{
+		_xDisplaceAll--;
+	}
+	else if (key == 'Y') 
+	{
+		_yDisplaceAll++;
+	}
+	else if (key == 'y') 
+	{
+		_yDisplaceAll--;
+	}
+	else if (key == 'P') 
+	{
+		_scaleSizeAll += 0.005;
+	}
+	else if (key == 'p') 
+	{
+		_scaleSizeAll -= 0.005;
+	}
+	else if (key == 'l') 
+	{
+		loadBalloons();
+	}
+	else if (key == 'L') 
+	{
+		saveBalloons();
+	}
+	else if (key ==' ') 
+	{
+		toggleEnabled();
+	}
+	else if (key == 'r') 
+	{
+		toggleMapFromScreen();
+	}
 }

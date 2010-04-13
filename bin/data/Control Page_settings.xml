@@ -9,7 +9,7 @@
     </SliderFloat_Y>
     <SliderFloat_Scale_Positions>
         <name>Scale Positions</name>
-        <value>1.006250</value>
+        <value>1.000000</value>
     </SliderFloat_Scale_Positions>
     <SliderFloat_Scale_Sizes>
         <name>Scale Sizes</name>
@@ -17,6 +17,6 @@
     </SliderFloat_Scale_Sizes>
     <SliderFloat_Scale_Size>
         <name>Scale Size</name>
-        <value>1.000000</value>
+        <value>0.564648</value>
     </SliderFloat_Scale_Size>
 </controls>

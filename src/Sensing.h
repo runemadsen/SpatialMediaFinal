@@ -13,6 +13,7 @@
 #define VIDEO_Y 133.0
 #define VIDEO_SCALE 2.0
 #define POINT_MARGIN 5
+#define NORMALIZED_SELECT 0.004
 #define XML_FILE "points.xml"
 
 class Sensing  
@@ -65,7 +66,7 @@ public:
 	int getPage();
 	bool disableAnimation();
 	
-	void drawBalloon(int xPos, int yPos, int color);
+	void drawBalloon(float xPos, float yPos, int color);
 	void loadBalloons();
 	void saveBalloons();
 	
@@ -73,12 +74,16 @@ public:
 	
 private:
 	
-	void checkClick(int xPos, int yPos);
-	int isClickWithinBalloon(int xPos, int yPos);
-	bool isClickWithinVideo(int xPos, int yPos);
+	void checkClick(float xPos, float yPos);
+	int isClickWithinBalloon(float xPos, float yPos);
+	bool isClickWithinVideo(float xPos, float yPos);
 	void setBalloonDataToGUI();
 	void deleteSelectedBalloon();
-
+	
+	float mapScreenXToVideoX(float xPos);
+	float mapScreenYToVideoY(float yPos);
+	float mapVideoXToScreenX(float xPos);
+	float mapVideoYToScreenY(float yPos);
 	
 	ofImage _testImage;
 	ofVideoGrabber  _camera;

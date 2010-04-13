@@ -21,8 +21,8 @@ Sensing::Sensing()
 	
 	gui.addPage("Control Page");
 	gui.addTitle("All Balloons");
-	gui.addSlider("X", _xDisplaceAll, 0, ofGetWidth());
-	gui.addSlider("Y", _yDisplaceAll, 0, ofGetHeight());
+	gui.addSlider("X", _xDisplaceAll, -1000, 1000);
+	gui.addSlider("Y", _yDisplaceAll, -1000, 1000);
 	gui.addSlider("Scale Positions", _scalePosAll, 0.8, 4.0);
 	gui.addSlider("Scale Sizes", _scaleSizeAll, 0.1, 4);
 	
@@ -65,11 +65,11 @@ void Sensing::draw()
 		{
 			if(i == _selectedBalloon)	
 			{
-				drawBalloon(_balloons[i]->getX(), _balloons[i]->getY(), 0x000FF00);
+				drawBalloon(mapScreenXToVideoX(_balloons[i]->getX()), mapScreenYToVideoY(_balloons[i]->getY()), 0x000FF00);
 			}
 			else
 			{
-				drawBalloon(_balloons[i]->getX(), _balloons[i]->getY(), 0xFF0000);
+				drawBalloon(mapScreenXToVideoX(_balloons[i]->getX()), mapScreenYToVideoY(_balloons[i]->getY()), 0xFF0000);
 			}
 		}
 	}
@@ -102,23 +102,19 @@ void Sensing::mousePressed(int xPos, int yPos, int button)
 	{
 		if(isClickWithinVideo(xPos, yPos))
 	    {
+			xPos = mapVideoXToScreenX(xPos);
+			yPos = mapVideoYToScreenY(yPos);
+			
 			checkClick(xPos, yPos);
 	    }
 	}
 	else if(!_enabled && _mapFromScreen)
 	{
-		// map points from screen coordinates to video coordinates
-		float scaleToVideoX = (VIDEO_WIDTH * VIDEO_SCALE) / ofGetWidth();
-		float scaleToVideoY = (VIDEO_HEIGHT * VIDEO_SCALE) / ofGetHeight();
-		
-		float xMapped = (xPos * scaleToVideoX) + VIDEO_X;
-		float yMapped = (yPos * scaleToVideoY) + VIDEO_Y;
-		
-		checkClick(xMapped, yMapped);
+		checkClick((xPos / _scalePosAll) - _xDisplaceAll, (yPos / _scalePosAll) - _yDisplaceAll);
 	}
 }
 
-void Sensing::checkClick(int xPos, int yPos)
+void Sensing::checkClick(float xPos, float yPos)
 {
 	int index = isClickWithinBalloon(xPos, yPos);
 	
@@ -127,6 +123,7 @@ void Sensing::checkClick(int xPos, int yPos)
 		if (_selectedBalloon == DISABLED) 
 		{
 			Balloon * newBalloon = new Balloon();
+			// we need the calculation to make it work when all balloons have been scaled / moved
 			newBalloon->setX(xPos);
 			newBalloon->setY(yPos);
 			
@@ -148,7 +145,7 @@ void Sensing::checkClick(int xPos, int yPos)
 /* Utilities
 ___________________________________________________________ */
 
-bool Sensing::isClickWithinVideo(int xPos, int yPos)
+bool Sensing::isClickWithinVideo(float xPos, float yPos)
 {
 	if(xPos > VIDEO_X && xPos < VIDEO_X + (_camera.getWidth() * VIDEO_SCALE) && yPos > VIDEO_Y && yPos < VIDEO_Y + (_camera.getHeight() * VIDEO_SCALE))
 	{
@@ -158,7 +155,7 @@ bool Sensing::isClickWithinVideo(int xPos, int yPos)
 	return false;
 }
 		   
-int Sensing::isClickWithinBalloon(int xPos, int yPos)
+int Sensing::isClickWithinBalloon(float xPos, float yPos)
 {	
 	for(int i = 0; i < _balloons.size(); i++)
 	{
@@ -171,7 +168,7 @@ int Sensing::isClickWithinBalloon(int xPos, int yPos)
 	return DISABLED;
 }
 
-void Sensing::drawBalloon(int xPos, int yPos, int color)
+void Sensing::drawBalloon(float xPos, float yPos, int color)
 {
 	ofSetColor(color);
 	
@@ -195,6 +192,26 @@ void Sensing::deleteSelectedBalloon()
 		_balloons.erase(_balloons.begin() + _selectedBalloon);
 		_selectedBalloon = DISABLED;
 	}
+}
+
+float Sensing::mapScreenXToVideoX(float xPos)
+{
+	return xPos * ( (VIDEO_WIDTH * VIDEO_SCALE) / ofGetWidth()) + VIDEO_X;
+}
+
+float Sensing::mapScreenYToVideoY(float yPos)
+{
+	return yPos * ( (VIDEO_HEIGHT * VIDEO_SCALE) / ofGetHeight()) + VIDEO_Y;
+}
+
+float Sensing::mapVideoXToScreenX(float xPos)
+{
+	return (xPos - VIDEO_X) * (ofGetWidth() / (VIDEO_WIDTH * VIDEO_SCALE));
+}
+
+float Sensing::mapVideoYToScreenY(float yPos)
+{
+	return (yPos - VIDEO_Y) * (ofGetHeight() / (VIDEO_HEIGHT * VIDEO_SCALE));
 }
 
 /* Key press
@@ -319,16 +336,12 @@ ___________________________________________________________ */
 vector <Balloon *> Sensing::getBalloons()
 {
 	vector <Balloon *> norm;
-	norm.clear();
-	
-	float scaleToScreenX = ofGetWidth() / (VIDEO_WIDTH * VIDEO_SCALE);
-	float scaleToScreenY = ofGetHeight() / (VIDEO_HEIGHT * VIDEO_SCALE);
 	
 	for(int i = 0; i < _balloons.size(); i++)
 	{
 		Balloon * newPoint = new Balloon();
-		newPoint->setX( (_balloons[i]->getX() - VIDEO_X + _xDisplaceAll) * (scaleToScreenX * _scalePosAll) );
-		newPoint->setY( (_balloons[i]->getY() - VIDEO_Y + _yDisplaceAll) * (scaleToScreenY * _scalePosAll) );
+		newPoint->setX( (_balloons[i]->getX() + _xDisplaceAll) * _scalePosAll );
+		newPoint->setY( (_balloons[i]->getY() + _yDisplaceAll) * _scalePosAll );
 		newPoint->setScale( _balloons[i]->getScale() * _scaleSizeAll );
 		
 		norm.push_back(newPoint);

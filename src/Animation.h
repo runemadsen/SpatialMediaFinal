@@ -9,12 +9,12 @@ public:
     
     Animation();
 	
-	void setPoints(vector <ofPoint *> points);
+	void setPoints(vector <Balloon *> points);
 	void setPointScale(float pointScale);
 	
 protected:
 	
-	vector <ofPoint *> _points;
+	vector <Balloon *> _points;
 	
 	float _pointScale;
 	float _oldPointScale;

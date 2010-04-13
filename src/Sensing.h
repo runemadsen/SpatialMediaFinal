@@ -5,6 +5,7 @@
 #include "ofxFBOTexture.h"
 #include "ofxXmlSettings.h"
 #include "Constants.h"
+#include "Balloon.h"
 
 #define VIDEO_WIDTH 320.0
 #define VIDEO_HEIGHT 240.0
@@ -21,11 +22,11 @@ public:
 	
 	Sensing();
 	
-	struct ysorter
+	struct xsorter
     {
-        bool operator()(ofPoint * a, ofPoint * b) const
+        bool operator()(Balloon * a, Balloon * b) const
         {
-            if(a->y < b->y)
+            if(a->getX() < b->getX())
 			{
 				return true;
 			}
@@ -34,11 +35,11 @@ public:
         }
     };
 	
-	struct xsorter
+	struct ysorter
     {
-        bool operator()(ofPoint * a, ofPoint * b) const
+        bool operator()(Balloon * a, Balloon * b) const
         {
-            if(a->x < b->x)
+            if(a->getY() < b->getY())
 			{
 				return true;
 			}
@@ -59,8 +60,8 @@ public:
 	
 	void displace(string method, string value);
 	
-	vector <ofPoint *> getPoints();
-	vector <ofPoint *> getPointsSorted();
+	vector <Balloon *> getPoints();
+	vector <Balloon *> getPointsSorted();
 	bool getEnabled();
 	float getPointScale();
 	int getPage();
@@ -86,7 +87,7 @@ private:
 	
 	ofxFBOTexture _outputTexture;
 	
-	vector <ofPoint *> _points;
+	vector <Balloon *> _points;
 	
 	float _xDisplace;
 	float _yDisplace;

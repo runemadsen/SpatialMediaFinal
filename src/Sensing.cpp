@@ -59,17 +59,17 @@ void Sensing::draw()
 		{
 			if(i == _selectedPoint)	
 			{
-				drawPoint(_points[i]->x, _points[i]->y, 0x000FF00);
+				drawPoint(_points[i]->getX(), _points[i]->getY(), 0x000FF00);
 			}
 			else
 			{
-				drawPoint(_points[i]->x, _points[i]->y, 0xFF0000);
+				drawPoint(_points[i]->getX(), _points[i]->getY(), 0xFF0000);
 			}
 		}
 	}
 	else if(!disableAnimation() && _mapFromScreen)
 	{
-		vector <ofPoint *> points = getPoints();
+		vector <Balloon *> points = getPoints();
 		
 		ofSetColor(0, 255, 0);
 		
@@ -77,11 +77,11 @@ void Sensing::draw()
 		{
 			if(i == _selectedPoint)	
 			{
-				drawPoint(points[i]->x, points[i]->y, 0x000FF00);
+				drawPoint(points[i]->getX(), points[i]->getY(), 0x000FF00);
 			}
 			else
 			{
-				drawPoint(points[i]->x, points[i]->y, 0xFF0000);
+				drawPoint(points[i]->getX(), points[i]->getY(), 0xFF0000);
 			}
 		}	
 	}
@@ -120,8 +120,9 @@ void Sensing::checkClick(int xPos, int yPos)
 	{
 		if (_selectedPoint == DISABLED) 
 		{
-			ofPoint * newPoint = new ofPoint();
-			newPoint->set(xPos, yPos);
+			Balloon * newPoint = new Balloon();
+			newPoint->setX(xPos);
+			newPoint->setY(yPos);
 			
 			_points.push_back(newPoint);
 		}
@@ -155,7 +156,7 @@ int Sensing::isClickWithinPoint(int xPos, int yPos)
 {	
 	for(int i = 0; i < _points.size(); i++)
 	{
-		if(fabs(xPos - _points[i]->x) < POINT_MARGIN && fabs(yPos - _points[i]->y) < POINT_MARGIN)
+		if(fabs(xPos - _points[i]->getX()) < POINT_MARGIN && fabs(yPos - _points[i]->getY()) < POINT_MARGIN)
 		{
 			return i;
 		}
@@ -297,9 +298,9 @@ void Sensing::loadPoints()
 		{
 			for(int i = 0; i < _xml.getNumTags("point"); i++) 
 			{
-				ofPoint * point = new ofPoint();
-				point->x = (float) _xml.getAttribute("point", "x", 0, i);
-				point->y = (float) _xml.getAttribute("point", "y", 0, i);
+				Balloon * point = new Balloon();
+				point->setX( (float) _xml.getAttribute("point", "x", 0, i) );
+				point->setY( (float) _xml.getAttribute("point", "y", 0, i) );
 				_points.push_back(point);
 			}
 			
@@ -320,8 +321,8 @@ void Sensing::savePoints()
 	for(int i = 0; i < _points.size(); i++)
 	{
 		_xml.addTag("point");
-		_xml.addAttribute("point", "x", ofToString(_points[i]->x, 1), i);
-		_xml.addAttribute("point", "y", ofToString(_points[i]->y, 1), i);
+		_xml.addAttribute("point", "x", ofToString(_points[i]->getX(), 1), i);
+		_xml.addAttribute("point", "y", ofToString(_points[i]->getY(), 1), i);
 	}
 	
 	_xml.popTag();
@@ -333,9 +334,9 @@ void Sensing::savePoints()
 /* Getters / Setters
 ___________________________________________________________ */
 
-vector <ofPoint *> Sensing::getPoints()
+vector <Balloon *> Sensing::getPoints()
 {
-	vector <ofPoint *> norm;
+	vector <Balloon *> norm;
 	norm.clear();
 	
 	float scaleToScreenX = ofGetWidth() / (VIDEO_WIDTH * VIDEO_SCALE);
@@ -343,9 +344,9 @@ vector <ofPoint *> Sensing::getPoints()
 	
 	for(int i = 0; i < _points.size(); i++)
 	{
-		ofPoint * newPoint = new ofPoint();
-		newPoint->x = (_points[i]->x - VIDEO_X + _xDisplace) * (scaleToScreenX * _scale);
-		newPoint->y = (_points[i]->y - VIDEO_Y + _yDisplace) * (scaleToScreenY * _scale);
+		Balloon * newPoint = new Balloon();
+		newPoint->setX( (_points[i]->getX() - VIDEO_X + _xDisplace) * (scaleToScreenX * _scale) );
+		newPoint->setY( (_points[i]->getY() - VIDEO_Y + _yDisplace) * (scaleToScreenY * _scale) );
 		
 		norm.push_back(newPoint);
 	}
@@ -353,9 +354,9 @@ vector <ofPoint *> Sensing::getPoints()
 	return norm;
 }
 
-vector <ofPoint *> Sensing::getPointsSorted()
+vector <Balloon *> Sensing::getPointsSorted()
 {
-	vector <ofPoint *> norm = getPoints();
+	vector <Balloon *> norm = getPoints();
 	
 	//std::sort(norm.begin(), norm.end(), Sensing::xsorter());
 	std::sort(norm.begin(), norm.end(), Sensing::ysorter());

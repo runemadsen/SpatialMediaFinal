@@ -32,7 +32,7 @@ void AnimationHeads::draw()
 	
 	for(int i = 0; i < _points.size(); i++) 
 	{
-		img.draw(_points[i]->x - (img.getWidth() / 2), _points[i]->y - (img.getHeight() / 2));
+		img.draw(_points[i]->getX() - (img.getWidth() / 2), _points[i]->getY() - (img.getHeight() / 2));
 	}
 	
 	ofDisableAlphaBlending();

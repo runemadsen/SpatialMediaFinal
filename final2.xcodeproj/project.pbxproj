@@ -102,7 +102,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A503523D1174CBC0003E9C5A /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
+		A503523D1174CBC0003E9C5A /* Balloon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balloon.h; sourceTree = "<group>"; };
 		A55400F81173AA5400665657 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		A55400F91173AA5400665657 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		A55401181173AAB600665657 /* AnimationHeads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHeads.h; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 		A503523C1174CBA3003E9C5A /* models */ = {
 			isa = PBXGroup;
 			children = (
-				A503523D1174CBC0003E9C5A /* Point.h */,
+				A503523D1174CBC0003E9C5A /* Balloon.h */,
 			);
 			name = models;
 			sourceTree = "<group>";

@@ -52,34 +52,32 @@ public:
 	void draw();
 	
 	void mousePressed(int x, int y, int button);
+	void mouseDragged(int x, int y, int button);
 	
 	void toggleEnabled();
 	void toggleMapFromScreen();
 	void nextPage();
 	void prevPage();
 	
-	void displace(string method, string value);
-	
-	vector <Balloon *> getPoints();
-	vector <Balloon *> getPointsSorted();
+	vector <Balloon *> getBalloons();
+	vector <Balloon *> getBalloonsSorted();
 	bool getEnabled();
-	float getPointScale();
 	int getPage();
 	bool disableAnimation();
 	
-	void drawPoint(int xPos, int yPos, int color);
-	
-	void loadPoints();
-	void savePoints();
+	void drawBalloon(int xPos, int yPos, int color);
+	void loadBalloons();
+	void saveBalloons();
 	
 	void keyPressed(int key);
 	
 private:
 	
 	void checkClick(int xPos, int yPos);
-	int isClickWithinPoint(int xPos, int yPos);
+	int isClickWithinBalloon(int xPos, int yPos);
 	bool isClickWithinVideo(int xPos, int yPos);
-	void setPointDataToGUI();
+	void setBalloonDataToGUI();
+	void deleteSelectedBalloon();
 
 	
 	ofImage _testImage;
@@ -87,20 +85,19 @@ private:
 	
 	ofxFBOTexture _outputTexture;
 	
-	vector <Balloon *> _points;
+	vector <Balloon *> _balloons;
+	int _selectedBalloon;
 	
-	float _xDisplace;
-	float _yDisplace;
-	float _scale;
-	float _pointScale;
-	float _selectedPointScale;
+	float _scalePosAll;
+	float _xDisplaceAll;
+	float _yDisplaceAll;
+	float _scaleSizeAll;
+	
+	float _scaleSizeSelected;
+	
 	bool _mapFromScreen;
 
 	int _enabled;
-	
-	int _selectedPoint;
-	float _selectedPointX;
-	float _selectedPointY;
 	
 	ofxXmlSettings _xml;
 };

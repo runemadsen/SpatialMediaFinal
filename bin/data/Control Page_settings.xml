@@ -7,16 +7,16 @@
         <name>Y</name>
         <value>0.000000</value>
     </SliderFloat_Y>
-    <SliderFloat_Scale>
-        <name>Scale</name>
+    <SliderFloat_Scale_Positions>
+        <name>Scale Positions</name>
+        <value>1.006250</value>
+    </SliderFloat_Scale_Positions>
+    <SliderFloat_Scale_Sizes>
+        <name>Scale Sizes</name>
         <value>1.000000</value>
-    </SliderFloat_Scale>
-    <SliderFloat_All_Points_Scale>
-        <name>All Points Scale</name>
+    </SliderFloat_Scale_Sizes>
+    <SliderFloat_Scale_Size>
+        <name>Scale Size</name>
         <value>1.000000</value>
-    </SliderFloat_All_Points_Scale>
-    <SliderFloat_Selected_Point_Scale>
-        <name>Selected Point Scale</name>
-        <value>1.000000</value>
-    </SliderFloat_Selected_Point_Scale>
+    </SliderFloat_Scale_Size>
 </controls>

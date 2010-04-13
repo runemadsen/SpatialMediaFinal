@@ -18,8 +18,7 @@ void testApp::update()
 	
 	if(!sensing->disableAnimation())
 	{
-		heads->setPoints(sensing->getPointsSorted());
-		heads->setPointScale(sensing->getPointScale());
+		heads->setPoints(sensing->getBalloonsSorted());
 		heads->update();
 	}
 }
@@ -50,7 +49,10 @@ void testApp::keyPressed( int key )
 
 void testApp::mouseMoved( int x, int y ) {}
 
-void testApp::mouseDragged( int x, int y, int button ) {}
+void testApp::mouseDragged( int x, int y, int button ) 
+{
+	sensing->mouseDragged(x, y, button);
+}
 
 void testApp::mousePressed( int x, int y, int button ) 
 {

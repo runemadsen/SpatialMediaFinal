@@ -7,12 +7,12 @@ Sensing::Sensing()
 {
 	_enabled = true;
 	_mapFromScreen = false;
-	_scale = 1;
-	_xDisplace = 0;
-	_yDisplace = 0;
-	_pointScale = 1;
-	_selectedPointScale = 1;
-	_selectedPoint = DISABLED;
+	_scalePosAll = 1;
+	_xDisplaceAll = 0;
+	_yDisplaceAll = 0;
+	_scaleSizeAll = 1;
+	_scaleSizeSelected = 1;
+	_selectedBalloon = DISABLED;
 	
 	_camera.initGrabber(VIDEO_WIDTH, VIDEO_HEIGHT);
 	
@@ -20,14 +20,15 @@ Sensing::Sensing()
 	gui.addFPSCounter();
 	
 	gui.addPage("Control Page");
-	gui.addTitle("Controls");
-	gui.addSlider("X", _xDisplace, -2000.0, 2000.0);
-	gui.addSlider("Y", _yDisplace, -2000.0, 2000.0);
-	gui.addSlider("Scale", _scale, 0.8, 4.0);
-	gui.addSlider("All Points Scale", _pointScale, 0.1, 4);
-	gui.addSlider("Selected Point Scale", _selectedPointScale, 0.1, 4);
-	gui.addSlider("Selected Point Scale", _selectedPointX, 0, ofGetWidth());
-	gui.addSlider("Selected Point Scale", _selectedPointY, 0, ofGetHeight());
+	gui.addTitle("All Balloons");
+	gui.addSlider("X", _xDisplaceAll, 0, ofGetWidth());
+	gui.addSlider("Y", _yDisplaceAll, 0, ofGetHeight());
+	gui.addSlider("Scale Positions", _scalePosAll, 0.8, 4.0);
+	gui.addSlider("Scale Sizes", _scaleSizeAll, 0.1, 4);
+	
+	gui.addTitle("Selected Balloons");
+	
+	gui.addSlider("Scale Size", _scaleSizeSelected, 0.1, 4);
 	
 	//gui.loadFromXML();
 	
@@ -40,6 +41,11 @@ Sensing::Sensing()
 void Sensing::update()
 {
 	_camera.grabFrame();
+	
+	if(_selectedBalloon != DISABLED)
+	{
+		_balloons[_selectedBalloon]->setScale( _scaleSizeSelected );
+	}
 }
 
 /* Draw
@@ -55,33 +61,33 @@ void Sensing::draw()
 		
 		_camera.draw(VIDEO_X, VIDEO_Y, _camera.getWidth() * VIDEO_SCALE, _camera.getHeight() * VIDEO_SCALE);
 		
-		for (int i = 0; i < _points.size(); i++) 
+		for (int i = 0; i < _balloons.size(); i++) 
 		{
-			if(i == _selectedPoint)	
+			if(i == _selectedBalloon)	
 			{
-				drawPoint(_points[i]->getX(), _points[i]->getY(), 0x000FF00);
+				drawBalloon(_balloons[i]->getX(), _balloons[i]->getY(), 0x000FF00);
 			}
 			else
 			{
-				drawPoint(_points[i]->getX(), _points[i]->getY(), 0xFF0000);
+				drawBalloon(_balloons[i]->getX(), _balloons[i]->getY(), 0xFF0000);
 			}
 		}
 	}
 	else if(!disableAnimation() && _mapFromScreen)
 	{
-		vector <Balloon *> points = getPoints();
+		vector <Balloon *> balloons = getBalloons();
 		
 		ofSetColor(0, 255, 0);
 		
-		for(int i = 0; i < points.size(); i++)
+		for(int i = 0; i < balloons.size(); i++)
 		{
-			if(i == _selectedPoint)	
+			if(i == _selectedBalloon)	
 			{
-				drawPoint(points[i]->getX(), points[i]->getY(), 0x000FF00);
+				drawBalloon(balloons[i]->getX(), balloons[i]->getY(), 0x000FF00);
 			}
 			else
 			{
-				drawPoint(points[i]->getX(), points[i]->getY(), 0xFF0000);
+				drawBalloon(balloons[i]->getX(), balloons[i]->getY(), 0xFF0000);
 			}
 		}	
 	}
@@ -99,7 +105,7 @@ void Sensing::mousePressed(int xPos, int yPos, int button)
 			checkClick(xPos, yPos);
 	    }
 	}
-	else if(!disableAnimation() && _mapFromScreen)
+	else if(!_enabled && _mapFromScreen)
 	{
 		// map points from screen coordinates to video coordinates
 		float scaleToVideoX = (VIDEO_WIDTH * VIDEO_SCALE) / ofGetWidth();
@@ -114,28 +120,28 @@ void Sensing::mousePressed(int xPos, int yPos, int button)
 
 void Sensing::checkClick(int xPos, int yPos)
 {
-	int index = isClickWithinPoint(xPos, yPos);
+	int index = isClickWithinBalloon(xPos, yPos);
 	
 	if(index == DISABLED)
 	{
-		if (_selectedPoint == DISABLED) 
+		if (_selectedBalloon == DISABLED) 
 		{
-			Balloon * newPoint = new Balloon();
-			newPoint->setX(xPos);
-			newPoint->setY(yPos);
+			Balloon * newBalloon = new Balloon();
+			newBalloon->setX(xPos);
+			newBalloon->setY(yPos);
 			
-			_points.push_back(newPoint);
+			_balloons.push_back(newBalloon);
 		}
 		else 
 		{
-			_selectedPoint = DISABLED;
+			_selectedBalloon = DISABLED;
 		}
 	}
 	else 
 	{
-		_selectedPoint = index;
+		_selectedBalloon = index;
 		
-		setPointDataToGUI();
+		setBalloonDataToGUI();
 	}
 }
 
@@ -152,11 +158,11 @@ bool Sensing::isClickWithinVideo(int xPos, int yPos)
 	return false;
 }
 		   
-int Sensing::isClickWithinPoint(int xPos, int yPos)
+int Sensing::isClickWithinBalloon(int xPos, int yPos)
 {	
-	for(int i = 0; i < _points.size(); i++)
+	for(int i = 0; i < _balloons.size(); i++)
 	{
-		if(fabs(xPos - _points[i]->getX()) < POINT_MARGIN && fabs(yPos - _points[i]->getY()) < POINT_MARGIN)
+		if(fabs(xPos - _balloons[i]->getX()) < POINT_MARGIN && fabs(yPos - _balloons[i]->getY()) < POINT_MARGIN)
 		{
 			return i;
 		}
@@ -165,7 +171,7 @@ int Sensing::isClickWithinPoint(int xPos, int yPos)
 	return DISABLED;
 }
 
-void Sensing::drawPoint(int xPos, int yPos, int color)
+void Sensing::drawBalloon(int xPos, int yPos, int color)
 {
 	ofSetColor(color);
 	
@@ -177,41 +183,19 @@ void Sensing::drawPoint(int xPos, int yPos, int color)
 	ofCircle(xPos, yPos, 8);
 }
 
-void Sensing::setPointDataToGUI()
+void Sensing::setBalloonDataToGUI()
 {
-	//_selectedPointScale 
+	_scaleSizeSelected = _balloons[_selectedBalloon]->getScale();
 }
 
-void Sensing::displace(string method, string value)
+void Sensing::deleteSelectedBalloon()
 {
-	printf("subtract");
-	
-	if(value == DISPLACE_X)
+	if(_selectedBalloon != DISABLED)
 	{
-		if(method == ADD)		_xDisplace++;
-		else if(method == SUB)	_xDisplace--;
-	}
-	else if(value == DISPLACE_Y)
-	{
-		if(method == ADD)		_yDisplace++;
-		else if(method == SUB)	_yDisplace--;
-	}
-	else if(value == DISPLACE_SCALE)
-	{
-		if(method == ADD)		_scale += 0.005;
-		else if(method == SUB)	_scale -= 0.005;
-	}
-	else if(value == DISPLACE_RADIUS)
-	{
-		if(method == ADD)		_pointScale += 0.005;
-		else if(method == SUB)	_pointScale += 0.005;
-	}
-	else 
-	{
-		printf("ERROR: Wrong displace command \n");
+		_balloons.erase(_balloons.begin() + _selectedBalloon);
+		_selectedBalloon = DISABLED;
 	}
 }
-
 
 /* Key press
  ___________________________________________________________ */
@@ -221,11 +205,7 @@ void Sensing::keyPressed(int key)
 	// delete
 	if(key == 127)
 	{
-		if(_selectedPoint != DISABLED)
-		{
-			_points.erase(_points.begin() + _selectedPoint);
-			_selectedPoint = DISABLED;
-		}
+		deleteSelectedBalloon();
 	}
 	// right arrow
 	else if (key == 358) 
@@ -239,43 +219,43 @@ void Sensing::keyPressed(int key)
 	}
 	else if (key == 'S') 
 	{
-		displace(ADD, DISPLACE_SCALE);
+		_scalePosAll += 0.005;
 	}
 	else if (key == 's') 
 	{
-		displace(SUB, DISPLACE_SCALE);
+		_scalePosAll -= 0.005;
 	}
 	else if (key == 'X') 
 	{
-		displace(ADD, DISPLACE_X);
+		_xDisplaceAll++;
 	}
 	else if (key == 'x') 
 	{
-		displace(SUB, DISPLACE_X);
+		_xDisplaceAll--;
 	}
 	else if (key == 'Y') 
 	{
-		displace(ADD, DISPLACE_Y);
+		_yDisplaceAll++;
 	}
 	else if (key == 'y') 
 	{
-		displace(SUB, DISPLACE_Y);
+		_yDisplaceAll--;
 	}
 	else if (key == 'P') 
 	{
-		displace(ADD, DISPLACE_RADIUS);
+		_scaleSizeAll += 0.005;
 	}
 	else if (key == 'p') 
 	{
-		displace(SUB, DISPLACE_RADIUS);
+		_scaleSizeAll -= 0.005;
 	}
 	else if (key == 'l') 
 	{
-		loadPoints();
+		loadBalloons();
 	}
 	else if (key == 'L') 
 	{
-		savePoints();
+		saveBalloons();
 	}
 	else if (key ==' ') 
 	{
@@ -284,13 +264,13 @@ void Sensing::keyPressed(int key)
 	else if (key == 'm') 
 	{
 		toggleMapFromScreen();
-	}	
+	}
 }
 
 /* Loading / Saving
  ___________________________________________________________ */
 
-void Sensing::loadPoints()
+void Sensing::loadBalloons()
 {
 	if(_xml.loadFile(XML_FILE))
 	{
@@ -301,7 +281,8 @@ void Sensing::loadPoints()
 				Balloon * point = new Balloon();
 				point->setX( (float) _xml.getAttribute("point", "x", 0, i) );
 				point->setY( (float) _xml.getAttribute("point", "y", 0, i) );
-				_points.push_back(point);
+				point->setScale( (float) _xml.getAttribute("point", "scale", 0, i) );
+				_balloons.push_back(point);
 			}
 			
 			_xml.popTag();
@@ -309,7 +290,7 @@ void Sensing::loadPoints()
 	}
 }
 
-void Sensing::savePoints()
+void Sensing::saveBalloons()
 {	
 	//_xml.loadFromBuffer("<root></root>");
 	
@@ -318,11 +299,12 @@ void Sensing::savePoints()
 	_xml.addTag("points");
 	_xml.pushTag("points", 0);
 	
-	for(int i = 0; i < _points.size(); i++)
+	for(int i = 0; i < _balloons.size(); i++)
 	{
 		_xml.addTag("point");
-		_xml.addAttribute("point", "x", ofToString(_points[i]->getX(), 1), i);
-		_xml.addAttribute("point", "y", ofToString(_points[i]->getY(), 1), i);
+		_xml.addAttribute("point", "x", ofToString(_balloons[i]->getX(), 1), i);
+		_xml.addAttribute("point", "y", ofToString(_balloons[i]->getY(), 1), i);
+		_xml.addAttribute("point", "scale", ofToString(_balloons[i]->getScale(), 2), i);
 	}
 	
 	_xml.popTag();
@@ -334,7 +316,7 @@ void Sensing::savePoints()
 /* Getters / Setters
 ___________________________________________________________ */
 
-vector <Balloon *> Sensing::getPoints()
+vector <Balloon *> Sensing::getBalloons()
 {
 	vector <Balloon *> norm;
 	norm.clear();
@@ -342,11 +324,12 @@ vector <Balloon *> Sensing::getPoints()
 	float scaleToScreenX = ofGetWidth() / (VIDEO_WIDTH * VIDEO_SCALE);
 	float scaleToScreenY = ofGetHeight() / (VIDEO_HEIGHT * VIDEO_SCALE);
 	
-	for(int i = 0; i < _points.size(); i++)
+	for(int i = 0; i < _balloons.size(); i++)
 	{
 		Balloon * newPoint = new Balloon();
-		newPoint->setX( (_points[i]->getX() - VIDEO_X + _xDisplace) * (scaleToScreenX * _scale) );
-		newPoint->setY( (_points[i]->getY() - VIDEO_Y + _yDisplace) * (scaleToScreenY * _scale) );
+		newPoint->setX( (_balloons[i]->getX() - VIDEO_X + _xDisplaceAll) * (scaleToScreenX * _scalePosAll) );
+		newPoint->setY( (_balloons[i]->getY() - VIDEO_Y + _yDisplaceAll) * (scaleToScreenY * _scalePosAll) );
+		newPoint->setScale( _balloons[i]->getScale() * _scaleSizeAll );
 		
 		norm.push_back(newPoint);
 	}
@@ -354,9 +337,9 @@ vector <Balloon *> Sensing::getPoints()
 	return norm;
 }
 
-vector <Balloon *> Sensing::getPointsSorted()
+vector <Balloon *> Sensing::getBalloonsSorted()
 {
-	vector <Balloon *> norm = getPoints();
+	vector <Balloon *> norm = getBalloons();
 	
 	//std::sort(norm.begin(), norm.end(), Sensing::xsorter());
 	std::sort(norm.begin(), norm.end(), Sensing::ysorter());
@@ -389,11 +372,6 @@ void Sensing::prevPage()
 int Sensing::getPage()
 {
 	return gui.currentPage;
-}
-
-float Sensing::getPointScale()
-{
-	return _pointScale;
 }
 
 void Sensing::toggleMapFromScreen()

@@ -102,6 +102,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A503523D1174CBC0003E9C5A /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		A55400F81173AA5400665657 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		A55400F91173AA5400665657 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		A55401181173AAB600665657 /* AnimationHeads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHeads.h; sourceTree = "<group>"; };
@@ -231,6 +232,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A503523C1174CBA3003E9C5A /* models */ = {
+			isa = PBXGroup;
+			children = (
+				A503523D1174CBC0003E9C5A /* Point.h */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
 		A554011C1173AABA00665657 /* animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +569,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A503523C1174CBA3003E9C5A /* models */,
 				A554011C1173AABA00665657 /* animations */,
 				A5BB5F6A1172312400CF7D9D /* Constants.h */,
 				A5BB5F6711722FAB00CF7D9D /* Sensing.cpp */,

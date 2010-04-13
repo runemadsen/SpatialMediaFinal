@@ -11,8 +11,12 @@
         <name>Scale</name>
         <value>1.000000</value>
     </SliderFloat_Scale>
-    <SliderFloat_Point_Scale>
-        <name>Point Scale</name>
-        <value>0.549414</value>
-    </SliderFloat_Point_Scale>
+    <SliderFloat_All_Points_Scale>
+        <name>All Points Scale</name>
+        <value>1.000000</value>
+    </SliderFloat_All_Points_Scale>
+    <SliderFloat_Selected_Point_Scale>
+        <name>Selected Point Scale</name>
+        <value>1.000000</value>
+    </SliderFloat_Selected_Point_Scale>
 </controls>

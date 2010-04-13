@@ -11,6 +11,8 @@ Sensing::Sensing()
 	_xDisplace = 0;
 	_yDisplace = 0;
 	_pointScale = 1;
+	_selectedPointScale = 1;
+	_selectedPoint = DISABLED;
 	
 	_camera.initGrabber(VIDEO_WIDTH, VIDEO_HEIGHT);
 	
@@ -22,7 +24,10 @@ Sensing::Sensing()
 	gui.addSlider("X", _xDisplace, -2000.0, 2000.0);
 	gui.addSlider("Y", _yDisplace, -2000.0, 2000.0);
 	gui.addSlider("Scale", _scale, 0.8, 4.0);
-	gui.addSlider("Point Scale", _pointScale, 0.1, 4);
+	gui.addSlider("All Points Scale", _pointScale, 0.1, 4);
+	gui.addSlider("Selected Point Scale", _selectedPointScale, 0.1, 4);
+	gui.addSlider("Selected Point Scale", _selectedPointX, 0, ofGetWidth());
+	gui.addSlider("Selected Point Scale", _selectedPointY, 0, ofGetHeight());
 	
 	//gui.loadFromXML();
 	
@@ -52,18 +57,32 @@ void Sensing::draw()
 		
 		for (int i = 0; i < _points.size(); i++) 
 		{
-			drawPoint(_points[i]->x, _points[i]->y, 0x00FF00);
+			if(i == _selectedPoint)	
+			{
+				drawPoint(_points[i]->x, _points[i]->y, 0x000FF00);
+			}
+			else
+			{
+				drawPoint(_points[i]->x, _points[i]->y, 0xFF0000);
+			}
 		}
 	}
 	else if(!disableAnimation() && _mapFromScreen)
 	{
-		vector <ofPoint *> points = getPointsSorted();
+		vector <ofPoint *> points = getPoints();
 		
 		ofSetColor(0, 255, 0);
 		
 		for(int i = 0; i < points.size(); i++)
 		{
-			drawPoint(points[i]->x, points[i]->y, 0xFF0000);
+			if(i == _selectedPoint)	
+			{
+				drawPoint(points[i]->x, points[i]->y, 0x000FF00);
+			}
+			else
+			{
+				drawPoint(points[i]->x, points[i]->y, 0xFF0000);
+			}
 		}	
 	}
 }
@@ -99,14 +118,23 @@ void Sensing::checkClick(int xPos, int yPos)
 	
 	if(index == DISABLED)
 	{
-		ofPoint * newPoint = new ofPoint();
-		newPoint->set(xPos, yPos);
-		
-		_points.push_back(newPoint);
+		if (_selectedPoint == DISABLED) 
+		{
+			ofPoint * newPoint = new ofPoint();
+			newPoint->set(xPos, yPos);
+			
+			_points.push_back(newPoint);
+		}
+		else 
+		{
+			_selectedPoint = DISABLED;
+		}
 	}
 	else 
 	{
-		_points.erase(_points.begin() + index);
+		_selectedPoint = index;
+		
+		setPointDataToGUI();
 	}
 }
 
@@ -148,7 +176,117 @@ void Sensing::drawPoint(int xPos, int yPos, int color)
 	ofCircle(xPos, yPos, 8);
 }
 
-/* Loading
+void Sensing::setPointDataToGUI()
+{
+	//_selectedPointScale 
+}
+
+void Sensing::displace(string method, string value)
+{
+	printf("subtract");
+	
+	if(value == DISPLACE_X)
+	{
+		if(method == ADD)		_xDisplace++;
+		else if(method == SUB)	_xDisplace--;
+	}
+	else if(value == DISPLACE_Y)
+	{
+		if(method == ADD)		_yDisplace++;
+		else if(method == SUB)	_yDisplace--;
+	}
+	else if(value == DISPLACE_SCALE)
+	{
+		if(method == ADD)		_scale += 0.005;
+		else if(method == SUB)	_scale -= 0.005;
+	}
+	else if(value == DISPLACE_RADIUS)
+	{
+		if(method == ADD)		_pointScale += 0.005;
+		else if(method == SUB)	_pointScale += 0.005;
+	}
+	else 
+	{
+		printf("ERROR: Wrong displace command \n");
+	}
+}
+
+
+/* Key press
+ ___________________________________________________________ */
+
+void Sensing::keyPressed(int key)
+{	
+	// delete
+	if(key == 127)
+	{
+		if(_selectedPoint != DISABLED)
+		{
+			_points.erase(_points.begin() + _selectedPoint);
+			_selectedPoint = DISABLED;
+		}
+	}
+	// right arrow
+	else if (key == 358) 
+	{
+		nextPage();
+	}
+	// left arrow
+	else if (key == 356) 
+	{
+		prevPage();
+	}
+	else if (key == 'S') 
+	{
+		displace(ADD, DISPLACE_SCALE);
+	}
+	else if (key == 's') 
+	{
+		displace(SUB, DISPLACE_SCALE);
+	}
+	else if (key == 'X') 
+	{
+		displace(ADD, DISPLACE_X);
+	}
+	else if (key == 'x') 
+	{
+		displace(SUB, DISPLACE_X);
+	}
+	else if (key == 'Y') 
+	{
+		displace(ADD, DISPLACE_Y);
+	}
+	else if (key == 'y') 
+	{
+		displace(SUB, DISPLACE_Y);
+	}
+	else if (key == 'P') 
+	{
+		displace(ADD, DISPLACE_RADIUS);
+	}
+	else if (key == 'p') 
+	{
+		displace(SUB, DISPLACE_RADIUS);
+	}
+	else if (key == 'l') 
+	{
+		loadPoints();
+	}
+	else if (key == 'L') 
+	{
+		savePoints();
+	}
+	else if (key ==' ') 
+	{
+		toggleEnabled();
+	}
+	else if (key == 'm') 
+	{
+		toggleMapFromScreen();
+	}	
+}
+
+/* Loading / Saving
  ___________________________________________________________ */
 
 void Sensing::loadPoints()
@@ -189,41 +327,11 @@ void Sensing::savePoints()
 	_xml.popTag();
 	
 	_xml.saveFile(XML_FILE);
-
+	
 }
 
 /* Getters / Setters
 ___________________________________________________________ */
-
-void Sensing::displace(string method, string value)
-{
-	printf("subtract");
-	
-	if(value == DISPLACE_X)
-	{
-		if(method == ADD)		_xDisplace++;
-		else if(method == SUB)	_xDisplace--;
-	}
-	else if(value == DISPLACE_Y)
-	{
-		if(method == ADD)		_yDisplace++;
-		else if(method == SUB)	_yDisplace--;
-	}
-	else if(value == DISPLACE_SCALE)
-	{
-		if(method == ADD)		_scale += 0.005;
-		else if(method == SUB)	_scale -= 0.005;
-	}
-	else if(value == DISPLACE_RADIUS)
-	{
-		if(method == ADD)		_pointScale += 0.005;
-		else if(method == SUB)	_pointScale += 0.005;
-	}
-	else 
-	{
-		printf("ERROR: Wrong displace command \n");
-	}
-}
 
 vector <ofPoint *> Sensing::getPoints()
 {

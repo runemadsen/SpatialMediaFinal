@@ -36,6 +36,8 @@ void testApp::draw()
 
 void testApp::keyPressed( int key ) 
 {
+	sensing->keyPressed(key);
+	
 	if(key>='0' && key<='9') 
 	{
 		// change display method
@@ -44,62 +46,6 @@ void testApp::keyPressed( int key )
 	{
 		ofToggleFullscreen();
 	} 
-	else if (key == 358) 
-	{
-		sensing->nextPage();
-	}
-	else if (key == 356) 
-	{
-		sensing->prevPage();
-	}
-	else if (key == 'S') 
-	{
-		sensing->displace(ADD, DISPLACE_SCALE);
-	}
-	else if (key == 's') 
-	{
-		sensing->displace(SUB, DISPLACE_SCALE);
-	}
-	else if (key == 'X') 
-	{
-		sensing->displace(ADD, DISPLACE_X);
-	}
-	else if (key == 'x') 
-	{
-		sensing->displace(SUB, DISPLACE_X);
-	}
-	else if (key == 'Y') 
-	{
-		sensing->displace(ADD, DISPLACE_Y);
-	}
-	else if (key == 'y') 
-	{
-		sensing->displace(SUB, DISPLACE_Y);
-	}
-	else if (key == 'P') 
-	{
-		sensing->displace(ADD, DISPLACE_RADIUS);
-	}
-	else if (key == 'p') 
-	{
-		sensing->displace(SUB, DISPLACE_RADIUS);
-	}
-	else if (key == 'l') 
-	{
-		sensing->loadPoints();
-	}
-	else if (key == 'L') 
-	{
-		sensing->savePoints();
-	}
-	else if (key ==' ') 
-	{
-		sensing->toggleEnabled();
-	}
-	else if (key == 'm') 
-	{
-		sensing->toggleMapFromScreen();
-	}
 }
 
 void testApp::mouseMoved( int x, int y ) {}

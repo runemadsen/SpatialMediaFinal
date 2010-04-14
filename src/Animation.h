@@ -12,6 +12,9 @@ public:
 	
 	void setPoints(vector <Balloon *> points);
 	
+	virtual void update() {}
+	virtual void draw() {}
+	
 protected:
 	
 	vector <Balloon *> _points;

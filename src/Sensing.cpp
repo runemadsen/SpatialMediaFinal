@@ -97,7 +97,7 @@ void Sensing::draw()
 ___________________________________________________________ */
 
 void Sensing::mousePressed(int xPos, int yPos, int button)
-{
+{		
 	if(_enabled && gui.currentPage == 1)
 	{
 		if(isClickWithinVideo(xPos, yPos))
@@ -110,6 +110,8 @@ void Sensing::mousePressed(int xPos, int yPos, int button)
 	}
 	else if(!_enabled && _mapFromScreen)
 	{
+		printf("Clicked screen");
+		
 		checkClick((xPos / _scalePosAll) - _xDisplaceAll, (yPos / _scalePosAll) - _yDisplaceAll);
 	}
 }

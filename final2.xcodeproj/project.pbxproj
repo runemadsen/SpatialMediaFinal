@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A520D3571176438F0009103D /* AnimationCircles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A520D3561176438F0009103D /* AnimationCircles.cpp */; };
 		A55400FA1173AA5400665657 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55400F91173AA5400665657 /* Animation.cpp */; };
 		A554011A1173AAB600665657 /* AnimationHeads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55401191173AAB600665657 /* AnimationHeads.cpp */; };
 		A5BB5F6911722FAB00CF7D9D /* Sensing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5BB5F6711722FAB00CF7D9D /* Sensing.cpp */; };
@@ -103,6 +104,8 @@
 
 /* Begin PBXFileReference section */
 		A503523D1174CBC0003E9C5A /* Balloon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balloon.h; sourceTree = "<group>"; };
+		A520D3551176438F0009103D /* AnimationCircles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationCircles.h; sourceTree = "<group>"; };
+		A520D3561176438F0009103D /* AnimationCircles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationCircles.cpp; sourceTree = "<group>"; };
 		A55400F81173AA5400665657 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		A55400F91173AA5400665657 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		A55401181173AAB600665657 /* AnimationHeads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHeads.h; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				A55400F91173AA5400665657 /* Animation.cpp */,
 				A55401181173AAB600665657 /* AnimationHeads.h */,
 				A55401191173AAB600665657 /* AnimationHeads.cpp */,
+				A520D3551176438F0009103D /* AnimationCircles.h */,
+				A520D3561176438F0009103D /* AnimationCircles.cpp */,
 			);
 			name = animations;
 			sourceTree = "<group>";
@@ -768,6 +773,7 @@
 				A5BB5FDC117235D400CF7D9D /* ofxMSAInteractiveObject.cpp in Sources */,
 				A55400FA1173AA5400665657 /* Animation.cpp in Sources */,
 				A554011A1173AAB600665657 /* AnimationHeads.cpp in Sources */,
+				A520D3571176438F0009103D /* AnimationCircles.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

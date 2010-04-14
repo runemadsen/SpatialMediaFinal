@@ -4,12 +4,16 @@ void testApp::setup()
 {	
 	ofSetFrameRate(60);
 	ofBackground( 0, 0, 0 );
+	ofEnableSmoothing();
 	
 	sensing = new Sensing();
 	
 	displayMethod = 1;
 	
-	heads = new AnimationHeads();
+	animations.push_back(new AnimationHeads());
+	animations.push_back(new AnimationCircles());
+	
+	selectedAnimation = 0;
 }
 
 void testApp::update() 
@@ -18,8 +22,8 @@ void testApp::update()
 	
 	if(!sensing->disableAnimation())
 	{
-		heads->setPoints(sensing->getBalloonsSorted());
-		heads->update();
+		animations[selectedAnimation]->setPoints(sensing->getBalloonsSorted());
+		animations[selectedAnimation]->update();
 	}
 }
 
@@ -27,7 +31,7 @@ void testApp::draw()
 {	
 	if(!sensing->disableAnimation())
 	{
-		heads->draw();
+		animations[selectedAnimation]->draw();
 	}
 	
 	sensing->draw();
@@ -37,9 +41,13 @@ void testApp::keyPressed( int key )
 {
 	sensing->keyPressed(key);
 	
-	if(key>='0' && key<='9') 
+	if(key == '1') 
 	{
-		// change display method
+		selectedAnimation = 0;
+	}
+	else if(key == '2') 
+	{
+		selectedAnimation = 1;
 	}
 	else if (key =='f' || key=='F') 
 	{

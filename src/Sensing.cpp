@@ -5,13 +5,17 @@
 
 Sensing::Sensing()
 {
-	_enabled = true;
+	_enabled = false;
 	_mapFromScreen = false;
 	_scalePosAll = 1;
 	_xDisplaceAll = 0;
 	_yDisplaceAll = 0;
 	_scaleSizeAll = 1;
-	_scaleSizeSelected = 1;
+	_constrainRatio = true;
+	_scaleWidthSelected = 1;
+	_scaleHeightSelected = 1;
+	_oldScaleWidthSelected = 1;
+	_oldScaleHeightSelected = 1;
 	_selectedBalloon = DISABLED;
 	
 	_camera.initGrabber(VIDEO_WIDTH, VIDEO_HEIGHT);
@@ -28,11 +32,13 @@ Sensing::Sensing()
 	
 	gui.addTitle("Selected Balloons");
 	
-	gui.addSlider("Scale Size", _scaleSizeSelected, 0.1, 4);
+	gui.addSlider("Scale Width", _scaleWidthSelected, 0.1, 4);
+	gui.addSlider("Scale Height", _scaleHeightSelected, 0.1, 4);
+	gui.addToggle("Constrain Ratio", _constrainRatio);
 	
 	//gui.loadFromXML();
 	
-	gui.show();
+	//gui.show();
 }
 
 /* Update
@@ -40,12 +46,19 @@ Sensing::Sensing()
 
 void Sensing::update()
 {
+	if(_constrainRatio)
+	{
+		// if both are edited on the same frame, this fucks up, shouldn't be possible
+		float diffWidth = _oldScaleWidthSelected - _scaleWidthSelected;
+		float diffHeight = _oldScaleHeightSelected - _scaleHeightSelected;
+		_scaleHeightSelected -= diffWidth;
+		_scaleWidthSelected -= diffHeight;
+	}
+	
 	_camera.grabFrame();
 	
-	if(_selectedBalloon != DISABLED)
-	{
-		_balloons[_selectedBalloon]->setScale( _scaleSizeSelected );
-	}
+	_oldScaleWidthSelected = _scaleWidthSelected;
+	_oldScaleHeightSelected = _scaleHeightSelected;
 }
 
 /* Draw
@@ -184,7 +197,8 @@ void Sensing::drawBalloon(float xPos, float yPos, int color)
 
 void Sensing::setBalloonDataToGUI()
 {
-	_scaleSizeSelected = _balloons[_selectedBalloon]->getScale();
+	_scaleWidthSelected = _balloons[_selectedBalloon]->getScaleWidth();
+	_scaleHeightSelected = _balloons[_selectedBalloon]->getScaleHeight();
 }
 
 void Sensing::deleteSelectedBalloon()
@@ -230,7 +244,8 @@ void Sensing::loadBalloons()
 				Balloon * point = new Balloon();
 				point->setX( (float) _xml.getAttribute("point", "x", 0, i) );
 				point->setY( (float) _xml.getAttribute("point", "y", 0, i) );
-				point->setScale( (float) _xml.getAttribute("point", "scale", 1.00, i) );
+				point->setScaleWidth( (float) _xml.getAttribute("point", "scalewidth", 1.00, i) );
+				point->setScaleHeight( (float) _xml.getAttribute("point", "scaleheight", 1.00, i) );
 
 				_balloons.push_back(point);
 			}
@@ -254,7 +269,8 @@ void Sensing::saveBalloons()
 		_xml.addTag("point");
 		_xml.addAttribute("point", "x", ofToString(_balloons[i]->getX(), 1), i);
 		_xml.addAttribute("point", "y", ofToString(_balloons[i]->getY(), 1), i);
-		_xml.addAttribute("point", "scale", ofToString(_balloons[i]->getScale(), 2), i);
+		_xml.addAttribute("point", "scalewidth", ofToString(_balloons[i]->getScaleWidth(), 2), i);
+		_xml.addAttribute("point", "scaleheight", ofToString(_balloons[i]->getScaleHeight(), 2), i);
 	}
 	
 	_xml.popTag();
@@ -275,7 +291,15 @@ vector <Balloon *> Sensing::getBalloons()
 		Balloon * newPoint = new Balloon();
 		newPoint->setX( (_balloons[i]->getX() + _xDisplaceAll) * _scalePosAll );
 		newPoint->setY( (_balloons[i]->getY() + _yDisplaceAll) * _scalePosAll );
-		newPoint->setScale( _balloons[i]->getScale() * _scaleSizeAll );
+		
+		if(i == _selectedBalloon)
+		{
+			_balloons[_selectedBalloon]->setScaleWidth( _scaleWidthSelected );
+			_balloons[_selectedBalloon]->setScaleHeight( _scaleHeightSelected );
+		}
+		
+		newPoint->setScaleWidth( _balloons[i]->getScaleWidth() * _scaleSizeAll );
+		newPoint->setScaleHeight( _balloons[i]->getScaleHeight() * _scaleSizeAll );
 		
 		norm.push_back(newPoint);
 	}

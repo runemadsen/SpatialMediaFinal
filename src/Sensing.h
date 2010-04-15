@@ -98,7 +98,12 @@ private:
 	float _yDisplaceAll;
 	float _scaleSizeAll;
 	
-	float _scaleSizeSelected;
+	bool _constrainRatio;
+	float _scaleWidthSelected;
+	float _scaleHeightSelected;
+	
+	float _oldScaleWidthSelected;
+	float _oldScaleHeightSelected;
 	
 	bool _mapFromScreen;
 

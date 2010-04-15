@@ -5,7 +5,7 @@
 
 AnimationCircles::AnimationCircles()
 {
-	_colors.push_back(0xff0036);
+	_colors.push_back(0x7eff00);
 	_colors.push_back(0xf000ff);
 	_colors.push_back(0x8a00ff);
 	_colors.push_back(0x1800ff);
@@ -42,9 +42,9 @@ void AnimationCircles::draw()
 	{
 		ofSetColor(_colors[i]);
 		ofFill();
-		ofEllipse(_points[i]->getX(), _points[i]->getY(), 200 * _points[i]->getScale(), 250 * _points[i]->getScale());
+		ofEllipse(_points[i]->getX(), _points[i]->getY(), _points[i]->getWidth(), _points[i]->getHeight());
 		ofNoFill();
-		ofEllipse(_points[i]->getX(), _points[i]->getY(), 200 * _points[i]->getScale(), 250 * _points[i]->getScale());
+		ofEllipse(_points[i]->getX(), _points[i]->getY(), _points[i]->getWidth(), _points[i]->getHeight());
 	}
 }
 

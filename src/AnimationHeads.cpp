@@ -30,11 +30,15 @@ void AnimationHeads::draw()
 	ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255);
 	
+	ofRectangle bounds;
+	
 	for(int i = 0; i < _points.size(); i++) 
 	{
+		bounds = _points[i]->getBoundsFromSize(orgImg.getWidth(), orgImg.getHeight());
+		
 		img.clone(orgImg);
-		img.resize(orgImg.getWidth() * _points[i]->getScale(), orgImg.getHeight() * _points[i]->getScale());
-		img.draw(_points[i]->getX() - (img.getWidth() / 2), _points[i]->getY() - (img.getHeight() / 2));
+		img.resize(bounds.width, bounds.height);
+		img.draw(bounds.x, bounds.y);
 	}
 	
 	ofDisableAlphaBlending();

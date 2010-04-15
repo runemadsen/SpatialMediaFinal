@@ -7,18 +7,54 @@ class Balloon
 	
 public:
 	
-	Balloon() { _scale = 1; }
+	Balloon() 
+	{ 
+		_bounds.width = 200;
+		_bounds.height = 250;
+		
+		_scaleWidth = 1; 
+		_scaleHeight = 1; 
+	}
 	
-	void setScale(float scale) { _scale = scale; }
-	void setX(float x) { _loc.x = x; }
-	void setY(float y) { _loc.y = y; }
+	void setX(float x) { _bounds.x = x; }
+	void setY(float y) { _bounds.y = y; }
+	void setScaleWidth(float scale) { _scaleWidth = scale; }
+	void setScaleHeight(float scale) { _scaleHeight = scale; }
+		
+	float getX() { return _bounds.x; }
+	float getY() { return _bounds.y; }
+	float getWidth() { return _bounds.width * _scaleWidth; }
+	float getHeight() { return _bounds.height * _scaleHeight; }
+	float getScaleWidth() { return _scaleWidth; }
+	float getScaleHeight() { return _scaleHeight; }
 	
-	float getScale() { return _scale; }
-	float getX() { return _loc.x; }
-	float getY() { return _loc.y; }
+	ofRectangle getBoundsFromSize(float width, float height)
+	{
+		ofRectangle bounds;
+		
+		float wDiff = getWidth() / width;
+		float hDiff = getHeight() / height;
+		
+		if(wDiff < hDiff)
+		{
+			bounds.width = width * wDiff;
+			bounds.height = height * wDiff;
+		}
+		else 
+		{
+			bounds.width = width * hDiff;
+			bounds.height = height * hDiff;
+		}
+		
+		bounds.x = _bounds.x - (bounds.width / 2);
+		bounds.y = _bounds.y - (bounds.height / 2);
+		
+		return bounds;
+	}
 
 private:
 	
-	ofPoint _loc;
-	float _scale;
+	ofRectangle _bounds;
+	float _scaleWidth;
+	float _scaleHeight;
 };

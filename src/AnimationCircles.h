@@ -13,6 +13,8 @@ public:
 	
 private:
 	
+	vector <int> _colors;
+	
 };
 
 

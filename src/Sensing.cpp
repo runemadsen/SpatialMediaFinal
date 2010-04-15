@@ -340,6 +340,8 @@ bool Sensing::disableAnimation()
 
 void Sensing::keyPressed(int key)
 {	
+	printf("Key: %d \n", key);
+	
 	// delete
 	if(key == 127)
 	{
@@ -348,12 +350,42 @@ void Sensing::keyPressed(int key)
 	// right arrow
 	else if (key == 358) 
 	{
-		nextPage();
+		if(_selectedBalloon != DISABLED)
+		{
+			_balloons[_selectedBalloon]->setX( _balloons[_selectedBalloon]->getX() + 1 );
+		}
+		else 
+		{
+			nextPage();
+		}
 	}
 	// left arrow
 	else if (key == 356) 
 	{
-		prevPage();
+		if(_selectedBalloon != DISABLED)
+		{
+			_balloons[_selectedBalloon]->setX( _balloons[_selectedBalloon]->getX() - 1 );
+		}
+		else 
+		{
+			prevPage();
+		}
+	}
+	// up arrow
+	else if (key == 357) 
+	{
+		if(_selectedBalloon != DISABLED)
+		{
+			_balloons[_selectedBalloon]->setY( _balloons[_selectedBalloon]->getY() - 1 );
+		}
+	}
+	// down arrow
+	else if (key == 359) 
+	{
+		if(_selectedBalloon != DISABLED)
+		{
+			_balloons[_selectedBalloon]->setY( _balloons[_selectedBalloon]->getY() + 1 );
+		}
 	}
 	else if (key == 'S') 
 	{

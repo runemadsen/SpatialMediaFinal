@@ -11,6 +11,7 @@ void testApp::setup()
 	animations.push_back(new AnimationHeads());
 	animations.push_back(new AnimationCircles());
 	animations.push_back(new AnimationVideoHeads());
+	animations.push_back(new AnimationStars());
 	
 	selectedAnimation = 0;
 }
@@ -21,7 +22,8 @@ void testApp::update()
 	
 	if(!sensing->disableAnimation())
 	{
-		animations[selectedAnimation]->setPoints(sensing->getBalloonsSorted());
+		animations[selectedAnimation]->setBalloons(sensing->getBalloonsSorted());
+		animations[selectedAnimation]->compareBalloonsToControllers();
 		animations[selectedAnimation]->update();
 	}
 }

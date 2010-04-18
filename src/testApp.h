@@ -7,6 +7,7 @@
 #include "AnimationHeads.h"
 #include "AnimationCircles.h"
 #include "AnimationVideoHeads.h"
+#include "AnimationStars.h"
 
 class testApp : public ofSimpleApp
 {

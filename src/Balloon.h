@@ -16,16 +16,13 @@ public:
 		_scaleHeight = 1; 
 	}
 	
+	void setID(int id) {_id = id; };
 	void setX(float x) { _bounds.x = x; }
 	void setY(float y) { _bounds.y = y; }
-	
-	void setScaleWidth(float scale) 
-	{ 
-		_scaleWidth = scale; 
-	}
-	
+	void setScaleWidth(float scale) { _scaleWidth = scale; }
 	void setScaleHeight(float scale) { _scaleHeight = scale; }
 		
+	int getID() { return _id; }
 	float getX() { return _bounds.x; }
 	float getY() { return _bounds.y; }
 	float getWidth() { return _bounds.width * _scaleWidth; }
@@ -62,4 +59,5 @@ private:
 	ofRectangle _bounds;
 	float _scaleWidth;
 	float _scaleHeight;
+	int _id;
 };

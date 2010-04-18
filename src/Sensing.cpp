@@ -17,6 +17,7 @@ Sensing::Sensing()
 	_oldScaleWidthSelected = 1;
 	_oldScaleHeightSelected = 1;
 	_selectedBalloon = DISABLED;
+	_idcount = 0;
 	
 	_camera.initGrabber(VIDEO_WIDTH, VIDEO_HEIGHT);
 	
@@ -138,8 +139,11 @@ void Sensing::checkClick(float xPos, float yPos)
 			Balloon * newBalloon = new Balloon();
 			newBalloon->setX(xPos);
 			newBalloon->setY(yPos);
+			newBalloon->setID(_idcount);
 			
 			_balloons.push_back(newBalloon);
+			
+			_idcount++;
 		}
 		else 
 		{
@@ -242,12 +246,15 @@ void Sensing::loadBalloons()
 			for(int i = 0; i < _xml.getNumTags("point"); i++) 
 			{
 				Balloon * point = new Balloon();
+				point->setID(_idcount);
 				point->setX( (float) _xml.getAttribute("point", "x", 0, i) );
 				point->setY( (float) _xml.getAttribute("point", "y", 0, i) );
 				point->setScaleWidth( (float) _xml.getAttribute("point", "scalewidth", 1.00, i) );
 				point->setScaleHeight( (float) _xml.getAttribute("point", "scaleheight", 1.00, i) );
 
 				_balloons.push_back(point);
+				
+				_idcount++;
 			}
 			
 			_xml.popTag();
@@ -289,6 +296,7 @@ vector <Balloon *> Sensing::getBalloons()
 	for(int i = 0; i < _balloons.size(); i++)
 	{
 		Balloon * newPoint = new Balloon();
+		newPoint->setID(_balloons[i]->getID());
 		newPoint->setX( (_balloons[i]->getX() + _xDisplaceAll) * _scalePosAll );
 		newPoint->setY( (_balloons[i]->getY() + _yDisplaceAll) * _scalePosAll );
 		

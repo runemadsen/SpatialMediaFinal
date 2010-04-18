@@ -108,6 +108,7 @@ private:
 	bool _mapFromScreen;
 
 	int _enabled;
+	int _idcount;
 	
 	ofxXmlSettings _xml;
 };

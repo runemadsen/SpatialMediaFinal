@@ -35,4 +35,3 @@ void AnimationHeads::draw()
 	
 	ofDisableAlphaBlending();
 }
-

@@ -110,7 +110,7 @@ void Sensing::draw()
 ___________________________________________________________ */
 
 void Sensing::mousePressed(int xPos, int yPos, int button)
-{		
+{	
 	if(_enabled && gui.currentPage == 1)
 	{
 		if(isClickWithinVideo(xPos, yPos))
@@ -123,8 +123,6 @@ void Sensing::mousePressed(int xPos, int yPos, int button)
 	}
 	else if(!_enabled && _mapFromScreen)
 	{
-		printf("Clicked screen");
-		
 		checkClick((xPos / _scalePosAll) - _xDisplaceAll, (yPos / _scalePosAll) - _yDisplaceAll);
 	}
 }
@@ -138,7 +136,6 @@ void Sensing::checkClick(float xPos, float yPos)
 		if (_selectedBalloon == DISABLED) 
 		{
 			Balloon * newBalloon = new Balloon();
-			// we need the calculation to make it work when all balloons have been scaled / moved
 			newBalloon->setX(xPos);
 			newBalloon->setY(yPos);
 			
@@ -155,6 +152,15 @@ void Sensing::checkClick(float xPos, float yPos)
 		
 		setBalloonDataToGUI();
 	}
+}
+
+void Sensing::setBalloonDataToGUI()
+{
+	_scaleWidthSelected = _balloons[_selectedBalloon]->getScaleWidth();
+	_scaleHeightSelected = _balloons[_selectedBalloon]->getScaleHeight();
+	
+	_oldScaleWidthSelected = _scaleWidthSelected;
+	_oldScaleHeightSelected = _scaleHeightSelected;
 }
 
 /* Utilities
@@ -193,12 +199,6 @@ void Sensing::drawBalloon(float xPos, float yPos, int color)
 	ofNoFill();
 	ofCircle(xPos, yPos, 3);
 	ofCircle(xPos, yPos, 8);
-}
-
-void Sensing::setBalloonDataToGUI()
-{
-	_scaleWidthSelected = _balloons[_selectedBalloon]->getScaleWidth();
-	_scaleHeightSelected = _balloons[_selectedBalloon]->getScaleHeight();
 }
 
 void Sensing::deleteSelectedBalloon()
@@ -347,6 +347,11 @@ int Sensing::getPage()
 void Sensing::toggleMapFromScreen()
 {
 	_mapFromScreen = !_mapFromScreen;
+	
+	if(!_mapFromScreen)
+	{
+		_selectedBalloon = DISABLED;
+	}
 }
 
 bool Sensing::disableAnimation()
@@ -364,8 +369,6 @@ bool Sensing::disableAnimation()
 
 void Sensing::keyPressed(int key)
 {	
-	printf("Key: %d \n", key);
-	
 	// delete
 	if(key == 127)
 	{

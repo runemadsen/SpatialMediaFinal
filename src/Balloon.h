@@ -18,7 +18,12 @@ public:
 	
 	void setX(float x) { _bounds.x = x; }
 	void setY(float y) { _bounds.y = y; }
-	void setScaleWidth(float scale) { _scaleWidth = scale; }
+	
+	void setScaleWidth(float scale) 
+	{ 
+		_scaleWidth = scale; 
+	}
+	
 	void setScaleHeight(float scale) { _scaleHeight = scale; }
 		
 	float getX() { return _bounds.x; }

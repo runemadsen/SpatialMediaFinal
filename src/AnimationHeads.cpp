@@ -14,12 +14,6 @@ AnimationHeads::AnimationHeads()
 
 void AnimationHeads::update()
 {
-	//if(newPointScale())
-	//{		
-		//img.clone(orgImg);
-		
-	//img.resize(orgImg.getWidth() * _pointScale, orgImg.getHeight() * _pointScale);
-	//}
 }
 
 /* Draw

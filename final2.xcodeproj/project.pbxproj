@@ -35,6 +35,9 @@
 		A5C25134117B79AA00191FED /* AnimationVideoHeads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5C25133117B79AA00191FED /* AnimationVideoHeads.cpp */; };
 		A5C25197117B941800191FED /* AnimationStars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5C25196117B941800191FED /* AnimationStars.cpp */; };
 		A5C2520E117BAA9D00191FED /* BalloonControllerStars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5C2520D117BAA9D00191FED /* BalloonControllerStars.cpp */; };
+		A5C2537B117BC4F500191FED /* ofxMatrix3x3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5C2536E117BC4F500191FED /* ofxMatrix3x3.cpp */; };
+		A5C2537C117BC4F500191FED /* ofxMatrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5C25370117BC4F500191FED /* ofxMatrix4x4.cpp */; };
+		A5C2537D117BC4F500191FED /* ofxQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5C25375117BC4F500191FED /* ofxQuaternion.cpp */; };
 		E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE0A90E8CC67C009D7055 /* GLee.a */; };
 		E45BE2E40E8CC69C009D7055 /* rtAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE2E30E8CC69C009D7055 /* rtAudio.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -169,6 +172,21 @@
 		A5C251AF117B9D7400191FED /* BalloonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonController.h; sourceTree = "<group>"; };
 		A5C2520C117BAA9D00191FED /* BalloonControllerStars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonControllerStars.h; sourceTree = "<group>"; };
 		A5C2520D117BAA9D00191FED /* BalloonControllerStars.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerStars.cpp; sourceTree = "<group>"; };
+		A5C25364117BC48500191FED /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
+		A5C2536C117BC4F500191FED /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
+		A5C2536E117BC4F500191FED /* ofxMatrix3x3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMatrix3x3.cpp; sourceTree = "<group>"; };
+		A5C2536F117BC4F500191FED /* ofxMatrix3x3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMatrix3x3.h; sourceTree = "<group>"; };
+		A5C25370117BC4F500191FED /* ofxMatrix4x4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMatrix4x4.cpp; sourceTree = "<group>"; };
+		A5C25371117BC4F500191FED /* ofxMatrix4x4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMatrix4x4.h; sourceTree = "<group>"; };
+		A5C25372117BC4F500191FED /* ofxPoint2f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPoint2f.h; sourceTree = "<group>"; };
+		A5C25373117BC4F500191FED /* ofxPoint3f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPoint3f.h; sourceTree = "<group>"; };
+		A5C25374117BC4F500191FED /* ofxPoint4f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPoint4f.h; sourceTree = "<group>"; };
+		A5C25375117BC4F500191FED /* ofxQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQuaternion.cpp; sourceTree = "<group>"; };
+		A5C25376117BC4F500191FED /* ofxQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxQuaternion.h; sourceTree = "<group>"; };
+		A5C25377117BC4F500191FED /* ofxVec2f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVec2f.h; sourceTree = "<group>"; };
+		A5C25378117BC4F500191FED /* ofxVec3f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVec3f.h; sourceTree = "<group>"; };
+		A5C25379117BC4F500191FED /* ofxVec4f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVec4f.h; sourceTree = "<group>"; };
+		A5C2537A117BC4F500191FED /* ofxVectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVectorMath.h; sourceTree = "<group>"; };
 		E45BE0390E8CC647009D7055 /* FreeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreeImage.h; path = ../../../libs/freeimage/include/FreeImage.h; sourceTree = SOURCE_ROOT; };
 		E45BE03F0E8CC650009D7055 /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod.h; path = ../../../libs/fmodex/include/fmod.h; sourceTree = SOURCE_ROOT; };
 		E45BE0400E8CC650009D7055 /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmod.hpp; path = ../../../libs/fmodex/include/fmod.hpp; sourceTree = SOURCE_ROOT; };
@@ -259,6 +277,7 @@
 		A5BB5F6B1172317400CF7D9D /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				A5C2536B117BC4F500191FED /* ofxVectorMath */,
 				A5BB5FD7117235D400CF7D9D /* ofxMSAInteractiveObject */,
 				A5BB5FC0117235B800CF7D9D /* ofxXmlSettings */,
 				A5BB5FA4117234F900CF7D9D /* ofxFBOTexture */,
@@ -429,6 +448,44 @@
 				A520D3561176438F0009103D /* AnimationCircles.cpp */,
 			);
 			name = circles;
+			sourceTree = "<group>";
+		};
+		A5C25363117BC47B00191FED /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A5C25364117BC48500191FED /* Tools.h */,
+			);
+			name = utilities;
+			sourceTree = "<group>";
+		};
+		A5C2536B117BC4F500191FED /* ofxVectorMath */ = {
+			isa = PBXGroup;
+			children = (
+				A5C2536C117BC4F500191FED /* install.xml */,
+				A5C2536D117BC4F500191FED /* src */,
+			);
+			name = ofxVectorMath;
+			path = ../../../addons/ofxVectorMath;
+			sourceTree = SOURCE_ROOT;
+		};
+		A5C2536D117BC4F500191FED /* src */ = {
+			isa = PBXGroup;
+			children = (
+				A5C2536E117BC4F500191FED /* ofxMatrix3x3.cpp */,
+				A5C2536F117BC4F500191FED /* ofxMatrix3x3.h */,
+				A5C25370117BC4F500191FED /* ofxMatrix4x4.cpp */,
+				A5C25371117BC4F500191FED /* ofxMatrix4x4.h */,
+				A5C25372117BC4F500191FED /* ofxPoint2f.h */,
+				A5C25373117BC4F500191FED /* ofxPoint3f.h */,
+				A5C25374117BC4F500191FED /* ofxPoint4f.h */,
+				A5C25375117BC4F500191FED /* ofxQuaternion.cpp */,
+				A5C25376117BC4F500191FED /* ofxQuaternion.h */,
+				A5C25377117BC4F500191FED /* ofxVec2f.h */,
+				A5C25378117BC4F500191FED /* ofxVec3f.h */,
+				A5C25379117BC4F500191FED /* ofxVec4f.h */,
+				A5C2537A117BC4F500191FED /* ofxVectorMath.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		E45BE0360E8CC5DE009D7055 /* libs */ = {
@@ -623,6 +680,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A5C25363117BC47B00191FED /* utilities */,
 				A5C2520A117BAA5A00191FED /* abstract */,
 				A554011C1173AABA00665657 /* animations */,
 				A5BB5F6A1172312400CF7D9D /* Constants.h */,
@@ -826,6 +884,9 @@
 				A5C25134117B79AA00191FED /* AnimationVideoHeads.cpp in Sources */,
 				A5C25197117B941800191FED /* AnimationStars.cpp in Sources */,
 				A5C2520E117BAA9D00191FED /* BalloonControllerStars.cpp in Sources */,
+				A5C2537B117BC4F500191FED /* ofxMatrix3x3.cpp in Sources */,
+				A5C2537C117BC4F500191FED /* ofxMatrix4x4.cpp in Sources */,
+				A5C2537D117BC4F500191FED /* ofxQuaternion.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

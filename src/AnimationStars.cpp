@@ -6,6 +6,11 @@
 AnimationStars::AnimationStars()
 {
 	_usingControllers = true;
+	
+	for(int i = 0; i < NUM_TEXTURES; i++)
+	{
+		textures[i].loadImage("particleGrid" + ofToString(i, 0) + ".png");
+	}
 }
 
 /* Update
@@ -15,9 +20,6 @@ void AnimationStars::update()
 {
 	for(int i = 0; i < _controllers.size(); i++)
 	{
-		//BalloonControllerStars * c = (BalloonControllerStars *) _controllers[i];
-		//c->update();
-		
 		_controllers[i]->update();
 	}
 }
@@ -28,10 +30,7 @@ void AnimationStars::update()
 void AnimationStars::draw()
 {
 	for(int i = 0; i < _controllers.size(); i++)
-	{
-		//BalloonControllerStars * c = (BalloonControllerStars *) _controllers[i];
-		//c->draw();
-		
+	{ 
 		_controllers[i]->draw();
 	}
 }

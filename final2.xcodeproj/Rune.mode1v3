@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -264,7 +266,10 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>E4B69B4A0A3A1720003C02F2</string>
+								<string>A5BB5F6B1172317400CF7D9D</string>
+								<string>A5C2536B117BC4F500191FED</string>
 								<string>E4B69E1C0A3A1BDC003C02F2</string>
+								<string>A5C25363117BC47B00191FED</string>
 								<string>A5C2520A117BAA5A00191FED</string>
 								<string>A554011C1173AABA00665657</string>
 								<string>A5C2520B117BAA6D00191FED</string>
@@ -273,10 +278,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>18</integer>
+									<integer>15</integer>
 									<integer>14</integer>
-									<integer>10</integer>
-									<integer>4</integer>
+									<integer>11</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -311,14 +315,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>BalloonControllerStars.cpp</string>
+								<string>BalloonController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +328,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BalloonControllerStars.cpp</string>
+										<string>BalloonController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>A5C25324117BBB0B00191FED</string>
+										<string>A5C25393117BC70D00191FED</string>
 										<key>history</key>
 										<array>
 											<string>A5BB5FEE1172361700CF7D9D</string>
@@ -339,7 +341,6 @@
 											<string>A5BB624111726C7E00CF7D9D</string>
 											<string>A5576F9111727E4F005FDD21</string>
 											<string>A5C7536611739E6D00EE670F</string>
-											<string>A503533A11750EEC003E9C5A</string>
 											<string>A517DC571175171000A9BD4B</string>
 											<string>A520D36E117646040009103D</string>
 											<string>A5A70B781177EF0300066365</string>
@@ -353,14 +354,16 @@
 											<string>A5C252C4117BB51500191FED</string>
 											<string>A5C252C5117BB51500191FED</string>
 											<string>A5C252C6117BB51500191FED</string>
-											<string>A5C25315117BBADC00191FED</string>
-											<string>A5C25316117BBADC00191FED</string>
-											<string>A5C25317117BBADC00191FED</string>
-											<string>A5C25318117BBADC00191FED</string>
 											<string>A5C25319117BBADC00191FED</string>
 											<string>A5C2531A117BBADC00191FED</string>
-											<string>A5C2531B117BBADC00191FED</string>
-											<string>A5C2531C117BBADC00191FED</string>
+											<string>A5C25342117BC3B000191FED</string>
+											<string>A5C25365117BC4AE00191FED</string>
+											<string>A5C25366117BC4AE00191FED</string>
+											<string>A5C25367117BC4AE00191FED</string>
+											<string>A5C25388117BC68E00191FED</string>
+											<string>A5C25390117BC70D00191FED</string>
+											<string>A5C25391117BC70D00191FED</string>
+											<string>A5C25392117BC70D00191FED</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>

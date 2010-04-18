@@ -6,6 +6,7 @@
 #include "Sensing.h"
 #include "AnimationHeads.h"
 #include "AnimationCircles.h"
+#include "AnimationVideoHeads.h"
 
 class testApp : public ofSimpleApp
 {
@@ -27,7 +28,6 @@ public:
 	
 	Sensing * sensing;
 	
-	int displayMethod;
 	int selectedAnimation;
 	
 	vector <Animation *> animations;

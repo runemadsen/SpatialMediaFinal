@@ -5,7 +5,6 @@ ___________________________________________________________ */
 
 AnimationHeads::AnimationHeads()
 {
-	orgImg.loadImage("head.png");
 	img.loadImage("head.png");
 }
 
@@ -14,6 +13,7 @@ AnimationHeads::AnimationHeads()
 
 void AnimationHeads::update()
 {
+	
 }
 
 /* Draw
@@ -28,11 +28,9 @@ void AnimationHeads::draw()
 	
 	for(int i = 0; i < _points.size(); i++) 
 	{
-		bounds = _points[i]->getBoundsFromSize(orgImg.getWidth(), orgImg.getHeight());
+		bounds = _points[i]->getBoundsFromSize(img.getWidth(), img.getHeight());
 		
-		img.clone(orgImg);
-		img.resize(bounds.width, bounds.height);
-		img.draw(bounds.x, bounds.y);
+		img.draw(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 	
 	ofDisableAlphaBlending();

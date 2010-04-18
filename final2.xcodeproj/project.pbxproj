@@ -32,6 +32,7 @@
 		A5BB5FCC117235B800CF7D9D /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5BB5FC6117235B800CF7D9D /* tinyxmlparser.cpp */; };
 		A5BB5FCD117235B800CF7D9D /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5BB5FC8117235B800CF7D9D /* ofxXmlSettings.cpp */; };
 		A5BB5FDC117235D400CF7D9D /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5BB5FDA117235D400CF7D9D /* ofxMSAInteractiveObject.cpp */; };
+		A5C25134117B79AA00191FED /* AnimationVideoHeads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5C25133117B79AA00191FED /* AnimationVideoHeads.cpp */; };
 		E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE0A90E8CC67C009D7055 /* GLee.a */; };
 		E45BE2E40E8CC69C009D7055 /* rtAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE2E30E8CC69C009D7055 /* rtAudio.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -159,6 +160,8 @@
 		A5BB5FD8117235D400CF7D9D /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		A5BB5FDA117235D400CF7D9D /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		A5BB5FDB117235D400CF7D9D /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
+		A5C25132117B79AA00191FED /* AnimationVideoHeads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationVideoHeads.h; sourceTree = "<group>"; };
+		A5C25133117B79AA00191FED /* AnimationVideoHeads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationVideoHeads.cpp; sourceTree = "<group>"; };
 		E45BE0390E8CC647009D7055 /* FreeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreeImage.h; path = ../../../libs/freeimage/include/FreeImage.h; sourceTree = SOURCE_ROOT; };
 		E45BE03F0E8CC650009D7055 /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod.h; path = ../../../libs/fmodex/include/fmod.h; sourceTree = SOURCE_ROOT; };
 		E45BE0400E8CC650009D7055 /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmod.hpp; path = ../../../libs/fmodex/include/fmod.hpp; sourceTree = SOURCE_ROOT; };
@@ -252,6 +255,8 @@
 				A55401191173AAB600665657 /* AnimationHeads.cpp */,
 				A520D3551176438F0009103D /* AnimationCircles.h */,
 				A520D3561176438F0009103D /* AnimationCircles.cpp */,
+				A5C25132117B79AA00191FED /* AnimationVideoHeads.h */,
+				A5C25133117B79AA00191FED /* AnimationVideoHeads.cpp */,
 			);
 			name = animations;
 			sourceTree = "<group>";
@@ -774,6 +779,7 @@
 				A55400FA1173AA5400665657 /* Animation.cpp in Sources */,
 				A554011A1173AAB600665657 /* AnimationHeads.cpp in Sources */,
 				A520D3571176438F0009103D /* AnimationCircles.cpp in Sources */,
+				A5C25134117B79AA00191FED /* AnimationVideoHeads.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

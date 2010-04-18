@@ -8,10 +8,9 @@ void testApp::setup()
 	
 	sensing = new Sensing();
 	
-	displayMethod = 1;
-	
 	animations.push_back(new AnimationHeads());
 	animations.push_back(new AnimationCircles());
+	animations.push_back(new AnimationVideoHeads());
 	
 	selectedAnimation = 0;
 }
@@ -41,13 +40,14 @@ void testApp::keyPressed( int key )
 {
 	sensing->keyPressed(key);
 	
-	if(key == '1') 
+	if(key > '0' && key <= '9')
 	{
-		selectedAnimation = 0;
-	}
-	else if(key == '2') 
-	{
-		selectedAnimation = 1;
+		int convert = key- '0';
+		
+		if (convert <= animations.size()) 
+		{
+			selectedAnimation = convert - 1;
+		}
 	}
 	else if (key =='f' || key=='F') 
 	{
@@ -57,10 +57,7 @@ void testApp::keyPressed( int key )
 
 void testApp::mouseMoved( int x, int y ) {}
 
-void testApp::mouseDragged( int x, int y, int button ) 
-{
-	//sensing->mouseDragged(x, y, button);
-}
+void testApp::mouseDragged( int x, int y, int button ) {}
 
 void testApp::mousePressed( int x, int y, int button ) 
 {

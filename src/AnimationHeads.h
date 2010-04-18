@@ -14,7 +14,6 @@ public:
 private:
 	
 	ofImage img;
-	ofImage orgImg;
 };
 
  

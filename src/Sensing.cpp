@@ -79,11 +79,11 @@ void Sensing::draw()
 		{
 			if(i == _selectedBalloon)	
 			{
-				drawBalloon(mapScreenXToVideoX(_balloons[i]->getX()), mapScreenYToVideoY(_balloons[i]->getY()), 0x000FF00);
+				drawBalloon(mapScreenXToVideoX(_balloons[i]->getCenterX()), mapScreenYToVideoY(_balloons[i]->getCenterY()), 0x000FF00);
 			}
 			else
 			{
-				drawBalloon(mapScreenXToVideoX(_balloons[i]->getX()), mapScreenYToVideoY(_balloons[i]->getY()), 0xFF0000);
+				drawBalloon(mapScreenXToVideoX(_balloons[i]->getCenterX()), mapScreenYToVideoY(_balloons[i]->getCenterY()), 0xFF0000);
 			}
 		}
 	}
@@ -97,11 +97,11 @@ void Sensing::draw()
 		{
 			if(i == _selectedBalloon)	
 			{
-				drawBalloon(balloons[i]->getX(), balloons[i]->getY(), 0x000FF00);
+				drawBalloon(balloons[i]->getCenterX(), balloons[i]->getCenterY(), 0x000FF00);
 			}
 			else
 			{
-				drawBalloon(balloons[i]->getX(), balloons[i]->getY(), 0xFF0000);
+				drawBalloon(balloons[i]->getCenterX(), balloons[i]->getCenterY(), 0xFF0000);
 			}
 		}	
 	}
@@ -137,8 +137,8 @@ void Sensing::checkClick(float xPos, float yPos)
 		if (_selectedBalloon == DISABLED) 
 		{
 			Balloon * newBalloon = new Balloon();
-			newBalloon->setX(xPos);
-			newBalloon->setY(yPos);
+			newBalloon->setCenterX(xPos);
+			newBalloon->setCenterY(yPos);
 			newBalloon->setID(_idcount);
 			
 			_balloons.push_back(newBalloon);
@@ -184,7 +184,7 @@ int Sensing::isClickWithinBalloon(float xPos, float yPos)
 {	
 	for(int i = 0; i < _balloons.size(); i++)
 	{
-		if(fabs(xPos - _balloons[i]->getX()) < POINT_MARGIN && fabs(yPos - _balloons[i]->getY()) < POINT_MARGIN)
+		if(fabs(xPos - _balloons[i]->getCenterX()) < POINT_MARGIN && fabs(yPos - _balloons[i]->getCenterY()) < POINT_MARGIN)
 		{
 			return i;
 		}
@@ -247,11 +247,9 @@ void Sensing::loadBalloons()
 			{
 				Balloon * point = new Balloon();
 				point->setID(_idcount);
-				point->setX( (float) _xml.getAttribute("point", "x", 0, i) );
-				point->setY( (float) _xml.getAttribute("point", "y", 0, i) );
-				point->setScaleWidth( (float) _xml.getAttribute("point", "scalewidth", 1.00, i) );
-				point->setScaleHeight( (float) _xml.getAttribute("point", "scaleheight", 1.00, i) );
-
+				point->setCenterX( (float) _xml.getAttribute("point", "x", 0, i) );
+				point->setCenterY( (float) _xml.getAttribute("point", "y", 0, i) );
+				point->setScale( (float) _xml.getAttribute("point", "scalewidth", 1.00, i), (float) _xml.getAttribute("point", "scaleheight", 1.00, i));
 				_balloons.push_back(point);
 				
 				_idcount++;
@@ -274,8 +272,8 @@ void Sensing::saveBalloons()
 	for(int i = 0; i < _balloons.size(); i++)
 	{
 		_xml.addTag("point");
-		_xml.addAttribute("point", "x", ofToString(_balloons[i]->getX(), 1), i);
-		_xml.addAttribute("point", "y", ofToString(_balloons[i]->getY(), 1), i);
+		_xml.addAttribute("point", "x", ofToString(_balloons[i]->getCenterX(), 1), i);
+		_xml.addAttribute("point", "y", ofToString(_balloons[i]->getCenterY(), 1), i);
 		_xml.addAttribute("point", "scalewidth", ofToString(_balloons[i]->getScaleWidth(), 2), i);
 		_xml.addAttribute("point", "scaleheight", ofToString(_balloons[i]->getScaleHeight(), 2), i);
 	}
@@ -297,17 +295,15 @@ vector <Balloon *> Sensing::getBalloons()
 	{
 		Balloon * newPoint = new Balloon();
 		newPoint->setID(_balloons[i]->getID());
-		newPoint->setX( (_balloons[i]->getX() + _xDisplaceAll) * _scalePosAll );
-		newPoint->setY( (_balloons[i]->getY() + _yDisplaceAll) * _scalePosAll );
+		newPoint->setCenterX( (_balloons[i]->getCenterX() + _xDisplaceAll) * _scalePosAll );
+		newPoint->setCenterY( (_balloons[i]->getCenterY() + _yDisplaceAll) * _scalePosAll );
 		
 		if(i == _selectedBalloon)
 		{
-			_balloons[_selectedBalloon]->setScaleWidth( _scaleWidthSelected );
-			_balloons[_selectedBalloon]->setScaleHeight( _scaleHeightSelected );
+			_balloons[_selectedBalloon]->setScale( _scaleWidthSelected, _scaleHeightSelected);
 		}
 		
-		newPoint->setScaleWidth( _balloons[i]->getScaleWidth() * _scaleSizeAll );
-		newPoint->setScaleHeight( _balloons[i]->getScaleHeight() * _scaleSizeAll );
+		newPoint->setScale(_balloons[i]->getScaleWidth() * _scaleSizeAll, _balloons[i]->getScaleHeight() * _scaleSizeAll);
 		
 		norm.push_back(newPoint);
 	}
@@ -387,7 +383,7 @@ void Sensing::keyPressed(int key)
 	{
 		if(_selectedBalloon != DISABLED)
 		{
-			_balloons[_selectedBalloon]->setX( _balloons[_selectedBalloon]->getX() + 1 );
+			_balloons[_selectedBalloon]->setCenterX( _balloons[_selectedBalloon]->getCenterX() + 1 );
 		}
 		else 
 		{
@@ -399,7 +395,7 @@ void Sensing::keyPressed(int key)
 	{
 		if(_selectedBalloon != DISABLED)
 		{
-			_balloons[_selectedBalloon]->setX( _balloons[_selectedBalloon]->getX() - 1 );
+			_balloons[_selectedBalloon]->setCenterX( _balloons[_selectedBalloon]->getCenterX() - 1 );
 		}
 		else 
 		{
@@ -411,7 +407,7 @@ void Sensing::keyPressed(int key)
 	{
 		if(_selectedBalloon != DISABLED)
 		{
-			_balloons[_selectedBalloon]->setY( _balloons[_selectedBalloon]->getY() - 1 );
+			_balloons[_selectedBalloon]->setCenterY( _balloons[_selectedBalloon]->getCenterY() - 1 );
 		}
 	}
 	// down arrow
@@ -419,7 +415,7 @@ void Sensing::keyPressed(int key)
 	{
 		if(_selectedBalloon != DISABLED)
 		{
-			_balloons[_selectedBalloon]->setY( _balloons[_selectedBalloon]->getY() + 1 );
+			_balloons[_selectedBalloon]->setCenterY( _balloons[_selectedBalloon]->getCenterY() + 1 );
 		}
 	}
 	else if (key == 'S') 

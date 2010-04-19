@@ -20,7 +20,7 @@ public:
 	
 	Balloon * getModel() { return _model; }
 	
-private:
+protected:
 	
 	Balloon * _model;
 };

@@ -39,7 +39,8 @@ private:
 	void addPosition(int i, float x, float y, float z);
 	void setParticleTexCoords(int i, float columnID, float rowID);
 	
-	bool isParticleInsidePoly(int pi);
+	bool isParticleInsideEllipse(int pi);
+	//bool isParticleInsidePoly(int pi);
 	int isParticleInsideBox(int pi);
 	
 	int			cellRows;

@@ -35,16 +35,12 @@ BalloonControllerStars::BalloonControllerStars(Balloon * model) : BalloonControl
 	numParticles = 0;
 	
 	// Setup the VBO
-	
-	glGenBuffersARB(3, &particleVBO[0]);	// Create 3 vertex buffer object. Give address to GLUint array where ID's are stored
+	glGenBuffersARB(3, &particleVBO[0]);	
 	
 	// color
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, particleVBO[0]);	// Init VBO 0 as a vertex array VBO
-	glBufferDataARB(GL_ARRAY_BUFFER_ARB, (MAX_PARTICLES*4)*4*sizeof(float), color, GL_STREAM_DRAW_ARB);	// Copy data into VBO 0: 
-	// Second parameter is the number of bytes to allocate
-	// Third parameter is pointer to the actual data
-	// Fourth parameter is for performance and says how the VBO is going to be used: Stream means that it will be changed every frame. Draw means data is sent to GPU
-	
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, particleVBO[0]);	
+	glBufferDataARB(GL_ARRAY_BUFFER_ARB, (MAX_PARTICLES*4)*4*sizeof(float), color, GL_STREAM_DRAW_ARB);	
+
 	// vertices
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, particleVBO[1]);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, (MAX_PARTICLES*4)*3*sizeof(float), pos, GL_STREAM_DRAW_ARB);
@@ -52,6 +48,22 @@ BalloonControllerStars::BalloonControllerStars(Balloon * model) : BalloonControl
 	// texture coords
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, particleVBO[2]);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, (MAX_PARTICLES*4)*2*sizeof(float), texcords, GL_STREAM_DRAW_ARB);
+}
+
+/* Set texture
+ _______________________________________________________________________ */
+
+void BalloonControllerStars::setTexture(ofImage newTexture, int cellsInRow, int cellsInCol) 
+{
+	ofDisableArbTex();
+	texture = newTexture;
+	ofEnableArbTex();
+	
+	texW = texture.getWidth();
+	texH = texture.getHeight();
+	
+	cellRows  = cellsInRow;
+	cellColls = cellsInCol; 
 }
 
 /* Update
@@ -96,7 +108,7 @@ void BalloonControllerStars::update()
 			life[i][0] += life[i][1];
 		}
 		
-		if(isParticleInsidePoly(i))
+		if(isParticleInsideEllipse(i))
 		{
 			setParticleColor(i, 1.0, 1.0, 1.0, life[i][0]);
 		}
@@ -120,27 +132,27 @@ void BalloonControllerStars::spawn(int i)
 	
 	for (int j = 0; j < _settings.size(); j++) 
 	{
-		percent += model->settings[j].percent;
+		percent += _settings[j].percent;
 		
 		if (random < percent) 
 		{
 			// set org life			
-			life[i][2] = ofRandom(model->settings[j].lifeMin, model->settings[j].lifeMax);
+			life[i][2] = ofRandom(_settings[j].lifeMin, _settings[j].lifeMax);
 			
-			setParticleSize(i, ofRandom(model->settings[j].sizeMin, model->settings[j].sizeMax));
+			setParticleSize(i, ofRandom(_settings[j].sizeMin, _settings[j].sizeMax));
 			setParticleColor(i, 1, 1, 1, 1);
 			
 			ofPoint pos;
-			pos.set(ofRandom(model->boundingBox.x, model->boundingBox.x + model->boundingBox.width), ofRandom(model->boundingBox.y, model->boundingBox.y + model->boundingBox.height));
+			pos.set(ofRandom(_model->getTopLeftX(), _model->getTopLeftX() + _model->getWidth()), ofRandom(_model->getTopLeftY(), _model->getTopLeftY() + _model->getHeight()));
 			
 			// choose direction of particle
 			setParticlePos(i, pos.x, pos.y);
 			setParticleTexCoords(i, (int)ofRandom(0, 2), (int)ofRandom(0, 2));
 			
 			life[i][0] = 0;
-			life[i][1] = ofRandom(model->settings[j].lifeSubMin, model->settings[j].lifeSubMax);
+			life[i][1] = ofRandom(_settings[j].lifeSubMin, _settings[j].lifeSubMax);
 			
-			ofxVec2f direction = model->direction * ofRandom(model->settings[j].dirMin, model->settings[j].dirMax);
+			ofxVec2f direction = _direction * ofRandom(_settings[j].dirMin, _settings[j].dirMax);
 			
 			acc[i][0] = direction.x;
 			acc[i][1] = direction.y;
@@ -148,7 +160,7 @@ void BalloonControllerStars::spawn(int i)
 			
 			fadeDown[i] = false;
 			
-			damping[i] = model->settings[j].damping;
+			damping[i] = _settings[j].damping;
 			
 			break;
 		}
@@ -182,16 +194,16 @@ void BalloonControllerStars::checkParticle(int i)
 		case DISABLED: // is inside
 			break;
 		case 0: // is left
-			setParticlePos(i, model->boundingBox.x + model->boundingBox.width, getY(i));
+			setParticlePos(i, _model->getTopLeftX() + _model->getWidth(), getY(i));
 			break;
 		case 1: // is right
-			setParticlePos(i, model->boundingBox.x, getY(i));
+			setParticlePos(i, _model->getTopLeftX(), getY(i));
 			break;
 		case 2: // is top
-			setParticlePos(i, getX(i), model->boundingBox.y + model->boundingBox.height);
+			setParticlePos(i, getX(i), _model->getTopLeftY() + _model->getHeight());
 			break;
 		case 3: // is bottom
-			setParticlePos(i, getX(i), model->boundingBox.y);
+			setParticlePos(i, getX(i), _model->getTopLeftY());
 			break;
 		default:
 			break;
@@ -253,14 +265,6 @@ void BalloonControllerStars::draw()
 	glDisable(GL_TEXTURE_2D);
 	
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
-}
-
-/* Getter / Setter
- ___________________________________________________________ */
-
-void BalloonControllerStars::setTexture(ofImage newTexture, int cellsInRow, int cellsInCol) 
-{
-	//view.setTexture(newTexture, cellsInRow, cellsInCol);
 }
 
 /* Set Particle Texture Coordinates
@@ -408,60 +412,15 @@ void BalloonControllerStars::addPosition(int i, float x, float y, float z)
 /* Is particle inside
  _______________________________________________________________________ */
 
-bool BalloonControllerStars::isParticleInsidePoly(int pi)
+bool BalloonControllerStars::isParticleInsideEllipse(int pi)
 {
-	float px = getX(pi);
-	float py = getY(pi);
-	float x1,x2;
-	int crossings = 0;
+	float x = getX(pi) - _model->getCenterX();
+	float y = getY(pi) - _model->getCenterY();
 	
-	for(int i = 0; i < model->outline.size(); i++)
-	{
-		if (model->outline[i].x < model->outline[ (i+1) % model->outline.size()].x)
-		{
-			x1 = model->outline[i].x;
-			x2 = model->outline[(i+1) % model->outline.size()].x;
-		} 
-		else 
-		{
-			x1 = model->outline[(i+1) % model->outline.size()].x;
-			x2 = model->outline[i].x;
-		}
-		
-		if ( px > x1 && px <= x2 && ( py < model->outline[i].y || py <= model->outline[(i+1) % model->outline.size()].y)) 
-		{
-			static const float eps = 0.000001;
-			
-			float dx = model->outline[(i+1) % model->outline.size()].x - model->outline[i].x;
-			float dy = model->outline[(i+1) % model->outline.size()].y - model->outline[i].y;
-			float k;
-			
-			if(fabs(dx) < eps)
-			{
-				k = INFINITY;
-			} 
-			else 
-			{
-				k = dy/dx;
-			}
-			
-			float m = model->outline[i].y - k * model->outline[i].x;
-			
-			float y2 = k * px + m;
-			
-			if ( py <= y2 )
-			{
-				crossings++;
-			}
-		}
-	}
+	float xRadius = _model->getWidth() / 2;
+	float yRadius = _model->getHeight() / 2;
 	
-	if (crossings % 2 == 1)
-	{		
-		return true;
-	}
-	
-	return false;
+	return ((x*x/xRadius/xRadius + y*y/yRadius/yRadius) < 1);
 }
 
 int BalloonControllerStars::isParticleInsideBox(int pi)
@@ -469,41 +428,24 @@ int BalloonControllerStars::isParticleInsideBox(int pi)
 	float px = getX(pi);
 	float py = getY(pi);
 	
-	if(px < model->boundingBox.x)
+	if(px < _model->getTopLeftX())
 	{
 		return 0;
 	}
-	else if(px > model->boundingBox.x + model->boundingBox.width)
+	else if(px > _model->getTopLeftX() + _model->getWidth())
 	{
 		return 1;
 	}
-	else if(py < model->boundingBox.y)
+	else if(py < _model->getTopLeftY())
 	{
 		return 2;
 	}
-	else if(py > model->boundingBox.y + model->boundingBox.height)
+	else if(py > _model->getTopLeftY() + _model->getHeight())
 	{
 		return 3;
 	}
 	
 	return DISABLED;
-}
-
-
-/* Set texture
- _______________________________________________________________________ */
-
-void BalloonControllerStars::setTexture(ofImage newTexture, int cellsInRow, int cellsInCol) 
-{
-	ofDisableArbTex();
-	texture = newTexture;
-	ofEnableArbTex();
-	
-	texW = texture.getWidth();
-	texH = texture.getHeight();
-	
-	cellRows  = cellsInRow;
-	cellColls = cellsInCol; 
 }
 
 /* Getter / Setter
@@ -522,11 +464,6 @@ int BalloonControllerStars::getX(int i)
 int BalloonControllerStars::getY(int i)
 {
 	return pos[(i*4)+0].y;
-}
-
-void BalloonControllerStars::setModel(TouchModel * newModel)
-{
-	model = newModel;
 }
 
 

@@ -5,7 +5,7 @@ _______________________________________________________________________ */
 #define NUM_TEXTURES 5
 #define NUM_ROWS 2
 #define NUM_COLS 2
-#define MAX_PARTICLES 100
+#define MAX_PARTICLES 1000
 
 /* Constants
  _______________________________________________________________________ */

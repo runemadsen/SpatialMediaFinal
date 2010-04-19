@@ -27,7 +27,7 @@ public:
     {
         bool operator()(Balloon * a, Balloon * b) const
         {
-            if(a->getX() < b->getX())
+            if(a->getCenterX() < b->getCenterX())
 			{
 				return true;
 			}
@@ -40,7 +40,7 @@ public:
     {
         bool operator()(Balloon * a, Balloon * b) const
         {
-            if(a->getY() < b->getY())
+            if(a->getCenterY() < b->getCenterY())
 			{
 				return true;
 			}

@@ -40,5 +40,7 @@ void AnimationStars::draw()
 
 BalloonController * AnimationStars::getNewController(Balloon * model)
 {		
-	return new BalloonControllerStars(model);
+	BalloonControllerStars * b = new BalloonControllerStars(model);
+	b->setTexture(textures[2], 2, 2);
+	return b;
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A520D3571176438F0009103D /* AnimationCircles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A520D3561176438F0009103D /* AnimationCircles.cpp */; };
+		A52F79F6117CCC6D00F55415 /* Balloon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52F79F5117CCC6D00F55415 /* Balloon.cpp */; };
 		A55400FA1173AA5400665657 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55400F91173AA5400665657 /* Animation.cpp */; };
 		A554011A1173AAB600665657 /* AnimationHeads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55401191173AAB600665657 /* AnimationHeads.cpp */; };
 		A5BB5F6911722FAB00CF7D9D /* Sensing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5BB5F6711722FAB00CF7D9D /* Sensing.cpp */; };
@@ -112,6 +113,7 @@
 		A503523D1174CBC0003E9C5A /* Balloon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balloon.h; sourceTree = "<group>"; };
 		A520D3551176438F0009103D /* AnimationCircles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationCircles.h; sourceTree = "<group>"; };
 		A520D3561176438F0009103D /* AnimationCircles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationCircles.cpp; sourceTree = "<group>"; };
+		A52F79F5117CCC6D00F55415 /* Balloon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Balloon.cpp; sourceTree = "<group>"; };
 		A55400F81173AA5400665657 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		A55400F91173AA5400665657 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		A55401181173AAB600665657 /* AnimationHeads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHeads.h; sourceTree = "<group>"; };
@@ -405,7 +407,6 @@
 			isa = PBXGroup;
 			children = (
 				A5C251AF117B9D7400191FED /* BalloonController.h */,
-				A503523D1174CBC0003E9C5A /* Balloon.h */,
 				A55400F81173AA5400665657 /* Animation.h */,
 				A55400F91173AA5400665657 /* Animation.cpp */,
 			);
@@ -486,6 +487,15 @@
 				A5C2537A117BC4F500191FED /* ofxVectorMath.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		A5C25394117BC8A700191FED /* models */ = {
+			isa = PBXGroup;
+			children = (
+				A503523D1174CBC0003E9C5A /* Balloon.h */,
+				A52F79F5117CCC6D00F55415 /* Balloon.cpp */,
+			);
+			name = models;
 			sourceTree = "<group>";
 		};
 		E45BE0360E8CC5DE009D7055 /* libs */ = {
@@ -680,6 +690,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A5C25394117BC8A700191FED /* models */,
 				A5C25363117BC47B00191FED /* utilities */,
 				A5C2520A117BAA5A00191FED /* abstract */,
 				A554011C1173AABA00665657 /* animations */,
@@ -887,6 +898,7 @@
 				A5C2537B117BC4F500191FED /* ofxMatrix3x3.cpp in Sources */,
 				A5C2537C117BC4F500191FED /* ofxMatrix4x4.cpp in Sources */,
 				A5C2537D117BC4F500191FED /* ofxQuaternion.cpp in Sources */,
+				A52F79F6117CCC6D00F55415 /* Balloon.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

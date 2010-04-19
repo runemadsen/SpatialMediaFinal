@@ -13,15 +13,15 @@
     </SliderFloat_Scale_Positions>
     <SliderFloat_Scale_Sizes>
         <name>Scale Sizes</name>
-        <value>1.000000</value>
+        <value>0.625586</value>
     </SliderFloat_Scale_Sizes>
     <SliderFloat_Scale_Width>
         <name>Scale Width</name>
-        <value>0.579883</value>
+        <value>1.570117</value>
     </SliderFloat_Scale_Width>
     <SliderFloat_Scale_Height>
         <name>Scale Height</name>
-        <value>1.326367</value>
+        <value>1.219727</value>
     </SliderFloat_Scale_Height>
     <Toggle_Constrain_Ratio>
         <name>Constrain Ratio</name>

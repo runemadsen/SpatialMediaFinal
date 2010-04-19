@@ -42,9 +42,9 @@ void AnimationCircles::draw()
 	{
 		ofSetColor(_colors[i]);
 		ofFill();
-		ofEllipse(_points[i]->getX(), _points[i]->getY(), _points[i]->getWidth(), _points[i]->getHeight());
+		ofEllipse(_points[i]->getCenterX(), _points[i]->getCenterY(), _points[i]->getWidth(), _points[i]->getHeight());
 		ofNoFill();
-		ofEllipse(_points[i]->getX(), _points[i]->getY(), _points[i]->getWidth(), _points[i]->getHeight());
+		ofEllipse(_points[i]->getCenterX(), _points[i]->getCenterY(), _points[i]->getWidth(), _points[i]->getHeight());
 	}
 }
 

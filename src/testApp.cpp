@@ -14,6 +14,11 @@ void testApp::setup()
 	animations.push_back(new AnimationStars());
 	
 	selectedAnimation = 0;
+	
+	midiIn.setVerbose(false);
+	midiIn.listPorts();
+	midiIn.openPort(0);
+	midiIn.addListener(this);
 }
 
 void testApp::update() 
@@ -36,6 +41,20 @@ void testApp::draw()
 	}
 	
 	sensing->draw();
+}
+
+void testApp::newMidiMessage(ofxMidiEventArgs& eventArgs)
+{
+	animations[selectedAnimation]->newMidiMessage(eventArgs);
+	
+	// byte one: note
+	// byte two: velocity
+	
+	//printf("Byte one: %d \n", eventArgs.byteOne);
+	//printf("Byte two: %d \n", eventArgs.byteTwo);
+	//printf("Port: %d \n", eventArgs.port);
+	
+	// send to current controller
 }
 
 void testApp::keyPressed( int key ) 

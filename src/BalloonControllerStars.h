@@ -19,9 +19,9 @@ public:
 	
 	void setTexture(ofImage newTexture, int cellsInRow, int cellsInCol);
 	
-	int getTotal();
 	int getX(int i);
 	int getY(int i);
+	int getTotal();
 	
 	ofImage	texture;
 	
@@ -29,6 +29,24 @@ private:
 	
 	vector <PSetting> _settings;
 	ofxVec2f _direction;
+	
+	int numParticles;
+	int			cellRows;
+	int			cellColls;
+	
+	GLuint		particleVBO[3];
+	
+	PVector		pos[MAX_PARTICLES*4];		// vertex (quad) of particle
+	PTexture	texcords[MAX_PARTICLES*4];	// texture coords
+	PColor		color[MAX_PARTICLES*4];		// particle color rgba
+	bool		fadeDown[MAX_PARTICLES];
+	
+	float		texW, texH;
+	float		dim[MAX_PARTICLES];			// particle size (w/h)
+	float		vel[MAX_PARTICLES][3];		
+	float		acc[MAX_PARTICLES][3];
+	float		damping[MAX_PARTICLES];
+	float		life[MAX_PARTICLES][3];		//	[life] [life rate] [org life]
 	
 	void spawn(int i);
 	void checkParticle(int i);
@@ -40,26 +58,5 @@ private:
 	void setParticleTexCoords(int i, float columnID, float rowID);
 	
 	bool isParticleInsideEllipse(int pi);
-	//bool isParticleInsidePoly(int pi);
 	int isParticleInsideBox(int pi);
-	
-	int			cellRows;
-	int			cellColls;
-	float		texW, texH;
-	
-	GLuint		particleVBO[3];
-	
-	float		dim[MAX_PARTICLES];			// particle size (w/h)
-	PVector		pos[MAX_PARTICLES*4];		// vertex (quad) of particle
-	PTexture	texcords[MAX_PARTICLES*4];	// texture coords
-	PColor		color[MAX_PARTICLES*4];		// particle color rgba
-	bool		fadeDown[MAX_PARTICLES];
-	
-	float		vel[MAX_PARTICLES][3];		
-	float		acc[MAX_PARTICLES][3];
-	float		damping[MAX_PARTICLES];
-	
-	float		life[MAX_PARTICLES][3];		//	[life] [life rate] [org life]
-	
-	int numParticles;
 };

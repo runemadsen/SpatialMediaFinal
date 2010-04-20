@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "Balloon.h"
 #include "BalloonController.h"
+#include "ofxMidi.h"
 
 class Animation
 {
@@ -16,6 +17,7 @@ public:
 	
 	virtual void update() {}
 	virtual void draw() {}
+	virtual void newMidiMessage(ofxMidiEventArgs& eventArgs) {}
 	
 protected:
 	

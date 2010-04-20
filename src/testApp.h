@@ -8,8 +8,9 @@
 #include "AnimationCircles.h"
 #include "AnimationVideoHeads.h"
 #include "AnimationStars.h"
+#include "ofxMidi.h"
 
-class testApp : public ofSimpleApp
+class testApp : public ofSimpleApp, public ofxMidiListener
 {
 public:
     
@@ -32,6 +33,10 @@ public:
 	int selectedAnimation;
 	
 	vector <Animation *> animations;
+	
+	ofxMidiIn midiIn;
+	
+	void newMidiMessage(ofxMidiEventArgs& eventArgs);
 	
 };
 

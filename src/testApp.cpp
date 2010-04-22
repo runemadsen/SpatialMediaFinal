@@ -47,15 +47,6 @@ void testApp::draw()
 void testApp::newMidiMessage(ofxMidiEventArgs& eventArgs)
 {
 	animations[selectedAnimation]->newMidiMessage(eventArgs);
-	
-	// byte one: note
-	// byte two: velocity
-	
-	//printf("Byte one: %d \n", eventArgs.byteOne);
-	//printf("Byte two: %d \n", eventArgs.byteTwo);
-	//printf("Port: %d \n", eventArgs.port);
-	
-	// send to current controller
 }
 
 void testApp::keyPressed( int key ) 
@@ -79,7 +70,10 @@ void testApp::keyPressed( int key )
 
 void testApp::mouseMoved( int x, int y ) {}
 
-void testApp::mouseDragged( int x, int y, int button ) {}
+void testApp::mouseDragged( int x, int y, int button ) 
+{
+	sensing->mouseDragged(x, y, button);
+}
 
 void testApp::mousePressed( int x, int y, int button ) 
 {

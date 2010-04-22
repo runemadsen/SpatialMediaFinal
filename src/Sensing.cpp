@@ -128,6 +128,15 @@ void Sensing::mousePressed(int xPos, int yPos, int button)
 	}
 }
 
+void Sensing::mouseDragged(int xPos, int yPos, int button)
+{
+	if(!_enabled && _mapFromScreen && _selectedBalloon != DISABLED)
+	{
+		_balloons[_selectedBalloon]->setCenterX((xPos / _scalePosAll) - _xDisplaceAll);
+		_balloons[_selectedBalloon]->setCenterY((yPos / _scalePosAll) - _yDisplaceAll);
+	}
+}
+
 void Sensing::checkClick(float xPos, float yPos)
 {
 	int index = isClickWithinBalloon(xPos, yPos);

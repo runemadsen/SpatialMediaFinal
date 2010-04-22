@@ -8,6 +8,7 @@
 #include "AnimationCircles.h"
 #include "AnimationVideoHeads.h"
 #include "AnimationStars.h"
+#include "AnimationSingingHeads.h"
 #include "ofxMidi.h"
 
 class testApp : public ofSimpleApp, public ofxMidiListener

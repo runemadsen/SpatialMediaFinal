@@ -11,6 +11,7 @@
 		A52F79F6117CCC6D00F55415 /* Balloon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52F79F5117CCC6D00F55415 /* Balloon.cpp */; };
 		A55400FA1173AA5400665657 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55400F91173AA5400665657 /* Animation.cpp */; };
 		A554011A1173AAB600665657 /* AnimationHeads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55401191173AAB600665657 /* AnimationHeads.cpp */; };
+		A55B58321180B2C300BFCE44 /* AnimationSingingHeads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55B58311180B2C300BFCE44 /* AnimationSingingHeads.cpp */; };
 		A5691FB0117D22EE008D4C28 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5691FAF117D22EE008D4C28 /* CoreMIDI.framework */; };
 		A5691FC1117D234B008D4C28 /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5691FB7117D234B008D4C28 /* RtMidi.cpp */; };
 		A5691FC2117D234B008D4C28 /* ofxMidiIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5691FBD117D234B008D4C28 /* ofxMidiIn.cpp */; };
@@ -122,6 +123,8 @@
 		A55400F91173AA5400665657 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		A55401181173AAB600665657 /* AnimationHeads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHeads.h; sourceTree = "<group>"; };
 		A55401191173AAB600665657 /* AnimationHeads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationHeads.cpp; sourceTree = "<group>"; };
+		A55B58301180B2C300BFCE44 /* AnimationSingingHeads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationSingingHeads.h; sourceTree = "<group>"; };
+		A55B58311180B2C300BFCE44 /* AnimationSingingHeads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationSingingHeads.cpp; sourceTree = "<group>"; };
 		A5691FAF117D22EE008D4C28 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		A5691FB4117D234B008D4C28 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		A5691FB6117D234B008D4C28 /* RtError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtError.h; sourceTree = "<group>"; };
@@ -285,12 +288,22 @@
 		A554011C1173AABA00665657 /* animations */ = {
 			isa = PBXGroup;
 			children = (
+				A55B58291180B27A00BFCE44 /* singingheads */,
 				A5C252AF117BB20A00191FED /* circles */,
 				A5C252AE117BB1F200191FED /* videoheads */,
 				A5C252AD117BB1E400191FED /* heads */,
 				A5C2520B117BAA6D00191FED /* stars */,
 			);
 			name = animations;
+			sourceTree = "<group>";
+		};
+		A55B58291180B27A00BFCE44 /* singingheads */ = {
+			isa = PBXGroup;
+			children = (
+				A55B58301180B2C300BFCE44 /* AnimationSingingHeads.h */,
+				A55B58311180B2C300BFCE44 /* AnimationSingingHeads.cpp */,
+			);
+			name = singingheads;
 			sourceTree = "<group>";
 		};
 		A5691FB3117D234B008D4C28 /* ofxMidi_002 */ = {
@@ -956,6 +969,7 @@
 				A5691FC1117D234B008D4C28 /* RtMidi.cpp in Sources */,
 				A5691FC2117D234B008D4C28 /* ofxMidiIn.cpp in Sources */,
 				A5691FC3117D234B008D4C28 /* ofxMidiOut.cpp in Sources */,
+				A55B58321180B2C300BFCE44 /* AnimationSingingHeads.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

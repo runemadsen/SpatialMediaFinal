@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A52053881180C3B200AA9C7F /* BalloonControllerHead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52053871180C3B200AA9C7F /* BalloonControllerHead.cpp */; };
 		A520D3571176438F0009103D /* AnimationCircles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A520D3561176438F0009103D /* AnimationCircles.cpp */; };
 		A52F79F6117CCC6D00F55415 /* Balloon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52F79F5117CCC6D00F55415 /* Balloon.cpp */; };
 		A55400FA1173AA5400665657 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55400F91173AA5400665657 /* Animation.cpp */; };
@@ -116,6 +117,8 @@
 
 /* Begin PBXFileReference section */
 		A503523D1174CBC0003E9C5A /* Balloon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balloon.h; sourceTree = "<group>"; };
+		A52053861180C3B200AA9C7F /* BalloonControllerHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonControllerHead.h; sourceTree = "<group>"; };
+		A52053871180C3B200AA9C7F /* BalloonControllerHead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerHead.cpp; sourceTree = "<group>"; };
 		A520D3551176438F0009103D /* AnimationCircles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationCircles.h; sourceTree = "<group>"; };
 		A520D3561176438F0009103D /* AnimationCircles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationCircles.cpp; sourceTree = "<group>"; };
 		A52F79F5117CCC6D00F55415 /* Balloon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Balloon.cpp; sourceTree = "<group>"; };
@@ -302,6 +305,8 @@
 			children = (
 				A55B58301180B2C300BFCE44 /* AnimationSingingHeads.h */,
 				A55B58311180B2C300BFCE44 /* AnimationSingingHeads.cpp */,
+				A52053861180C3B200AA9C7F /* BalloonControllerHead.h */,
+				A52053871180C3B200AA9C7F /* BalloonControllerHead.cpp */,
 			);
 			name = singingheads;
 			sourceTree = "<group>";
@@ -970,6 +975,7 @@
 				A5691FC2117D234B008D4C28 /* ofxMidiIn.cpp in Sources */,
 				A5691FC3117D234B008D4C28 /* ofxMidiOut.cpp in Sources */,
 				A55B58321180B2C300BFCE44 /* AnimationSingingHeads.cpp in Sources */,
+				A52053881180C3B200AA9C7F /* BalloonControllerHead.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

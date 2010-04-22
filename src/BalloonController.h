@@ -8,19 +8,21 @@ class BalloonController
 	
 public:
 	
-	BalloonController(Balloon * model) 
-	{ 
-		_model = model;
-	}
-	
-	void setModel(Balloon * model) { _model = model; }
+	BalloonController(Balloon * model);
 	
 	virtual void update() {}
 	virtual void draw() {}
+	virtual void noteOn() {}
+	virtual void noteOff() {}
 	
-	Balloon * getModel() { return _model; }
+	void setModel(Balloon * model);
+	void setMidiNote(int midiNote);
+	
+	Balloon * getModel();
+	int getMidiNote();
 	
 protected:
 	
 	Balloon * _model;
+	int _midiNote;
 };

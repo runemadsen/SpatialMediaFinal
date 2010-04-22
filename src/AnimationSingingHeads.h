@@ -14,7 +14,6 @@ public:
 	
     void update();
 	void draw();
-	void newMidiMessage(ofxMidiEventArgs& eventArgs);
 	BalloonController * getNewController(Balloon * model);
 	
 private:

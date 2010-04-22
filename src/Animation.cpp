@@ -54,8 +54,42 @@ void Animation::compareBalloonsToControllers()
 			}
 			
 			if(!found)
-			{
+			{				
 				_controllers.push_back(getNewController(_points[i]));
+				
+				// automatically assign midi note
+				if(_midiNotes.size() >= _controllers.size())
+				{
+					_controllers[_controllers.size() - 1]->setMidiNote(_midiNotes[_controllers.size() - 1]);
+				}
+			}
+		}
+	}
+}
+
+/* MIDI
+ ___________________________________________________________ */
+
+void Animation::newMidiMessage(ofxMidiEventArgs& eventArgs)
+{
+	if(_usingControllers)
+	{
+		BalloonController * b;
+		
+		for(int i = 0; i < _controllers.size(); i++)
+		{
+			if(_controllers[i]->getMidiNote() == eventArgs.byteOne)
+			{
+				if(eventArgs.byteTwo > 0)
+				{
+					_controllers[i]->noteOn();
+				}
+				else
+				{
+					_controllers[i]->noteOff();
+				}
+				
+				break;
 			}
 		}
 	}

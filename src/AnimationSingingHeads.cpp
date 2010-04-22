@@ -6,6 +6,10 @@
 AnimationSingingHeads::AnimationSingingHeads()
 {
 	_usingControllers = true;
+	
+	// first balloon gets 61, next 63, etc...
+	_midiNotes.push_back(61);
+	_midiNotes.push_back(63);
 }
 
 /* Update
@@ -39,29 +43,6 @@ BalloonController * AnimationSingingHeads::getNewController(Balloon * model)
 {		
 	BalloonControllerHead * b = new BalloonControllerHead(model);
 	return b;
-}
-
-/* Midi
- ___________________________________________________________ */
-
-void AnimationSingingHeads::newMidiMessage(ofxMidiEventArgs& eventArgs)
-{
-	BalloonControllerHead * b;
-	
-	switch (eventArgs.byteOne) 
-	{
-		case 61:
-			b = dynamic_cast<BalloonControllerHead *>(_controllers[0]);
-			break;
-		case 63:
-			b = dynamic_cast<BalloonControllerHead *>(_controllers[1]);
-			break;
-		default:
-			break;
-	}
-	
-	if(eventArgs.byteTwo > 0)	b->noteOn();
-	else						b->noteOff();
 }
 
 

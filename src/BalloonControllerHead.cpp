@@ -7,9 +7,8 @@ BalloonControllerHead::BalloonControllerHead(Balloon * model) : BalloonControlle
 {
 	_headState = 1;
 	
-	_frameBlinkEnd = 73;
-	_frameOpenEnd = 93;
-	_frameCloseEnd = 105;
+	_frameBlinkEnd = 85;
+	_frameCloseStart = 135;
 	
 	head.loadMovie("keying_tracking_resized4.mov");
 	head.play();
@@ -33,18 +32,22 @@ void BalloonControllerHead::update()
 		{
 			head.setFrame(_frameBlinkEnd);
 		}
-		else if(head.getCurrentFrame() == _frameOpenEnd)
+		else if(head.getCurrentFrame() == _frameCloseStart - 1)
 		{
 			head.setPaused(true);
 		}
 	}
 	else if(_headState == 3)
 	{
-		if(head.getCurrentFrame() == _frameOpenEnd)
+		if(head.getCurrentFrame() == _frameCloseStart -1)
 		{
 			head.setPaused(false);
 		}
-		else if(head.getCurrentFrame() > _frameCloseEnd)
+		else if(head.getCurrentFrame() < _frameCloseStart)
+		{
+			head.setFrame(_frameCloseStart);
+		}
+		else if(head.getCurrentFrame() == head.getTotalNumFrames())
 		{
 			_headState = 1;
 			head.firstFrame();
@@ -62,6 +65,7 @@ void BalloonControllerHead::draw()
 	ofRectangle bounds = _model->getBoundsFromSize(head.getWidth(), head.getHeight());
 	
 	ofEnableAlphaBlending();
+	
 	head.draw(bounds.x, bounds.y, bounds.width, bounds.height);
 	ofDisableAlphaBlending();
 }

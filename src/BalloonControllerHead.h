@@ -26,7 +26,6 @@ private:
 	int _headState; // 1 = blinking, 2 = opening, 3 = closing
 	
 	int _frameBlinkEnd;
-	int _frameOpenEnd;
-	int _frameCloseEnd;
+	int _frameCloseStart;
 	
 };

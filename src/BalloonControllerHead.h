@@ -4,6 +4,7 @@
 #include "BalloonController.h"
 #include "Balloon.h"
 #include "Constants.h"
+#include "ofxAlphaVideoPlayer.h"
 
 class BalloonControllerHead : public BalloonController
 {
@@ -20,7 +21,7 @@ public:
 	
 private:
 	
-	ofVideoPlayer head;
+	ofxAlphaVideoPlayer head;
 	
 	int _headState; // 1 = blinking, 2 = opening, 3 = closing
 	

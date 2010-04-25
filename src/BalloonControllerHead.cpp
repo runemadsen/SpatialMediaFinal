@@ -11,7 +11,7 @@ BalloonControllerHead::BalloonControllerHead(Balloon * model) : BalloonControlle
 	_frameOpenEnd = 93;
 	_frameCloseEnd = 105;
 	
-	head.loadMovie("blinksequence.mov");
+	head.loadMovie("keying_tracking_resized4.mov");
 	head.play();
 }
 
@@ -61,7 +61,9 @@ void BalloonControllerHead::draw()
 {
 	ofRectangle bounds = _model->getBoundsFromSize(head.getWidth(), head.getHeight());
 	
+	ofEnableAlphaBlending();
 	head.draw(bounds.x, bounds.y, bounds.width, bounds.height);
+	ofDisableAlphaBlending();
 }
 
 /* Midi note on / off

@@ -1,15 +1,15 @@
 <controls>
     <SliderFloat_X>
         <name>X</name>
-        <value>-199.218750</value>
+        <value>0.000000</value>
     </SliderFloat_X>
     <SliderFloat_Y>
         <name>Y</name>
-        <value>-152.343750</value>
+        <value>0.000000</value>
     </SliderFloat_Y>
     <SliderFloat_Scale_Positions>
         <name>Scale Positions</name>
-        <value>1.443750</value>
+        <value>1.000000</value>
     </SliderFloat_Scale_Positions>
     <SliderFloat_Scale_Sizes>
         <name>Scale Sizes</name>

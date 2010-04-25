@@ -327,6 +327,17 @@ vector <Balloon *> Sensing::getBalloonsSorted()
 	//std::sort(norm.begin(), norm.end(), Sensing::xsorter());
 	std::sort(norm.begin(), norm.end(), Sensing::ysorter());
 	
+	// instead just run through the vector and do:
+		// find the topmost balloon
+		// Find all balloons 100 pixels below this
+		// Pick from those balloons the balloon that is furthest to the left
+			// put it to a new vector
+			// remove it from original
+		// keep picking the balloon furthest to the left until no one is left.
+		
+		// start over...
+		
+	
 	return norm;
 }
 

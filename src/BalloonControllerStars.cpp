@@ -1,4 +1,5 @@
 #include "BalloonControllerStars.h"
+#include "Expo.h"
 
 /* Constructor
  ___________________________________________________________ */
@@ -6,6 +7,8 @@
 BalloonControllerStars::BalloonControllerStars(Balloon * model) : BalloonController(model)
 {
 	balloonShine.loadImage("balloon.png");
+	
+	timer.setDuration(150);
 	
 	PSetting setting1;
 	
@@ -75,6 +78,8 @@ void BalloonControllerStars::setTexture(ofImage newTexture, int cellsInRow, int 
 
 void BalloonControllerStars::update()
 {
+	timer.tick();
+	
 	//if(model->visible)	
 	//{
 		if(numParticles < MAX_PARTICLES)
@@ -214,8 +219,6 @@ void BalloonControllerStars::checkParticle(int i)
 	}
 }
 
-
-
 /* Draw
  ___________________________________________________________ */
 
@@ -223,7 +226,9 @@ void BalloonControllerStars::draw()
 {
 	ofRectangle bounds = _model->getBoundsFromSize(balloonShine.getWidth(), balloonShine.getHeight(), false);
 	
-	ofSetColor(255, 255, 255);
+	float alpha = Expo::easeOut(timer.getTime(), 40, 140, timer.getDuration());
+	
+	ofSetColor(255, 255, 255, alpha);
 	ofEnableAlphaBlending();
 	balloonShine.draw(bounds.x, bounds.y, bounds.width, bounds.height);
 	ofDisableAlphaBlending();
@@ -465,12 +470,12 @@ int BalloonControllerStars::isParticleInsideBox(int pi)
 
 void BalloonControllerStars::noteOn()
 {
-	printf("Note on");
+	timer.setState(1);
 }
 
 void BalloonControllerStars::noteOff()
 {
-	printf("Note off");
+	timer.setState(-1);
 }
 
 /* Getter / Setter

@@ -46,6 +46,17 @@
 		A5D97B341180F35C00171302 /* ofxMatrix3x3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5D97B241180F35C00171302 /* ofxMatrix3x3.cpp */; };
 		A5D97B351180F35C00171302 /* ofxMatrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5D97B261180F35C00171302 /* ofxMatrix4x4.cpp */; };
 		A5D97B361180F35C00171302 /* ofxQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5D97B2B1180F35C00171302 /* ofxQuaternion.cpp */; };
+		A5DA3F2F118603610047FEED /* Back.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F18118603610047FEED /* Back.cpp */; };
+		A5DA3F30118603610047FEED /* Bounce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F1A118603610047FEED /* Bounce.cpp */; };
+		A5DA3F31118603610047FEED /* Circ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F1C118603610047FEED /* Circ.cpp */; };
+		A5DA3F32118603610047FEED /* Cubic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F1E118603610047FEED /* Cubic.cpp */; };
+		A5DA3F33118603610047FEED /* Elastic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F21118603610047FEED /* Elastic.cpp */; };
+		A5DA3F34118603610047FEED /* Expo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F23118603610047FEED /* Expo.cpp */; };
+		A5DA3F35118603610047FEED /* Linear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F25118603610047FEED /* Linear.cpp */; };
+		A5DA3F36118603610047FEED /* Quad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F27118603610047FEED /* Quad.cpp */; };
+		A5DA3F37118603610047FEED /* Quart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F29118603610047FEED /* Quart.cpp */; };
+		A5DA3F38118603610047FEED /* Quint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F2B118603610047FEED /* Quint.cpp */; };
+		A5DA3F39118603610047FEED /* Sine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F2D118603610047FEED /* Sine.cpp */; };
 		A5F4BD271183E0150015F6AB /* ofxAlphaVideoPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F4BD231183E0150015F6AB /* ofxAlphaVideoPlayer.cpp */; };
 		A5F4BD281183E0150015F6AB /* ofxQtUtils_alpha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F4BD251183E0150015F6AB /* ofxQtUtils_alpha.cpp */; };
 		E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE0A90E8CC67C009D7055 /* GLee.a */; };
@@ -215,6 +226,29 @@
 		A5D97B2E1180F35C00171302 /* ofxVec3f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVec3f.h; sourceTree = "<group>"; };
 		A5D97B2F1180F35C00171302 /* ofxVec4f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVec4f.h; sourceTree = "<group>"; };
 		A5D97B301180F35C00171302 /* ofxVectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVectorMath.h; sourceTree = "<group>"; };
+		A5DA3F18118603610047FEED /* Back.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Back.cpp; sourceTree = "<group>"; };
+		A5DA3F19118603610047FEED /* Back.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Back.h; sourceTree = "<group>"; };
+		A5DA3F1A118603610047FEED /* Bounce.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bounce.cpp; sourceTree = "<group>"; };
+		A5DA3F1B118603610047FEED /* Bounce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bounce.h; sourceTree = "<group>"; };
+		A5DA3F1C118603610047FEED /* Circ.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Circ.cpp; sourceTree = "<group>"; };
+		A5DA3F1D118603610047FEED /* Circ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circ.h; sourceTree = "<group>"; };
+		A5DA3F1E118603610047FEED /* Cubic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cubic.cpp; sourceTree = "<group>"; };
+		A5DA3F1F118603610047FEED /* Cubic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cubic.h; sourceTree = "<group>"; };
+		A5DA3F20118603610047FEED /* easing_terms_of_use.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = easing_terms_of_use.html; sourceTree = "<group>"; };
+		A5DA3F21118603610047FEED /* Elastic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Elastic.cpp; sourceTree = "<group>"; };
+		A5DA3F22118603610047FEED /* Elastic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elastic.h; sourceTree = "<group>"; };
+		A5DA3F23118603610047FEED /* Expo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Expo.cpp; sourceTree = "<group>"; };
+		A5DA3F24118603610047FEED /* Expo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expo.h; sourceTree = "<group>"; };
+		A5DA3F25118603610047FEED /* Linear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Linear.cpp; sourceTree = "<group>"; };
+		A5DA3F26118603610047FEED /* Linear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Linear.h; sourceTree = "<group>"; };
+		A5DA3F27118603610047FEED /* Quad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quad.cpp; sourceTree = "<group>"; };
+		A5DA3F28118603610047FEED /* Quad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quad.h; sourceTree = "<group>"; };
+		A5DA3F29118603610047FEED /* Quart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quart.cpp; sourceTree = "<group>"; };
+		A5DA3F2A118603610047FEED /* Quart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quart.h; sourceTree = "<group>"; };
+		A5DA3F2B118603610047FEED /* Quint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quint.cpp; sourceTree = "<group>"; };
+		A5DA3F2C118603610047FEED /* Quint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quint.h; sourceTree = "<group>"; };
+		A5DA3F2D118603610047FEED /* Sine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sine.cpp; sourceTree = "<group>"; };
+		A5DA3F2E118603610047FEED /* Sine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sine.h; sourceTree = "<group>"; };
 		A5F4BD231183E0150015F6AB /* ofxAlphaVideoPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAlphaVideoPlayer.cpp; sourceTree = "<group>"; };
 		A5F4BD241183E0150015F6AB /* ofxAlphaVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAlphaVideoPlayer.h; sourceTree = "<group>"; };
 		A5F4BD251183E0150015F6AB /* ofxQtUtils_alpha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQtUtils_alpha.cpp; sourceTree = "<group>"; };
@@ -322,6 +356,7 @@
 		A5BB5F6B1172317400CF7D9D /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				A5DA3F17118603610047FEED /* PennerEasing */,
 				A5F4BD221183E0150015F6AB /* ofxAlphaVideoPlayer */,
 				A5D97B131180F35C00171302 /* ofxMidi_002 */,
 				A5D97B211180F35C00171302 /* ofxVectorMath */,
@@ -575,6 +610,36 @@
 				A5D97B301180F35C00171302 /* ofxVectorMath.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		A5DA3F17118603610047FEED /* PennerEasing */ = {
+			isa = PBXGroup;
+			children = (
+				A5DA3F18118603610047FEED /* Back.cpp */,
+				A5DA3F19118603610047FEED /* Back.h */,
+				A5DA3F1A118603610047FEED /* Bounce.cpp */,
+				A5DA3F1B118603610047FEED /* Bounce.h */,
+				A5DA3F1C118603610047FEED /* Circ.cpp */,
+				A5DA3F1D118603610047FEED /* Circ.h */,
+				A5DA3F1E118603610047FEED /* Cubic.cpp */,
+				A5DA3F1F118603610047FEED /* Cubic.h */,
+				A5DA3F20118603610047FEED /* easing_terms_of_use.html */,
+				A5DA3F21118603610047FEED /* Elastic.cpp */,
+				A5DA3F22118603610047FEED /* Elastic.h */,
+				A5DA3F23118603610047FEED /* Expo.cpp */,
+				A5DA3F24118603610047FEED /* Expo.h */,
+				A5DA3F25118603610047FEED /* Linear.cpp */,
+				A5DA3F26118603610047FEED /* Linear.h */,
+				A5DA3F27118603610047FEED /* Quad.cpp */,
+				A5DA3F28118603610047FEED /* Quad.h */,
+				A5DA3F29118603610047FEED /* Quart.cpp */,
+				A5DA3F2A118603610047FEED /* Quart.h */,
+				A5DA3F2B118603610047FEED /* Quint.cpp */,
+				A5DA3F2C118603610047FEED /* Quint.h */,
+				A5DA3F2D118603610047FEED /* Sine.cpp */,
+				A5DA3F2E118603610047FEED /* Sine.h */,
+			);
+			path = PennerEasing;
 			sourceTree = "<group>";
 		};
 		A5F4BD221183E0150015F6AB /* ofxAlphaVideoPlayer */ = {
@@ -998,6 +1063,17 @@
 				A5D97B361180F35C00171302 /* ofxQuaternion.cpp in Sources */,
 				A5F4BD271183E0150015F6AB /* ofxAlphaVideoPlayer.cpp in Sources */,
 				A5F4BD281183E0150015F6AB /* ofxQtUtils_alpha.cpp in Sources */,
+				A5DA3F2F118603610047FEED /* Back.cpp in Sources */,
+				A5DA3F30118603610047FEED /* Bounce.cpp in Sources */,
+				A5DA3F31118603610047FEED /* Circ.cpp in Sources */,
+				A5DA3F32118603610047FEED /* Cubic.cpp in Sources */,
+				A5DA3F33118603610047FEED /* Elastic.cpp in Sources */,
+				A5DA3F34118603610047FEED /* Expo.cpp in Sources */,
+				A5DA3F35118603610047FEED /* Linear.cpp in Sources */,
+				A5DA3F36118603610047FEED /* Quad.cpp in Sources */,
+				A5DA3F37118603610047FEED /* Quart.cpp in Sources */,
+				A5DA3F38118603610047FEED /* Quint.cpp in Sources */,
+				A5DA3F39118603610047FEED /* Sine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

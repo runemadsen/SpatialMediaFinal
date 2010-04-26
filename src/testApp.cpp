@@ -8,9 +8,9 @@ void testApp::setup()
 	
 	sensing = new Sensing();
 	
-	animations.push_back(new AnimationHeads());
 	animations.push_back(new AnimationCircles());
-	animations.push_back(new AnimationVideoHeads());
+	animations.push_back(new AnimationHeads());
+	//animations.push_back(new AnimationVideoHeads());
 	animations.push_back(new AnimationStars());
 	animations.push_back(new AnimationSingingHeads());
 	

@@ -28,29 +28,64 @@ public:
 	}
 };
 
-class PTimer {
+class PTimer 
+{
 public:
-	int state; 
-	float time, duration;
-	PTimer() {
-		time = 0.0; duration = 0.0; state = 0;
+	
+	PTimer() 
+	{
+		_time = 0.0; 
+		_duration = 200; 
+		_state = 0.0;
 	}
 	
-	float getPercent()
+	void tick()
 	{
-		if (time > duration) 
-		{
-			time = duration;
-			state = 0;
-		}
-		else if(time < 0)
-		{
-			time = 0;
-			state = 0;
-		}
+		_time = _time + _state;
 		
-		return time / duration;
+		if (_time > _duration) 
+		{
+			_time = _duration;
+			_state = 0;
+		}
+		else if(_time < 0)
+		{
+			_time = 0;
+			_state = 0;
+		}
 	}
+	
+	void setDuration(float duration)
+	{
+		_duration = duration;
+	}
+	
+	void setState(float state)
+	{
+		_state = state;
+	}
+	
+	float getDuration()
+	{
+		return _duration;
+	}
+	
+	float getTime()
+	{
+		return _time;
+	}
+	
+	float getState()
+	{
+		return _state;
+	}
+	
+private:
+	
+	float _state; 
+	float _time;
+	float _duration;
+	
 };
 
 class PSetting 

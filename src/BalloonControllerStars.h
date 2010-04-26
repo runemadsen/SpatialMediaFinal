@@ -66,4 +66,6 @@ private:
 	int isParticleInsideBox(int pi);
 	
 	ofImage balloonShine;
+	
+	PTimer timer;
 };

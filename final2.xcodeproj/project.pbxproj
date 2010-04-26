@@ -57,6 +57,8 @@
 		A5DA3F37118603610047FEED /* Quart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F29118603610047FEED /* Quart.cpp */; };
 		A5DA3F38118603610047FEED /* Quint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F2B118603610047FEED /* Quint.cpp */; };
 		A5DA3F39118603610047FEED /* Sine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F2D118603610047FEED /* Sine.cpp */; };
+		A5DA3F8311860F710047FEED /* AnimationLetters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F8211860F710047FEED /* AnimationLetters.cpp */; };
+		A5DA3F8611860F7B0047FEED /* BalloonControllerLetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F8511860F7B0047FEED /* BalloonControllerLetter.cpp */; };
 		A5F4BD271183E0150015F6AB /* ofxAlphaVideoPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F4BD231183E0150015F6AB /* ofxAlphaVideoPlayer.cpp */; };
 		A5F4BD281183E0150015F6AB /* ofxQtUtils_alpha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F4BD251183E0150015F6AB /* ofxQtUtils_alpha.cpp */; };
 		E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE0A90E8CC67C009D7055 /* GLee.a */; };
@@ -249,6 +251,10 @@
 		A5DA3F2C118603610047FEED /* Quint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quint.h; sourceTree = "<group>"; };
 		A5DA3F2D118603610047FEED /* Sine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sine.cpp; sourceTree = "<group>"; };
 		A5DA3F2E118603610047FEED /* Sine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sine.h; sourceTree = "<group>"; };
+		A5DA3F8111860F710047FEED /* AnimationLetters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationLetters.h; sourceTree = "<group>"; };
+		A5DA3F8211860F710047FEED /* AnimationLetters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationLetters.cpp; sourceTree = "<group>"; };
+		A5DA3F8411860F7B0047FEED /* BalloonControllerLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonControllerLetter.h; sourceTree = "<group>"; };
+		A5DA3F8511860F7B0047FEED /* BalloonControllerLetter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerLetter.cpp; sourceTree = "<group>"; };
 		A5F4BD231183E0150015F6AB /* ofxAlphaVideoPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAlphaVideoPlayer.cpp; sourceTree = "<group>"; };
 		A5F4BD241183E0150015F6AB /* ofxAlphaVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAlphaVideoPlayer.h; sourceTree = "<group>"; };
 		A5F4BD251183E0150015F6AB /* ofxQtUtils_alpha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQtUtils_alpha.cpp; sourceTree = "<group>"; };
@@ -333,6 +339,7 @@
 		A554011C1173AABA00665657 /* animations */ = {
 			isa = PBXGroup;
 			children = (
+				A5DA3F8011860F4B0047FEED /* letters */,
 				A55B58291180B27A00BFCE44 /* singingheads */,
 				A5C252AF117BB20A00191FED /* circles */,
 				A5C252AE117BB1F200191FED /* videoheads */,
@@ -347,8 +354,8 @@
 			children = (
 				A55B58301180B2C300BFCE44 /* AnimationSingingHeads.h */,
 				A55B58311180B2C300BFCE44 /* AnimationSingingHeads.cpp */,
-				A52053871180C3B200AA9C7F /* BalloonControllerHead.cpp */,
 				A52053861180C3B200AA9C7F /* BalloonControllerHead.h */,
+				A52053871180C3B200AA9C7F /* BalloonControllerHead.cpp */,
 			);
 			name = singingheads;
 			sourceTree = "<group>";
@@ -640,6 +647,17 @@
 				A5DA3F2E118603610047FEED /* Sine.h */,
 			);
 			path = PennerEasing;
+			sourceTree = "<group>";
+		};
+		A5DA3F8011860F4B0047FEED /* letters */ = {
+			isa = PBXGroup;
+			children = (
+				A5DA3F8111860F710047FEED /* AnimationLetters.h */,
+				A5DA3F8211860F710047FEED /* AnimationLetters.cpp */,
+				A5DA3F8411860F7B0047FEED /* BalloonControllerLetter.h */,
+				A5DA3F8511860F7B0047FEED /* BalloonControllerLetter.cpp */,
+			);
+			name = letters;
 			sourceTree = "<group>";
 		};
 		A5F4BD221183E0150015F6AB /* ofxAlphaVideoPlayer */ = {
@@ -1074,6 +1092,8 @@
 				A5DA3F37118603610047FEED /* Quart.cpp in Sources */,
 				A5DA3F38118603610047FEED /* Quint.cpp in Sources */,
 				A5DA3F39118603610047FEED /* Sine.cpp in Sources */,
+				A5DA3F8311860F710047FEED /* AnimationLetters.cpp in Sources */,
+				A5DA3F8611860F7B0047FEED /* BalloonControllerLetter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

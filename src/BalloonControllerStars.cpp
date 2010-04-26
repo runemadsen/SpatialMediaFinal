@@ -197,7 +197,6 @@ void BalloonControllerStars::checkParticle(int i)
 		//}
 	}
 	
-	
 	switch (isParticleInsideBox(i)) 
 	{
 		case DISABLED: // is inside
@@ -243,7 +242,6 @@ void BalloonControllerStars::draw()
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, particleVBO[2]); // init VBO (see above)
 	glBufferSubDataARB(GL_ARRAY_BUFFER_ARB, 0, (MAX_PARTICLES*4)*2*sizeof(float), texcords); // put data in VBO
 	glTexCoordPointer(2, GL_FLOAT, 0, 0); // Tell OpenGL that we have 2 coordinates and the coordinates in the array are floats
-	
 	
 	// bind color
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, particleVBO[0]);

@@ -13,6 +13,7 @@ void testApp::setup()
 	//animations.push_back(new AnimationVideoHeads());
 	animations.push_back(new AnimationStars());
 	animations.push_back(new AnimationSingingHeads());
+	animations.push_back(new AnimationLetters());
 	
 	selectedAnimation = 0;
 	

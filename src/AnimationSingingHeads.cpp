@@ -9,7 +9,10 @@ AnimationSingingHeads::AnimationSingingHeads()
 	
 	// first balloon gets 61, next 63, etc...
 	_midiNotes.push_back(61);
+	_midiNotes.push_back(62);
 	_midiNotes.push_back(63);
+	_midiNotes.push_back(64);
+	_midiNotes.push_back(67);
 }
 
 /* Update

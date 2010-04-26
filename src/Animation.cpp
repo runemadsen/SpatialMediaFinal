@@ -80,14 +80,19 @@ void Animation::newMidiMessage(ofxMidiEventArgs& eventArgs)
 		{
 			if(_controllers[i]->getMidiNote() == eventArgs.byteOne)
 			{
-				if(eventArgs.byteTwo > 0)
+				if(eventArgs.status == MIDI_NOTE_ON)
 				{
 					_controllers[i]->noteOn();
 				}
-				else
+				else if(eventArgs.status == MIDI_NOTE_OFF)
 				{
 					_controllers[i]->noteOff();
 				}
+				else 
+				{
+					printf("ERROR: Midi message neither on or off");
+				}
+
 				
 				break;
 			}

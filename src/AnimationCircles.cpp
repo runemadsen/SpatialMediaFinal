@@ -5,6 +5,8 @@
 
 AnimationCircles::AnimationCircles()
 {
+	_usingControllers = true;
+	
 	_colors.push_back(0x7eff00);
 	_colors.push_back(0xf000ff);
 	_colors.push_back(0x8a00ff);
@@ -28,7 +30,10 @@ AnimationCircles::AnimationCircles()
 
 void AnimationCircles::update()
 {
-	
+	for(int i = 0; i < _controllers.size(); i++)
+	{
+		_controllers[i]->update();
+	}
 }
 
 /* Draw
@@ -38,13 +43,39 @@ void AnimationCircles::draw()
 {
 	ofSetCircleResolution(40);
 	
-	for(int i = 0; i < _points.size(); i++) 
-	{
-		ofSetColor(_colors[i]);
-		ofFill();
-		ofEllipse(_points[i]->getCenterX(), _points[i]->getCenterY(), _points[i]->getWidth(), _points[i]->getHeight());
-		ofNoFill();
-		ofEllipse(_points[i]->getCenterX(), _points[i]->getCenterY(), _points[i]->getWidth(), _points[i]->getHeight());
+	for(int i = 0; i < _controllers.size(); i++)
+	{ 
+		_controllers[i]->draw();
 	}
 }
 
+/* Midi
+ ___________________________________________________________ */
+
+void AnimationCircles::newMidiMessage(ofxMidiEventArgs& eventArgs)
+{
+	printf(">>>> New Midi Message \n");
+	printf("channel: %d \n", eventArgs.channel);
+	printf("status: %d \n", eventArgs.status);
+	printf("byte one: %d \n", eventArgs.byteOne);
+	printf("byte two: %d \n", eventArgs.byteTwo);
+}
+
+/* Overrides
+ ___________________________________________________________ */
+
+BalloonController * AnimationCircles::getNewController(Balloon * model)
+{		
+	BalloonControllerCircle * b = new BalloonControllerCircle(model);
+	
+	if(_controllers.size() < _colors.size())
+	{
+		b->setColor(_colors[_controllers.size()]);
+	}
+	else
+	{
+		b->setColor(0xFF0000);
+	}
+	
+	return b;
+}

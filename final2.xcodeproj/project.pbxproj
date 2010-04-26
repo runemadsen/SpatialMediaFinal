@@ -59,6 +59,7 @@
 		A5DA3F39118603610047FEED /* Sine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F2D118603610047FEED /* Sine.cpp */; };
 		A5DA3F8311860F710047FEED /* AnimationLetters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F8211860F710047FEED /* AnimationLetters.cpp */; };
 		A5DA3F8611860F7B0047FEED /* BalloonControllerLetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F8511860F7B0047FEED /* BalloonControllerLetter.cpp */; };
+		A5DA4003118627D20047FEED /* BalloonControllerCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA4002118627D20047FEED /* BalloonControllerCircle.cpp */; };
 		A5F4BD271183E0150015F6AB /* ofxAlphaVideoPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F4BD231183E0150015F6AB /* ofxAlphaVideoPlayer.cpp */; };
 		A5F4BD281183E0150015F6AB /* ofxQtUtils_alpha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F4BD251183E0150015F6AB /* ofxQtUtils_alpha.cpp */; };
 		E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE0A90E8CC67C009D7055 /* GLee.a */; };
@@ -255,6 +256,8 @@
 		A5DA3F8211860F710047FEED /* AnimationLetters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationLetters.cpp; sourceTree = "<group>"; };
 		A5DA3F8411860F7B0047FEED /* BalloonControllerLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonControllerLetter.h; sourceTree = "<group>"; };
 		A5DA3F8511860F7B0047FEED /* BalloonControllerLetter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerLetter.cpp; sourceTree = "<group>"; };
+		A5DA4001118627D20047FEED /* BalloonControllerCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonControllerCircle.h; sourceTree = "<group>"; };
+		A5DA4002118627D20047FEED /* BalloonControllerCircle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerCircle.cpp; sourceTree = "<group>"; };
 		A5F4BD231183E0150015F6AB /* ofxAlphaVideoPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAlphaVideoPlayer.cpp; sourceTree = "<group>"; };
 		A5F4BD241183E0150015F6AB /* ofxAlphaVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAlphaVideoPlayer.h; sourceTree = "<group>"; };
 		A5F4BD251183E0150015F6AB /* ofxQtUtils_alpha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQtUtils_alpha.cpp; sourceTree = "<group>"; };
@@ -535,6 +538,8 @@
 			children = (
 				A520D3551176438F0009103D /* AnimationCircles.h */,
 				A520D3561176438F0009103D /* AnimationCircles.cpp */,
+				A5DA4001118627D20047FEED /* BalloonControllerCircle.h */,
+				A5DA4002118627D20047FEED /* BalloonControllerCircle.cpp */,
 			);
 			name = circles;
 			sourceTree = "<group>";
@@ -1094,6 +1099,7 @@
 				A5DA3F39118603610047FEED /* Sine.cpp in Sources */,
 				A5DA3F8311860F710047FEED /* AnimationLetters.cpp in Sources */,
 				A5DA3F8611860F7B0047FEED /* BalloonControllerLetter.cpp in Sources */,
+				A5DA4003118627D20047FEED /* BalloonControllerCircle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

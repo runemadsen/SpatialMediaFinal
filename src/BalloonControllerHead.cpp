@@ -7,10 +7,10 @@ BalloonControllerHead::BalloonControllerHead(Balloon * model) : BalloonControlle
 {
 	_headState = 1;
 	
-	_frameBlinkEnd = 85;
-	_frameCloseStart = 135;
+	_frameBlinkEnd = 85; 
+	_frameCloseStart = 88;
 	
-	head.loadMovie("keying_tracking_resized4.mov");
+	head.loadMovie("finishedblink3.mov");
 	head.play();
 }
 
@@ -21,38 +21,35 @@ void BalloonControllerHead::update()
 {
 	if(_headState == 1)
 	{
-		if (head.getCurrentFrame() > _frameBlinkEnd) 
+		if(_newState)
+		{
+			head.firstFrame();
+		}
+		else if (head.getCurrentFrame() > _frameBlinkEnd)
 		{
 			head.firstFrame();
 		}
 	}
 	else if(_headState == 2)
 	{
-		if(head.getCurrentFrame() < _frameBlinkEnd)
+		if(_newState)
 		{
 			head.setFrame(_frameBlinkEnd);
 		}
-		else if(head.getCurrentFrame() == _frameCloseStart - 1)
+		else if(head.getCurrentFrame() >= _frameCloseStart)
 		{
-			head.setPaused(true);
+			head.setFrame(_frameCloseStart);
 		}
 	}
 	else if(_headState == 3)
 	{
-		if(head.getCurrentFrame() == _frameCloseStart -1)
-		{
-			head.setPaused(false);
-		}
-		else if(head.getCurrentFrame() < _frameCloseStart)
-		{
-			head.setFrame(_frameCloseStart);
-		}
-		else if(head.getCurrentFrame() == head.getTotalNumFrames())
+		if(head.getCurrentFrame() == head.getTotalNumFrames())
 		{
 			_headState = 1;
-			head.firstFrame();
 		}
 	}
+			
+	_newState = false;
 	
 	head.idleMovie();
 }
@@ -76,9 +73,11 @@ void BalloonControllerHead::draw()
 void BalloonControllerHead::noteOn()
 {
 	_headState = 2;
+	_newState = true;
 }
 
 void BalloonControllerHead::noteOff()
 {
 	_headState = 3;
+	_newState = true;
 }

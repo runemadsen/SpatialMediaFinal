@@ -19,7 +19,7 @@ void testApp::setup()
 	
 	midiIn.setVerbose(false);
 	midiIn.listPorts();
-	midiIn.openPort(0);
+	midiIn.openPort(1);
 	midiIn.addListener(this);
 }
 

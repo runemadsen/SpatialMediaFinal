@@ -24,6 +24,7 @@ private:
 	ofxAlphaVideoPlayer head;
 	
 	int _headState; // 1 = blinking, 2 = opening, 3 = closing
+	bool _newState;
 	
 	int _frameBlinkEnd;
 	int _frameCloseStart;	

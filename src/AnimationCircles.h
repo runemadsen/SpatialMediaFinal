@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Animation.h"
+#include "BalloonControllerCircle.h"
 
 class AnimationCircles : public Animation
 {
@@ -10,6 +11,9 @@ public:
 	
     void update();
 	void draw();
+	void newMidiMessage(ofxMidiEventArgs& eventArgs);
+	
+	BalloonController * getNewController(Balloon * model);
 	
 private:
 	

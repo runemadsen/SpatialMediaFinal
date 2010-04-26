@@ -60,23 +60,32 @@ float Balloon::getScaleHeight()
 	return _scaleHeight; 
 }
 
-ofRectangle Balloon::getBoundsFromSize(float width, float height)
+ofRectangle Balloon::getBoundsFromSize(float width, float height, bool keepProportions)
 {
 	ofRectangle bounds;
 	
 	float wDiff = getWidth() / width;
 	float hDiff = getHeight() / height;
 	
-	if(wDiff < hDiff)
+	if(keepProportions)
 	{
-		bounds.width = width * wDiff;
-		bounds.height = height * wDiff;
+		if(wDiff < hDiff)
+		{
+			bounds.width = width * wDiff;
+			bounds.height = height * wDiff;
+		}
+		else 
+		{
+			bounds.width = width * hDiff;
+			bounds.height = height * hDiff;
+		}
 	}
 	else 
 	{
-		bounds.width = width * hDiff;
+		bounds.width = width * wDiff;
 		bounds.height = height * hDiff;
 	}
+
 	
 	bounds.x = _bounds.x - (bounds.width / 2);
 	bounds.y = _bounds.y - (bounds.height / 2);

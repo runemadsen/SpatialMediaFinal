@@ -5,17 +5,20 @@
 
 BalloonControllerStars::BalloonControllerStars(Balloon * model) : BalloonController(model)
 {
+	balloonShine.loadImage("balloon.png");
+	
 	PSetting setting1;
 	
-	if(ofRandomuf() > 0.3)
-	{
+	//if(ofRandomuf() > 0.3)
+	//{
 		setting1.percent = 1;
-		setting1.sizeMin = 3;
-		setting1.sizeMax = 6;
-		setting1.dirMin = 3;
-		setting1.dirMax = 5;
+		setting1.sizeMin = 8;
+		setting1.sizeMax = 15;
+		setting1.dirMin = 0.1;
+		setting1.dirMax = 0.3;
 		setting1.lifeMin = 0.5;
 		setting1.lifeMax = 0.5;
+	/*
 	}
 	else 
 	{
@@ -26,13 +29,14 @@ BalloonControllerStars::BalloonControllerStars(Balloon * model) : BalloonControl
 		setting1.dirMax = 0.8;
 		setting1.lifeMin = 0.5;
 		setting1.lifeMax = 0.5;
-	}
+	}*/
 	
 	_settings.push_back(setting1);
 	_direction.set(ofRandomf(), ofRandomf());
 	_direction.normalize();
 	
 	numParticles = 0;
+	
 	
 	// Setup the VBO
 	glGenBuffersARB(3, &particleVBO[0]);	
@@ -217,7 +221,14 @@ void BalloonControllerStars::checkParticle(int i)
 
 void BalloonControllerStars::draw()
 {
-	glEnable(GL_TEXTURE_2D);	// Tells OpenGL that we want ot draw a 2d teture
+	ofRectangle bounds = _model->getBoundsFromSize(balloonShine.getWidth(), balloonShine.getHeight(), false);
+	
+	ofSetColor(255, 255, 255);
+	ofEnableAlphaBlending();
+	balloonShine.draw(bounds.x, bounds.y, bounds.width, bounds.height);
+	ofDisableAlphaBlending();
+	
+	glEnable(GL_TEXTURE_2D);	// Tells OpenGL that we want to draw a 2d teture
 	
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY); // Enables the Texture coordinate array for drawing with glDrawArrays or glDrawElements calls 
 	glEnableClientState(GL_VERTEX_ARRAY); // Enables the Vertex array for drawing with glDrawArrays or glDrawElements calls 
@@ -241,7 +252,8 @@ void BalloonControllerStars::draw()
 	glVertexPointer(3, GL_FLOAT, 0, 0); // Tell OpenGL that we have 3 coordinates (x, y, z) and the coordinates are stored as floats in the array
 	
 	// draw the vbo
-	glDisable(GL_DEPTH_TEST); // disable depth test (whatever it is)
+	//glDisable(GL_DEPTH_TEST); // disable depth test (whatever it is)
+	
 	ofEnableArbTex();	
 	
 	ofEnableAlphaBlending();
@@ -256,7 +268,7 @@ void BalloonControllerStars::draw()
 	
 	ofDisableArbTex();
 	
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 	
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
@@ -446,6 +458,19 @@ int BalloonControllerStars::isParticleInsideBox(int pi)
 	}
 	
 	return DISABLED;
+}
+
+/* Midi note on / off
+ ___________________________________________________________ */
+
+void BalloonControllerStars::noteOn()
+{
+	printf("Note on");
+}
+
+void BalloonControllerStars::noteOff()
+{
+	printf("Note off");
 }
 
 /* Getter / Setter

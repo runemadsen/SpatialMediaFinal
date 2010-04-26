@@ -11,6 +11,10 @@ AnimationStars::AnimationStars()
 	{
 		textures[i].loadImage("particleGrid" + ofToString(i, 0) + ".png");
 	}
+	
+	// first balloon gets 61, next 63, etc...
+	_midiNotes.push_back(61);
+	_midiNotes.push_back(63);
 }
 
 /* Update
@@ -41,6 +45,6 @@ void AnimationStars::draw()
 BalloonController * AnimationStars::getNewController(Balloon * model)
 {		
 	BalloonControllerStars * b = new BalloonControllerStars(model);
-	b->setTexture(textures[2], 2, 2);
+	b->setTexture(textures[0], 2, 2);
 	return b;
 }

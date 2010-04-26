@@ -24,7 +24,7 @@ public:
 	float getScaleWidth();
 	float getScaleHeight();
 	
-	ofRectangle getBoundsFromSize(float width, float height);
+	ofRectangle getBoundsFromSize(float width, float height, bool keepProportions = true);
 
 private:
 	

@@ -7,6 +7,8 @@
 #include "ofxVec2f.h"
 #include "Constants.h"
 
+#define MAX_PARTICLES 300
+
 class BalloonControllerStars : public BalloonController
 {
 	
@@ -24,6 +26,9 @@ public:
 	int getTotal();
 	
 	ofImage	texture;
+	
+	void noteOn();
+	void noteOff();
 	
 private:
 	
@@ -59,4 +64,6 @@ private:
 	
 	bool isParticleInsideEllipse(int pi);
 	int isParticleInsideBox(int pi);
+	
+	ofImage balloonShine;
 };

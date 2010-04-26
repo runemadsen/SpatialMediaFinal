@@ -8,21 +8,17 @@ AnimationLetters::AnimationLetters()
 	_usingControllers = true;
 	
 	// save image names
-	_imgNames.push_back("letters/o.png");
-	_imgNames.push_back("letters/h.png");
-	_imgNames.push_back("letters/l.png");
-	_imgNames.push_back("letters/a.png");
-	_imgNames.push_back("letters/n.png");
-	_imgNames.push_back("letters/d.png");
-	_imgNames.push_back("letters/m.png");
-	_imgNames.push_back("letters/u.png");
-	_imgNames.push_back("letters/s.png");
-	_imgNames.push_back("letters/i.png");
-	_imgNames.push_back("letters/c.png");
-	
-	// first balloon gets 61, next 63, etc...
-	_midiNotes.push_back(61);
-	_midiNotes.push_back(63);
+	_imgNames.push_back("o");
+	_imgNames.push_back("h");
+	_imgNames.push_back("l");
+	_imgNames.push_back("a");
+	_imgNames.push_back("n");
+	_imgNames.push_back("d");
+	_imgNames.push_back("m");
+	_imgNames.push_back("u");
+	_imgNames.push_back("s");
+	_imgNames.push_back("i");
+	_imgNames.push_back("c");;
 }
 
 /* Update
@@ -62,7 +58,7 @@ BalloonController * AnimationLetters::getNewController(Balloon * model)
 	
 	if(_controllers.size() < _imgNames.size())
 	{
-		b->loadImage(_imgNames[_controllers.size()]);
+		b->loadImage("letters/" + _imgNames[_controllers.size()] + ".png", "letters/" + _imgNames[_controllers.size()] + "_over.png");
 	}
 	
 	return b;

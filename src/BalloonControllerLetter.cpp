@@ -5,12 +5,13 @@
 
 BalloonControllerLetter::BalloonControllerLetter(Balloon * model) : BalloonController(model)
 {
-	
+	timer.setDuration(50);
 }
 
-void BalloonControllerLetter::loadImage(string imgPath)
+void BalloonControllerLetter::loadImage(string imgPath, string imgPath2)
 {
 	_img.loadImage(imgPath);
+	_img2.loadImage(imgPath2);
 }
 
 /* Update
@@ -18,7 +19,7 @@ void BalloonControllerLetter::loadImage(string imgPath)
 
 void BalloonControllerLetter::update()
 {
-	
+	timer.tick();
 }
 
 /* Draw
@@ -26,9 +27,17 @@ void BalloonControllerLetter::update()
 
 void BalloonControllerLetter::draw()
 {
+	ofSetColor(255, 255, 255, 255);
+	
 	ofRectangle bounds = _model->getBoundsFromSize(_img.getWidth(), _img.getHeight());
 	
 	_img.draw(bounds.x, bounds.y, bounds.width, bounds.height);
+	
+	float alpha = Expo::easeOut(timer.getTime(), 0, 255, timer.getDuration());
+	
+	ofSetColor(255, 255, 255, alpha);
+	
+	_img2.draw(bounds.x, bounds.y, bounds.width, bounds.height);
 }
 
 /* Midi note on / off
@@ -36,10 +45,10 @@ void BalloonControllerLetter::draw()
 
 void BalloonControllerLetter::noteOn()
 {
-
+	timer.setState(1);
 }
 
 void BalloonControllerLetter::noteOff()
 {
-	
+	timer.setState(-1);
 }

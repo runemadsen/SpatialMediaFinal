@@ -11,10 +11,6 @@ AnimationStars::AnimationStars()
 	{
 		textures[i].loadImage("particleGrid" + ofToString(i, 0) + ".png");
 	}
-	
-	// first balloon gets 61, next 63, etc...
-	_midiNotes.push_back(61);
-	_midiNotes.push_back(63);
 }
 
 /* Update

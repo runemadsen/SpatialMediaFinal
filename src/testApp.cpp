@@ -29,7 +29,7 @@ void testApp::update()
 	
 	if(!sensing->disableAnimation())
 	{
-		animations[selectedAnimation]->setBalloons(sensing->getBalloonsSorted());
+		animations[selectedAnimation]->setBalloons(sensing->getBalloons());
 		animations[selectedAnimation]->compareBalloonsToControllers();
 		animations[selectedAnimation]->update();
 	}

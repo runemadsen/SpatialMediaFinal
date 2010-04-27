@@ -5,8 +5,8 @@
 
 Balloon::Balloon()
 {
-	_bounds.width = 200;
-	_bounds.height = 250;
+	_bounds.width = 130;
+	_bounds.height = 180;
 	
 	_scaleWidth = 1; 
 	_scaleHeight = 1; 

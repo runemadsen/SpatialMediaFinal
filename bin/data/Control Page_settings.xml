@@ -9,22 +9,22 @@
     </SliderFloat_Y>
     <SliderFloat_Scale_Positions>
         <name>Scale Positions</name>
-        <value>1.000000</value>
+        <value>1.006250</value>
     </SliderFloat_Scale_Positions>
     <SliderFloat_Scale_Sizes>
         <name>Scale Sizes</name>
-        <value>1.000000</value>
+        <value>1.250195</value>
     </SliderFloat_Scale_Sizes>
     <SliderFloat_Scale_Width>
         <name>Scale Width</name>
-        <value>1.478711</value>
+        <value>1.143555</value>
     </SliderFloat_Scale_Width>
     <SliderFloat_Scale_Height>
         <name>Scale Height</name>
-        <value>1.478711</value>
+        <value>1.204492</value>
     </SliderFloat_Scale_Height>
     <Toggle_Constrain_Ratio>
         <name>Constrain Ratio</name>
-        <value>1</value>
+        <value>0</value>
     </Toggle_Constrain_Ratio>
 </controls>

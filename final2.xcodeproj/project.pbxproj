@@ -60,6 +60,8 @@
 		A5DA3F8311860F710047FEED /* AnimationLetters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F8211860F710047FEED /* AnimationLetters.cpp */; };
 		A5DA3F8611860F7B0047FEED /* BalloonControllerLetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA3F8511860F7B0047FEED /* BalloonControllerLetter.cpp */; };
 		A5DA4003118627D20047FEED /* BalloonControllerCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DA4002118627D20047FEED /* BalloonControllerCircle.cpp */; };
+		A5E2E7FF1187634900E3EDEE /* AnimationNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5E2E7FE1187634900E3EDEE /* AnimationNew.cpp */; };
+		A5E2E8021187635200E3EDEE /* BalloonControllerNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5E2E8011187635200E3EDEE /* BalloonControllerNew.cpp */; };
 		A5F4BD271183E0150015F6AB /* ofxAlphaVideoPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F4BD231183E0150015F6AB /* ofxAlphaVideoPlayer.cpp */; };
 		A5F4BD281183E0150015F6AB /* ofxQtUtils_alpha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F4BD251183E0150015F6AB /* ofxQtUtils_alpha.cpp */; };
 		E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE0A90E8CC67C009D7055 /* GLee.a */; };
@@ -258,6 +260,10 @@
 		A5DA3F8511860F7B0047FEED /* BalloonControllerLetter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerLetter.cpp; sourceTree = "<group>"; };
 		A5DA4001118627D20047FEED /* BalloonControllerCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonControllerCircle.h; sourceTree = "<group>"; };
 		A5DA4002118627D20047FEED /* BalloonControllerCircle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerCircle.cpp; sourceTree = "<group>"; };
+		A5E2E7FD1187634900E3EDEE /* AnimationNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationNew.h; sourceTree = "<group>"; };
+		A5E2E7FE1187634900E3EDEE /* AnimationNew.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationNew.cpp; sourceTree = "<group>"; };
+		A5E2E8001187635200E3EDEE /* BalloonControllerNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonControllerNew.h; sourceTree = "<group>"; };
+		A5E2E8011187635200E3EDEE /* BalloonControllerNew.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerNew.cpp; sourceTree = "<group>"; };
 		A5F4BD231183E0150015F6AB /* ofxAlphaVideoPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAlphaVideoPlayer.cpp; sourceTree = "<group>"; };
 		A5F4BD241183E0150015F6AB /* ofxAlphaVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAlphaVideoPlayer.h; sourceTree = "<group>"; };
 		A5F4BD251183E0150015F6AB /* ofxQtUtils_alpha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQtUtils_alpha.cpp; sourceTree = "<group>"; };
@@ -342,6 +348,7 @@
 		A554011C1173AABA00665657 /* animations */ = {
 			isa = PBXGroup;
 			children = (
+				A5E2E7FC1187632C00E3EDEE /* newanimation */,
 				A5DA3F8011860F4B0047FEED /* letters */,
 				A55B58291180B27A00BFCE44 /* singingheads */,
 				A5C252AF117BB20A00191FED /* circles */,
@@ -663,6 +670,17 @@
 				A5DA3F8511860F7B0047FEED /* BalloonControllerLetter.cpp */,
 			);
 			name = letters;
+			sourceTree = "<group>";
+		};
+		A5E2E7FC1187632C00E3EDEE /* newanimation */ = {
+			isa = PBXGroup;
+			children = (
+				A5E2E7FD1187634900E3EDEE /* AnimationNew.h */,
+				A5E2E7FE1187634900E3EDEE /* AnimationNew.cpp */,
+				A5E2E8001187635200E3EDEE /* BalloonControllerNew.h */,
+				A5E2E8011187635200E3EDEE /* BalloonControllerNew.cpp */,
+			);
+			name = newanimation;
 			sourceTree = "<group>";
 		};
 		A5F4BD221183E0150015F6AB /* ofxAlphaVideoPlayer */ = {
@@ -1100,6 +1118,8 @@
 				A5DA3F8311860F710047FEED /* AnimationLetters.cpp in Sources */,
 				A5DA3F8611860F7B0047FEED /* BalloonControllerLetter.cpp in Sources */,
 				A5DA4003118627D20047FEED /* BalloonControllerCircle.cpp in Sources */,
+				A5E2E7FF1187634900E3EDEE /* AnimationNew.cpp in Sources */,
+				A5E2E8021187635200E3EDEE /* BalloonControllerNew.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

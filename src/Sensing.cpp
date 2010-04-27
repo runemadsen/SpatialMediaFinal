@@ -438,14 +438,6 @@ void Sensing::keyPressed(int key)
 			_balloons[_selectedBalloon]->setCenterY( _balloons[_selectedBalloon]->getCenterY() + 1 );
 		}
 	}
-	else if (key == 'S') 
-	{
-		_scalePosAll += 0.005;
-	}
-	else if (key == 's') 
-	{
-		_scalePosAll -= 0.005;
-	}
 	else if (key == 'X') 
 	{
 		_xDisplaceAll++;
@@ -470,13 +462,13 @@ void Sensing::keyPressed(int key)
 	{
 		_scaleSizeAll -= 0.005;
 	}
-	else if (key == 'l') 
-	{
-		loadBalloons();
-	}
-	else if (key == 'L') 
+	else if (key == 'S') 
 	{
 		saveBalloons();
+	}	
+	else if (key == 'L') 
+	{
+		loadBalloons();
 	}
 	else if (key ==' ') 
 	{
@@ -486,4 +478,15 @@ void Sensing::keyPressed(int key)
 	{
 		toggleMapFromScreen();
 	}
+	else if (key == 'f') 
+	{
+		// bring selected to front
+	}
+	else if (key == 'b') 
+	{
+		// bring selected to back
+	}
+	
+	//_scalePosAll += 0.005;
+	//_scalePosAll -= 0.005;
 }

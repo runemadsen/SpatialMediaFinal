@@ -14,6 +14,7 @@ void testApp::setup()
 	animations.push_back(new AnimationStars());
 	animations.push_back(new AnimationSingingHeads());
 	animations.push_back(new AnimationLetters());
+	animations.push_back(new AnimationNew());
 	
 	selectedAnimation = 0;
 	

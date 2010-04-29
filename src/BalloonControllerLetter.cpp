@@ -27,6 +27,10 @@ void BalloonControllerLetter::update()
 
 void BalloonControllerLetter::draw()
 {
+	ofFill();
+	ofSetColor(0, 0, 0, 255);
+	ofEllipse(_model->getCenterX(), _model->getCenterY(), _model->getWidth(), _model->getHeight());
+	
 	ofSetColor(255, 255, 255, 255);
 	
 	ofRectangle bounds = _model->getBoundsFromSize(_img.getWidth(), _img.getHeight());

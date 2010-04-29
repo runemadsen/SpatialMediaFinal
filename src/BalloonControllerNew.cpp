@@ -5,13 +5,7 @@
 
 BalloonControllerNew::BalloonControllerNew(Balloon * model) : BalloonController(model)
 {
-	timer.setDuration(50);
-}
-
-void BalloonControllerNew::loadImage(string imgPath, string imgPath2)
-{
-	_img.loadImage(imgPath);
-	_img2.loadImage(imgPath2);
+	_color = 0xFFFFFF;
 }
 
 /* Update
@@ -19,7 +13,7 @@ void BalloonControllerNew::loadImage(string imgPath, string imgPath2)
 
 void BalloonControllerNew::update()
 {
-	timer.tick();
+	
 }
 
 /* Draw
@@ -27,17 +21,12 @@ void BalloonControllerNew::update()
 
 void BalloonControllerNew::draw()
 {
-	ofSetColor(255, 255, 255, 255);
+	// color is either white or red depending on note played
+	ofSetColor(_color);
+	ofFill();
 	
-	ofRectangle bounds = _model->getBoundsFromSize(_img.getWidth(), _img.getHeight());
-	
-	_img.draw(bounds.x, bounds.y, bounds.width, bounds.height);
-	
-	float alpha = Expo::easeOut(timer.getTime(), 0, 255, timer.getDuration());
-	
-	ofSetColor(255, 255, 255, alpha);
-	
-	_img2.draw(bounds.x, bounds.y, bounds.width, bounds.height);
+	// get the position and size of this ballon from the _model: a Balloon object created when you clicked
+	ofEllipse(_model->getCenterX(), _model->getCenterY(), _model->getWidth(), _model->getHeight());
 }
 
 /* Midi note on / off
@@ -45,10 +34,10 @@ void BalloonControllerNew::draw()
 
 void BalloonControllerNew::noteOn()
 {
-	timer.setState(1);
+	_color = 0xFF0000;
 }
 
 void BalloonControllerNew::noteOff()
 {
-	timer.setState(-1);
+	_color = 0xFFFFFF;
 }

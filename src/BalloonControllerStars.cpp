@@ -223,13 +223,18 @@ void BalloonControllerStars::checkParticle(int i)
 
 void BalloonControllerStars::draw()
 {
+	ofFill();
+	ofSetColor(0, 0, 0, 255);
+	ofEllipse(_model->getCenterX(), _model->getCenterY(), _model->getWidth(), _model->getHeight());
+	
 	ofRectangle bounds = _model->getBoundsFromSize(balloonShine.getWidth(), balloonShine.getHeight(), false);
 	
-	float alpha = Expo::easeOut(timer.getTime(), 40, 140, timer.getDuration());
+	float alpha = Expo::easeOut(timer.getTime(), 100, 155, timer.getDuration());
+	float size = Expo::easeOut(timer.getTime(), 1, 0.2, timer.getDuration());
 	
 	ofSetColor(255, 255, 255, alpha);
 	ofEnableAlphaBlending();
-	balloonShine.draw(bounds.x, bounds.y, bounds.width, bounds.height);
+	balloonShine.draw(bounds.x - ((bounds.width * size) - bounds.width) / 2, bounds.y - ((bounds.height * size) - bounds.height) / 2, bounds.width * size, bounds.height * size);
 	ofDisableAlphaBlending();
 	
 	glEnable(GL_TEXTURE_2D);	// Tells OpenGL that we want to draw a 2d teture

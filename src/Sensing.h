@@ -6,6 +6,11 @@
 #include "ofxXmlSettings.h"
 #include "Constants.h"
 #include "Balloon.h"
+#include "ofxCvBlobTracker.h"
+#include "ofxCvTrackedBlob.h"
+#include "ofxCvConstants_Track.h"
+#include "ofxFBOTexture.h"
+
 
 #define VIDEO_WIDTH 320.0
 #define VIDEO_HEIGHT 240.0
@@ -80,15 +85,16 @@ private:
 	void setBalloonDataToGUI();
 	void deleteSelectedBalloon();
 	
+	
 	float mapScreenXToVideoX(float xPos);
 	float mapScreenYToVideoY(float yPos);
 	float mapVideoXToScreenX(float xPos);
 	float mapVideoYToScreenY(float yPos);
+	float cleanMapVideoXToScreenX(float xPos);
+	float cleanMapVideoYToScreenY(float yPos);
 	
 	ofImage _testImage;
 	ofVideoGrabber  _camera;
-	
-	ofxFBOTexture _outputTexture;
 	
 	vector <Balloon *> _balloons;
 	int _selectedBalloon;
@@ -97,6 +103,10 @@ private:
 	float _xDisplaceAll;
 	float _yDisplaceAll;
 	float _scaleSizeAll;
+	
+	float _blobCalibrate;
+	
+	bool _blobMode;
 	
 	bool _constrainRatio;
 	float _scaleWidthSelected;
@@ -111,4 +121,18 @@ private:
 	int _idcount;
 	
 	ofxXmlSettings _xml;
+	
+	int _threshold;
+	int _blurAmount;
+	int _area;
+	bool _showMask;
+	
+	ofxCvColorImage  _colorImg;
+    ofxCvGrayscaleImage  _grayImg;
+    ofxCvContourFinder  _contourFinder;
+    ofxCvBlobTracker  _blobTracker;	
+	ofxFBOTexture _outputTexture;
+	ofImage _mask;
+	unsigned char * _maskPixels;
+	unsigned char * _grayPixels;
 };

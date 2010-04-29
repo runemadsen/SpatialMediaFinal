@@ -59,8 +59,13 @@ void BalloonControllerHead::update()
 
 void BalloonControllerHead::draw()
 {
+	ofFill();
+	ofSetColor(0, 0, 0, 255);
+	ofEllipse(_model->getCenterX(), _model->getCenterY(), _model->getWidth(), _model->getHeight());
+	 
 	ofRectangle bounds = _model->getBoundsFromSize(head.getWidth(), head.getHeight());
 	
+	ofSetColor(255, 255, 255);
 	ofEnableAlphaBlending();
 	
 	head.draw(bounds.x, bounds.y, bounds.width, bounds.height);

@@ -5,11 +5,15 @@
 
 Sensing::Sensing()
 {
+	_blobMode = false;
 	_enabled = false;
 	_mapFromScreen = false;
 	_scalePosAll = 1;
-	_xDisplaceAll = 0;
-	_yDisplaceAll = 0;
+	//_xDisplaceAll = 0;
+	//_yDisplaceAll = 0;
+	_xDisplaceAll = -1055;
+	_yDisplaceAll = -723;
+	_blobCalibrate = 3.09;
 	_scaleSizeAll = 1;
 	_constrainRatio = true;
 	_scaleWidthSelected = 1;
@@ -19,17 +23,37 @@ Sensing::Sensing()
 	_selectedBalloon = DISABLED;
 	_idcount = 0;
 	
+	_threshold = 242;
+	_blurAmount = 10;
+	_area = 1010;
+	_showMask = true;
+	
+	_colorImg.allocate( VIDEO_WIDTH, VIDEO_HEIGHT );
+	_grayImg.allocate( VIDEO_WIDTH, VIDEO_HEIGHT );
+	_outputTexture.allocate(VIDEO_WIDTH, VIDEO_HEIGHT, GL_RGB);
+	_mask.loadImage("mask.png");
+	_mask.setImageType(OF_IMAGE_GRAYSCALE);
+	_maskPixels = _mask.getPixels();
+	
+	//_camera.setDeviceID(1);
 	_camera.initGrabber(VIDEO_WIDTH, VIDEO_HEIGHT);
 	
 	gui.addTitle("Video");
+	gui.addContent("Input", _outputTexture);
+	gui.addSlider("Threshold", _threshold , 0.0, 255);
+	gui.addSlider("Bluring", _blurAmount , 0, 40);
+	gui.addContent("Difference", _grayImg);
+	gui.addSlider("Area", _area,4,6000);	
+	gui.addToggle("Mask", _showMask);
 	gui.addFPSCounter();
 	
 	gui.addPage("Control Page");
 	gui.addTitle("All Balloons");
-	gui.addSlider("X", _xDisplaceAll, -1000, 1000);
-	gui.addSlider("Y", _yDisplaceAll, -1000, 1000);
+	gui.addSlider("X", _xDisplaceAll, -1500, 1000);
+	gui.addSlider("Y", _yDisplaceAll, -1500, 1000);
 	gui.addSlider("Scale Positions", _scalePosAll, 0.8, 4.0);
 	gui.addSlider("Scale Sizes", _scaleSizeAll, 0.1, 4);
+	gui.addSlider("Calibrate", _blobCalibrate, 0.6, 4);
 	
 	gui.addTitle("Selected Balloons");
 	
@@ -60,6 +84,37 @@ void Sensing::update()
 	
 	_oldScaleWidthSelected = _scaleWidthSelected;
 	_oldScaleHeightSelected = _scaleHeightSelected;
+	
+	if(_blobMode)
+	{
+		if(_camera.isFrameNew()) 
+		{
+			_colorImg = _camera.getPixels();
+			//_colorImg.mirror( false, true );
+			_grayImg = _colorImg;
+			
+			_grayImg.blur( _blurAmount );
+			_grayImg.threshold( _threshold );
+			_grayPixels = _grayImg.getPixels();
+			
+			if (_showMask) 
+			{
+				for (int i=0; i<VIDEO_WIDTH*VIDEO_HEIGHT; i++) 
+				{
+					if(_maskPixels[i] == 0)
+					{
+						_grayPixels[i]= _maskPixels[i]; 
+					}
+				}
+				
+				_grayImg.setFromPixels(_grayPixels, VIDEO_WIDTH, VIDEO_HEIGHT);
+			}
+			//findContures( img, minSize, maxSize, nMax, inner contours yes/no )
+			_contourFinder.findContours( _grayImg, _area, 300000, 20, false);
+			_blobTracker.trackBlobs( _contourFinder.blobs );
+		}
+		
+	}
 }
 
 /* Draw
@@ -71,7 +126,13 @@ void Sensing::draw()
 	
 	if(_enabled && gui.currentPage == 1)
 	{
-		ofSetColor(255, 255, 255);
+		_outputTexture.begin();
+		ofSetColor( 0xffffff );
+		_colorImg.draw(0, 0);
+		_blobTracker.draw(0, 0);
+		_outputTexture.end();
+		
+		/*ofSetColor(255, 255, 255);
 		
 		_camera.draw(VIDEO_X, VIDEO_Y, _camera.getWidth() * VIDEO_SCALE, _camera.getHeight() * VIDEO_SCALE);
 		
@@ -85,7 +146,7 @@ void Sensing::draw()
 			{
 				drawBalloon(mapScreenXToVideoX(_balloons[i]->getCenterX()), mapScreenYToVideoY(_balloons[i]->getCenterY()), 0xFF0000);
 			}
-		}
+		}*/
 	}
 	else if(!disableAnimation() && _mapFromScreen)
 	{
@@ -243,6 +304,16 @@ float Sensing::mapVideoYToScreenY(float yPos)
 	return (yPos - VIDEO_Y) * (ofGetHeight() / (VIDEO_HEIGHT * VIDEO_SCALE));
 }
 
+float Sensing::cleanMapVideoXToScreenX(float xPos)
+{
+	return xPos * (ofGetWidth() / VIDEO_WIDTH);
+}
+
+float Sensing::cleanMapVideoYToScreenY(float yPos)
+{
+	return yPos * (ofGetHeight() / VIDEO_HEIGHT);
+}
+
 /* Loading / Saving
  ___________________________________________________________ */
 
@@ -300,21 +371,42 @@ vector <Balloon *> Sensing::getBalloons()
 {
 	vector <Balloon *> norm;
 	
-	for(int i = 0; i < _balloons.size(); i++)
+	// get blobs
+	if(_blobMode)
 	{
-		Balloon * newPoint = new Balloon();
-		newPoint->setID(_balloons[i]->getID());
-		newPoint->setCenterX( (_balloons[i]->getCenterX() + _xDisplaceAll) * _scalePosAll );
-		newPoint->setCenterY( (_balloons[i]->getCenterY() + _yDisplaceAll) * _scalePosAll );
-		
-		if(i == _selectedBalloon)
+		// loop through the blobs and make baloon objects
+		for(int i = 0; i < _blobTracker.blobs.size(); i++)
 		{
-			_balloons[_selectedBalloon]->setScale( _scaleWidthSelected, _scaleHeightSelected);
+			ofxCvTrackedBlob& blob = _blobTracker.blobs[i];
+			
+			Balloon * newPoint = new Balloon();
+			newPoint->setID(blob.id);
+			newPoint->setCenterX( ((cleanMapVideoXToScreenX(blob.centroid.x) * _blobCalibrate) + _xDisplaceAll) * _scalePosAll );
+			newPoint->setCenterY( ((cleanMapVideoYToScreenY(blob.centroid.y) * _blobCalibrate)  + _yDisplaceAll) * _scalePosAll);
+			newPoint->setScale(1 * _scaleSizeAll, 1 * _scaleSizeAll);
+			
+			norm.push_back(newPoint);
 		}
-		
-		newPoint->setScale(_balloons[i]->getScaleWidth() * _scaleSizeAll, _balloons[i]->getScaleHeight() * _scaleSizeAll);
-		
-		norm.push_back(newPoint);
+	}
+	// get clicked points
+	else 
+	{
+		for(int i = 0; i < _balloons.size(); i++)
+		{
+			Balloon * newPoint = new Balloon();
+			newPoint->setID(_balloons[i]->getID());
+			newPoint->setCenterX( (_balloons[i]->getCenterX() + _xDisplaceAll) * _scalePosAll );
+			newPoint->setCenterY( (_balloons[i]->getCenterY() + _yDisplaceAll) * _scalePosAll );
+			
+			if(i == _selectedBalloon)
+			{
+				_balloons[_selectedBalloon]->setScale( _scaleWidthSelected, _scaleHeightSelected);
+			}
+			
+			newPoint->setScale(_balloons[i]->getScaleWidth() * _scaleSizeAll, _balloons[i]->getScaleHeight() * _scaleSizeAll);
+			
+			norm.push_back(newPoint);
+		}
 	}
 	
 	return norm;
@@ -485,6 +577,10 @@ void Sensing::keyPressed(int key)
 	else if (key == 'b') 
 	{
 		// bring selected to back
+	}
+	else if(key == '0')
+	{
+		_blobMode = !_blobMode;
 	}
 	
 	//_scalePosAll += 0.005;

@@ -14,8 +14,6 @@ public:
 	
 	BalloonControllerNew(Balloon * model);
 	
-	void loadImage(string imgPath, string imgPath2);
-	
 	void update();
 	void draw();
 	
@@ -26,9 +24,5 @@ public:
 	
 private:
 	
-	ofImage _img;
-	ofImage _img2;
-	
-	PTimer timer;
-	
+	int _color;
 };

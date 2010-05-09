@@ -1,46 +1,50 @@
 #include "AnimationHeads.h"
 
 /* Constructor
-___________________________________________________________ */
+ ___________________________________________________________ */
 
 AnimationHeads::AnimationHeads()
 {
-	img.loadImage("head.png");
+	_usingControllers = true;
 }
 
 /* Update
  ___________________________________________________________ */
 
 void AnimationHeads::update()
-{
-	
+{	
+	for(int i = 0; i < _controllers.size(); i++)
+	{
+		_controllers[i]->update();
+	}
 }
 
 /* Draw
-___________________________________________________________ */
+ ___________________________________________________________ */
 
 void AnimationHeads::draw()
 {
 	ofSetColor(255, 255, 255);
 	
-	ofRectangle bounds;
+	ofEnableAlphaBlending();
 	
-	for(int i = 0; i < _points.size(); i++) 
-	{
-		ofFill();
-		ofSetColor(0, 0, 0, 255);
-		ofEllipse(_points[i]->getCenterX(), _points[i]->getCenterY(), _points[i]->getWidth(), _points[i]->getHeight());
-		
-		ofSetColor(255, 255, 255);
-		
-		ofEnableAlphaBlending();
-		
-		bounds = _points[i]->getBoundsFromSize(img.getWidth(), img.getHeight());
-		
-		img.draw(bounds.x, bounds.y, bounds.width, bounds.height);
-		
-		ofDisableAlphaBlending();
+	for(int i = 0; i < _controllers.size(); i++)
+	{ 
+		_controllers[i]->draw();
 	}
 	
-	
+	ofDisableAlphaBlending();
 }
+
+/* Overrides
+ ___________________________________________________________ */
+
+BalloonController * AnimationHeads::getNewController(Balloon * model)
+{		
+	BalloonControllerNanna * b = new BalloonControllerNanna(model);
+	
+	return b;
+}
+
+
+

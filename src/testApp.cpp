@@ -15,6 +15,7 @@ void testApp::setup()
 	animations.push_back(new AnimationSingingHeads());
 	animations.push_back(new AnimationLetters());
 	animations.push_back(new AnimationNew());
+	animations.push_back(new AnimationDogs());
 	
 	selectedAnimation = 0;
 	
@@ -48,6 +49,8 @@ void testApp::draw()
 
 void testApp::newMidiMessage(ofxMidiEventArgs& eventArgs)
 {
+	printf("<#message#>");
+	
 	animations[selectedAnimation]->newMidiMessage(eventArgs);
 }
 

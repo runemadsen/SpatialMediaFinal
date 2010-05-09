@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Animation.h"
+#include "ofxMidi.h"
+#include "BalloonController.h"
+#include "Balloon.h"
+#include "BalloonControllerNanna.h"
 
 class AnimationHeads : public Animation
 {
@@ -10,10 +14,10 @@ public:
 	
     void update();
 	void draw();
+	BalloonController * getNewController(Balloon * model);
 	
 private:
-	
-	ofImage img;
+
 };
 
- 
+

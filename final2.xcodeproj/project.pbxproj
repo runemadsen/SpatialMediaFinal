@@ -10,6 +10,9 @@
 		A52053881180C3B200AA9C7F /* BalloonControllerHead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52053871180C3B200AA9C7F /* BalloonControllerHead.cpp */; };
 		A52053E81180CFC300AA9C7F /* BalloonController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52053E71180CFC300AA9C7F /* BalloonController.cpp */; };
 		A520D3571176438F0009103D /* AnimationCircles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A520D3561176438F0009103D /* AnimationCircles.cpp */; };
+		A52634E111970ECD002BDA4F /* AnimationDogs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52634E011970ECD002BDA4F /* AnimationDogs.cpp */; };
+		A52634E411970ED5002BDA4F /* BalloonControllerDog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52634E311970ED5002BDA4F /* BalloonControllerDog.cpp */; };
+		A52635611197216D002BDA4F /* BalloonControllerNanna.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52635601197216D002BDA4F /* BalloonControllerNanna.cpp */; };
 		A529B17D118A13B800519A49 /* openCV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A529B166118A13B800519A49 /* openCV.a */; };
 		A529B17E118A13B800519A49 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A529B169118A13B800519A49 /* ofxCvColorImage.cpp */; };
 		A529B17F118A13B800519A49 /* ofxCvContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A529B16C118A13B800519A49 /* ofxCvContourFinder.cpp */; };
@@ -149,6 +152,12 @@
 		A52053E71180CFC300AA9C7F /* BalloonController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonController.cpp; sourceTree = "<group>"; };
 		A520D3551176438F0009103D /* AnimationCircles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationCircles.h; sourceTree = "<group>"; };
 		A520D3561176438F0009103D /* AnimationCircles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationCircles.cpp; sourceTree = "<group>"; };
+		A52634DF11970ECD002BDA4F /* AnimationDogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationDogs.h; sourceTree = "<group>"; };
+		A52634E011970ECD002BDA4F /* AnimationDogs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationDogs.cpp; sourceTree = "<group>"; };
+		A52634E211970ED5002BDA4F /* BalloonControllerDog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonControllerDog.h; sourceTree = "<group>"; };
+		A52634E311970ED5002BDA4F /* BalloonControllerDog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerDog.cpp; sourceTree = "<group>"; };
+		A526355F1197216D002BDA4F /* BalloonControllerNanna.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonControllerNanna.h; sourceTree = "<group>"; };
+		A52635601197216D002BDA4F /* BalloonControllerNanna.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerNanna.cpp; sourceTree = "<group>"; };
 		A529B150118A13B700519A49 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		A529B154118A13B700519A49 /* cv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cv.h; sourceTree = "<group>"; };
 		A529B155118A13B700519A49 /* cv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cv.hpp; sourceTree = "<group>"; };
@@ -392,6 +401,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A52634DE11970EB9002BDA4F /* dogs */ = {
+			isa = PBXGroup;
+			children = (
+				A52634DF11970ECD002BDA4F /* AnimationDogs.h */,
+				A52634E011970ECD002BDA4F /* AnimationDogs.cpp */,
+				A52634E211970ED5002BDA4F /* BalloonControllerDog.h */,
+				A52634E311970ED5002BDA4F /* BalloonControllerDog.cpp */,
+			);
+			name = dogs;
+			sourceTree = "<group>";
+		};
 		A529B14F118A13B700519A49 /* ofxOpenCv */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +515,7 @@
 		A554011C1173AABA00665657 /* animations */ = {
 			isa = PBXGroup;
 			children = (
+				A52634DE11970EB9002BDA4F /* dogs */,
 				A5E2E7FC1187632C00E3EDEE /* newanimation */,
 				A5DA3F8011860F4B0047FEED /* letters */,
 				A55B58291180B27A00BFCE44 /* singingheads */,
@@ -676,6 +697,8 @@
 			children = (
 				A55401181173AAB600665657 /* AnimationHeads.h */,
 				A55401191173AAB600665657 /* AnimationHeads.cpp */,
+				A526355F1197216D002BDA4F /* BalloonControllerNanna.h */,
+				A52635601197216D002BDA4F /* BalloonControllerNanna.cpp */,
 			);
 			name = heads;
 			sourceTree = "<group>";
@@ -1276,6 +1299,9 @@
 				A529B182118A13B800519A49 /* ofxCvImage.cpp in Sources */,
 				A529B183118A13B800519A49 /* ofxCvShortImage.cpp in Sources */,
 				A529B184118A13B800519A49 /* ofxCvBlobTracker.cpp in Sources */,
+				A52634E111970ECD002BDA4F /* AnimationDogs.cpp in Sources */,
+				A52634E411970ED5002BDA4F /* BalloonControllerDog.cpp in Sources */,
+				A52635611197216D002BDA4F /* BalloonControllerNanna.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

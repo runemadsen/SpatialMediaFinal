@@ -11,6 +11,7 @@
 #include "AnimationSingingHeads.h"
 #include "AnimationLetters.h"
 #include "AnimationNew.h"
+#include "AnimationDogs.h"
 #include "ofxMidi.h"
 
 class testApp : public ofSimpleApp, public ofxMidiListener

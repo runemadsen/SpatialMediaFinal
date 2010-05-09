@@ -9,10 +9,10 @@ Sensing::Sensing()
 	_enabled = false;
 	_mapFromScreen = false;
 	_scalePosAll = 1;
-	//_xDisplaceAll = 0;
-	//_yDisplaceAll = 0;
-	_xDisplaceAll = -1055;
-	_yDisplaceAll = -723;
+	_xDisplaceAll = 0;
+	_yDisplaceAll = 0;
+	//_xDisplaceAll = -1055;
+	//_yDisplaceAll = -723;
 	_blobCalibrate = 3.09;
 	_scaleSizeAll = 1;
 	_constrainRatio = true;

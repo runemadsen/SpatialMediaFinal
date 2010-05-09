@@ -12,6 +12,7 @@ BalloonControllerHead::BalloonControllerHead(Balloon * model) : BalloonControlle
 	
 	head.loadMovie("finishedblink3.mov");
 	head.play();
+	head.setFrame(ofRandom(1, _frameBlinkEnd - 1));
 }
 
 /* Update

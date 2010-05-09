@@ -19,8 +19,6 @@ public:
 	
 private:
 	
-	vector <string> _imgNames;
-	
 };
 
 

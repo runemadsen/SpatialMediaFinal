@@ -24,5 +24,5 @@ public:
 	
 private:
 	
-	int _color;
+	ofImage img;
 };

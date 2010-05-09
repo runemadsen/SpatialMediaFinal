@@ -5,7 +5,10 @@
 
 BalloonControllerNew::BalloonControllerNew(Balloon * model) : BalloonController(model)
 {
-	_color = 0xFFFFFF;
+	int ranNum = ofRandom(1, 4);
+	string imgName = "jorge" + ofToString(ranNum) + ".png";
+
+	img.loadImage(imgName);
 }
 
 /* Update
@@ -21,12 +24,21 @@ void BalloonControllerNew::update()
 
 void BalloonControllerNew::draw()
 {
-	// color is either white or red depending on note played
-	ofSetColor(_color);
-	ofFill();
+	ofRectangle bounds;
 	
-	// get the position and size of this ballon from the _model: a Balloon object created when you clicked
+	ofFill();
+	ofSetColor(0, 0, 0, 255);
 	ofEllipse(_model->getCenterX(), _model->getCenterY(), _model->getWidth(), _model->getHeight());
+	
+	ofSetColor(255, 255, 255);
+	
+	ofEnableAlphaBlending();
+	
+	bounds = _model->getBoundsFromSize(img.getWidth(), img.getHeight());
+	
+	img.draw(bounds.x, bounds.y, bounds.width, bounds.height);
+	
+	ofDisableAlphaBlending();
 }
 
 /* Midi note on / off
@@ -34,10 +46,10 @@ void BalloonControllerNew::draw()
 
 void BalloonControllerNew::noteOn()
 {
-	_color = 0xFF0000;
+	
 }
 
 void BalloonControllerNew::noteOff()
 {
-	_color = 0xFFFFFF;
+
 }

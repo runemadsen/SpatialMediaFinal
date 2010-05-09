@@ -6,7 +6,7 @@
 
 BalloonControllerStars::BalloonControllerStars(Balloon * model) : BalloonController(model)
 {
-	balloonShine.loadImage("balloon.png");
+	balloonShine.loadImage("balloon3.png");
 	
 	timer.setDuration(150);
 	

@@ -8,17 +8,19 @@ AnimationLetters::AnimationLetters()
 	_usingControllers = true;
 	
 	// save image names
-	_imgNames.push_back("o");
-	_imgNames.push_back("h");
-	_imgNames.push_back("l");
-	_imgNames.push_back("a");
-	_imgNames.push_back("n");
-	_imgNames.push_back("d");
-	_imgNames.push_back("m");
-	_imgNames.push_back("u");
-	_imgNames.push_back("s");
+	_imgNames.push_back("empty");
 	_imgNames.push_back("i");
-	_imgNames.push_back("c");;
+	_imgNames.push_back("t");
+	_imgNames.push_back("p");
+	_imgNames.push_back("s");
+	_imgNames.push_back("h");
+	_imgNames.push_back("o");
+	_imgNames.push_back("w");
+	_imgNames.push_back("2");
+	_imgNames.push_back("0");
+	_imgNames.push_back("1");
+	_imgNames.push_back("0");
+	_imgNames.push_back("empty");
 }
 
 /* Update

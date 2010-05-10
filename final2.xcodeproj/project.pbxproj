@@ -75,6 +75,8 @@
 		A5E2E8021187635200E3EDEE /* BalloonControllerNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5E2E8011187635200E3EDEE /* BalloonControllerNew.cpp */; };
 		A5F4BD271183E0150015F6AB /* ofxAlphaVideoPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F4BD231183E0150015F6AB /* ofxAlphaVideoPlayer.cpp */; };
 		A5F4BD281183E0150015F6AB /* ofxQtUtils_alpha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5F4BD251183E0150015F6AB /* ofxQtUtils_alpha.cpp */; };
+		A5FC337C11985C0F00ED3B02 /* AnimationTechno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5FC337811985C0F00ED3B02 /* AnimationTechno.cpp */; };
+		A5FC337D11985C0F00ED3B02 /* BalloonControllerTechno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5FC337A11985C0F00ED3B02 /* BalloonControllerTechno.cpp */; };
 		E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE0A90E8CC67C009D7055 /* GLee.a */; };
 		E45BE2E40E8CC69C009D7055 /* rtAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE2E30E8CC69C009D7055 /* rtAudio.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -323,6 +325,10 @@
 		A5F4BD241183E0150015F6AB /* ofxAlphaVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAlphaVideoPlayer.h; sourceTree = "<group>"; };
 		A5F4BD251183E0150015F6AB /* ofxQtUtils_alpha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQtUtils_alpha.cpp; sourceTree = "<group>"; };
 		A5F4BD261183E0150015F6AB /* ofxQtUtils_alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxQtUtils_alpha.h; sourceTree = "<group>"; };
+		A5FC337811985C0F00ED3B02 /* AnimationTechno.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationTechno.cpp; sourceTree = "<group>"; };
+		A5FC337911985C0F00ED3B02 /* AnimationTechno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationTechno.h; sourceTree = "<group>"; };
+		A5FC337A11985C0F00ED3B02 /* BalloonControllerTechno.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonControllerTechno.cpp; sourceTree = "<group>"; };
+		A5FC337B11985C0F00ED3B02 /* BalloonControllerTechno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonControllerTechno.h; sourceTree = "<group>"; };
 		E45BE0390E8CC647009D7055 /* FreeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreeImage.h; path = ../../../libs/freeimage/include/FreeImage.h; sourceTree = SOURCE_ROOT; };
 		E45BE03F0E8CC650009D7055 /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod.h; path = ../../../libs/fmodex/include/fmod.h; sourceTree = SOURCE_ROOT; };
 		E45BE0400E8CC650009D7055 /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmod.hpp; path = ../../../libs/fmodex/include/fmod.hpp; sourceTree = SOURCE_ROOT; };
@@ -515,6 +521,7 @@
 		A554011C1173AABA00665657 /* animations */ = {
 			isa = PBXGroup;
 			children = (
+				A5FC337711985BF600ED3B02 /* techno */,
 				A52634DE11970EB9002BDA4F /* dogs */,
 				A5E2E7FC1187632C00E3EDEE /* newanimation */,
 				A5DA3F8011860F4B0047FEED /* letters */,
@@ -864,6 +871,17 @@
 				A5F4BD261183E0150015F6AB /* ofxQtUtils_alpha.h */,
 			);
 			path = ofxAlphaVideoPlayer;
+			sourceTree = "<group>";
+		};
+		A5FC337711985BF600ED3B02 /* techno */ = {
+			isa = PBXGroup;
+			children = (
+				A5FC337811985C0F00ED3B02 /* AnimationTechno.cpp */,
+				A5FC337911985C0F00ED3B02 /* AnimationTechno.h */,
+				A5FC337A11985C0F00ED3B02 /* BalloonControllerTechno.cpp */,
+				A5FC337B11985C0F00ED3B02 /* BalloonControllerTechno.h */,
+			);
+			name = techno;
 			sourceTree = "<group>";
 		};
 		E45BE0360E8CC5DE009D7055 /* libs */ = {
@@ -1302,6 +1320,8 @@
 				A52634E111970ECD002BDA4F /* AnimationDogs.cpp in Sources */,
 				A52634E411970ED5002BDA4F /* BalloonControllerDog.cpp in Sources */,
 				A52635611197216D002BDA4F /* BalloonControllerNanna.cpp in Sources */,
+				A5FC337C11985C0F00ED3B02 /* AnimationTechno.cpp in Sources */,
+				A5FC337D11985C0F00ED3B02 /* BalloonControllerTechno.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

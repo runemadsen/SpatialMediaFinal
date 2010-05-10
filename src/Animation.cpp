@@ -113,6 +113,17 @@ void Animation::newMidiMessage(ofxMidiEventArgs& eventArgs)
 	}
 }
 
+void Animation::allNodesOff()
+{
+	if(_usingControllers)
+	{
+		for(int i = 0; i < _controllers.size(); i++)
+		{
+			_controllers[i]->noteOff();
+		}
+	}
+}
+
 /* Getter / Setter
 ___________________________________________________________ */
 

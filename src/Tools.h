@@ -37,6 +37,7 @@ public:
 		_time = 0.0; 
 		_duration = 200; 
 		_state = 0.0;
+		_upDown = false;
 	}
 	
 	void tick()
@@ -46,13 +47,22 @@ public:
 		if (_time > _duration) 
 		{
 			_time = _duration;
-			_state = 0;
+			
+			if(_upDown)	_state = -1;
+			else		_state = 0;
 		}
 		else if(_time < 0)
 		{
 			_time = 0;
-			_state = 0;
+			
+			if(_upDown)	_state = 1;
+			else		_state = 0;
 		}
+	}
+	
+	void setUpDown(bool upDown)
+	{
+		_upDown = upDown;
 	}
 	
 	void setDuration(float duration)
@@ -75,6 +85,11 @@ public:
 		return _time;
 	}
 	
+	void setTime(float time)
+	{
+		_time = time;
+	}
+	
 	float getState()
 	{
 		return _state;
@@ -85,6 +100,7 @@ private:
 	float _state; 
 	float _time;
 	float _duration;
+	bool _upDown;
 	
 };
 

@@ -14,10 +14,12 @@ public:
 	
 	void setBalloons(vector <Balloon *> points);
 	void compareBalloonsToControllers();
+	void allNodesOff();
 	
 	virtual void update() {}
 	virtual void draw() {}
 	virtual void newMidiMessage(ofxMidiEventArgs& eventArgs);
+	
 	
 protected:
 	

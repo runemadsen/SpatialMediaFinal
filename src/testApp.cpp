@@ -5,6 +5,7 @@ void testApp::setup()
 	ofSetFrameRate(60);
 	ofBackground( 0, 0, 0 );
 	ofEnableSmoothing();
+	//ofHideCursor();
 	
 	sensing = new Sensing();
 	
@@ -14,8 +15,10 @@ void testApp::setup()
 	animations.push_back(new AnimationStars());
 	animations.push_back(new AnimationSingingHeads());
 	animations.push_back(new AnimationLetters());
-	animations.push_back(new AnimationNew());
+	//animations.push_back(new AnimationNew());
 	animations.push_back(new AnimationDogs());
+	animations.push_back(new AnimationTechno());
+	
 	
 	selectedAnimation = 0;
 	
@@ -48,9 +51,7 @@ void testApp::draw()
 }
 
 void testApp::newMidiMessage(ofxMidiEventArgs& eventArgs)
-{
-	printf("<#message#>");
-	
+{	
 	animations[selectedAnimation]->newMidiMessage(eventArgs);
 }
 
@@ -60,10 +61,14 @@ void testApp::keyPressed( int key )
 	
 	if(key > '0' && key <= '9')
 	{
-		int convert = key- '0';
+		int convert = key - '0';
 		
 		if (convert <= animations.size()) 
 		{
+			// set nodes off in selected animation
+			animations[selectedAnimation]->allNodesOff();
+			
+			// set new selected animation
 			selectedAnimation = convert - 1;
 		}
 	}

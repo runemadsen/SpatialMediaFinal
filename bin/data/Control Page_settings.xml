@@ -21,7 +21,7 @@
     </SliderFloat_Calibrate>
     <SliderFloat_Scale_Width>
         <name>Scale Width</name>
-        <value>1.372070</value>
+        <value>1.230000</value>
     </SliderFloat_Scale_Width>
     <SliderFloat_Scale_Height>
         <name>Scale Height</name>
@@ -29,6 +29,6 @@
     </SliderFloat_Scale_Height>
     <Toggle_Constrain_Ratio>
         <name>Constrain Ratio</name>
-        <value>0</value>
+        <value>1</value>
     </Toggle_Constrain_Ratio>
 </controls>

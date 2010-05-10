@@ -17,6 +17,14 @@ AnimationDogs::AnimationDogs()
 	_imgNames.push_back("dog7");
 	_imgNames.push_back("dog8");
 	_imgNames.push_back("dog4");
+	_imgNames.push_back("dog9");
+	_imgNames.push_back("dog9");
+	_imgNames.push_back("dog9");
+	_imgNames.push_back("dog9");
+	_imgNames.push_back("dog9");
+	_imgNames.push_back("dog9");
+	_imgNames.push_back("dog9");
+	_imgNames.push_back("dog9");
 }
 
 /* Update
